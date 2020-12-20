@@ -13,5 +13,5 @@ def index():
 
 
 # Spin-up the Flask Application
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True)
