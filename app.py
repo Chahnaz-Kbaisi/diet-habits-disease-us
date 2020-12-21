@@ -1,6 +1,5 @@
 # Import in Dependencies
-from flask import Flask, render_template, jsonify
-# request
+from flask import Flask, render_template, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from os import environ
 # from flask_pymongo import PyMongo
@@ -32,7 +31,7 @@ class Task(db.Model):
 
 @app.route('/')
 def index():
-    return render_template('index.html', name="Group 1")
+    return render_template('index.html')
 
 # Creating endpoint to fetch tasks to the users
 
@@ -58,6 +57,13 @@ def tasks():
     return jsonify(data)
 
 
-# Spin-up the Flask Application
+@app.route('/task', methods=('POST', ))
+def add_task():
+    print(request.get_json())
+    return
+    # tasks = requests.body.get('')
+
+
+    # Spin-up the Flask Application
 if __name__ == "__main__":
     app.run(debug=True)
