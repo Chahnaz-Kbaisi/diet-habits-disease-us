@@ -1,28 +1,31 @@
 # Import in Dependencies
-from flask import Flask, render_template, jsonify, request
-# from flask_sqlalchemy import SQLAlchemy
+from flask import Flask, render_template, jsonify
+# request
+from flask_sqlalchemy import SQLAlchemy
 from os import environ
-from flask_pymongo import PyMongo
+# from flask_pymongo import PyMongo
 
 # Creating new application of the flask module
 app = Flask(__name__)
 # config app with mongodb
-app.config['MONGO_URI'] = environ.get(
-    'MONGODB_URI') or 'mongodb://localhost:27017/heroku-notepad'
+# app.config['MONGO_URI'] = environ.get(
+#     'MONGODB_URI') or 'mongodb://localhost:27017/heroku-notepad'
 
 # Initializing mongo applicaiton
-mongo = PyMongo(app)
+# mongo = PyMongo(app)
 # sqlalchemy connection using flask app config
-# app.config['SQLALCHEMY_DATABASE_URI'] = environ.get(
-#     'DATABASE_URL') or "sqlite:///notepad.sqlite"
+app.config['SQLALCHEMY_DATABASE_URI'] = environ.get(
+    'DATABASE_URL') or "sqlite:///notepad.sqlite"
 
 # To create a db using flask sqlalchemy integration
-# db = SQLAlchemy(app)
+db = SQLAlchemy(app)
 
 # create a class that's going to hold our data
-# class Task(db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     description = db.Column(db.String)
+
+
+class Task(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    description = db.Column(db.String)
 
 # Creating the test route
 
@@ -36,19 +39,19 @@ def index():
 
 @app.route('/tasks')
 def tasks():
-    # tasks = db.session.query(Task)
-    tasks = mongo.db.tasks.find({})
+    tasks = db.session.query(Task)
+    # tasks = mongo.db.tasks.find({})
     # variable called data to return an object
     data = []
 
     # Create a simple dictionary and append to list
     for task in tasks:
         item = {
-            # "id": task.id,
-            # "description": task.description
+            "id": task.id,
+            "description": task.description
             # modify for mongo
-            "_id": str(task['_id']),
-            "description": task['description']
+            # "_id": str(task['_id']),
+            # "description": task['description']
         }
         data.append(item)
 
