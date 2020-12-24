@@ -13,6 +13,7 @@ decorator==4.4.2
 defusedxml==0.6.0
 dnspython==2.0.0
 entrypoints==0.3
+et-xmlfile==1.0.1
 Flask==1.1.2
 Flask-PyMongo==2.3.0
 Flask-SQLAlchemy==2.4.4
@@ -23,6 +24,7 @@ ipykernel==5.3.4
 ipython==7.16.1
 ipython-genutils==0.2.0
 itsdangerous==1.1.0
+jdcal==1.4.1
 jedi==0.17.0
 Jinja2==2.11.2
 jsonschema==3.2.0
@@ -37,8 +39,9 @@ nbformat==5.0.8
 nest-asyncio==1.4.3
 notebook==6.1.5
 numpy==1.19.3
+openpyxl==3.0.4
 packaging==20.8
-pandas==1.1.5
+pandas==1.1.1
 pandocfilters==1.4.3
 parso==0.8.1
 pickleshare==0.7.5
@@ -72,4 +75,5 @@ webencodings==0.5.1
 Werkzeug==1.0.1
 wheel==0.36.2
 wincertstore==0.2
+xlrd==1.2.0
 zipp==3.4.0
