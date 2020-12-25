@@ -2,17 +2,11 @@
 from flask import Flask, render_template, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from os import environ
-# from flask_pymongo import PyMongo
+from flask_pymongo import PyMongo
 
-# Creating new application of the flask module
+
 app = Flask(__name__)
-# config app with mongodb
-# app.config['MONGO_URI'] = environ.get(
-#     'MONGODB_URI') or 'mongodb://localhost:27017/heroku-notepad'
 
-# Initializing mongo applicaiton
-# mongo = PyMongo(app)
-# sqlalchemy connection using flask app config
 app.config['SQLALCHEMY_DATABASE_URI'] = environ.get(
     'DATABASE_URL') or "sqlite:///notepad.sqlite"
 
