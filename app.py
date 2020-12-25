@@ -15,19 +15,11 @@ db = SQLAlchemy(app)
 
 # create a class that's going to hold our data
 
-
-
-
-
-
 @app.route('/')
 def index():
     return render_template('index.html')
 
 # Creating endpoint to fetch tasks to the users
-
-
-
 
 
     # Spin-up the Flask Application
