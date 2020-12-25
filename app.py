@@ -16,11 +16,8 @@ db = SQLAlchemy(app)
 # create a class that's going to hold our data
 
 
-class Task(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    description = db.Column(db.String)
 
-# Creating the test route
+
 
 
 @app.route('/')
@@ -30,32 +27,7 @@ def index():
 # Creating endpoint to fetch tasks to the users
 
 
-@app.route('/tasks')
-def tasks():
-    tasks = db.session.query(Task)
-    # tasks = mongo.db.tasks.find({})
-    # variable called data to return an object
-    data = []
 
-    # Create a simple dictionary and append to list
-    for task in tasks:
-        item = {
-            "id": task.id,
-            "description": task.description
-            # modify for mongo
-            # "_id": str(task['_id']),
-            # "description": task['description']
-        }
-        data.append(item)
-
-    return jsonify(data)
-
-
-@app.route('/task', methods=('POST', ))
-def add_task():
-    print(request.get_json())
-    return
-    # tasks = requests.body.get('')
 
 
     # Spin-up the Flask Application
