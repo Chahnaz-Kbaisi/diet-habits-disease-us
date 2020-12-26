@@ -5,7 +5,13 @@ from os import environ
 from flask_pymongo import PyMongo
 
 
+# Setting up Flask
 app = Flask(__name__)
+
+app.config['MONGO_URI'] = environ.get(
+    'MONGODB_URI', 'mongodb://localhost:27017/notepad')
+
+mongo = PyMongo(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = environ.get(
     'DATABASE_URL') or "sqlite:///notepad.sqlite"
@@ -13,14 +19,11 @@ app.config['SQLALCHEMY_DATABASE_URI'] = environ.get(
 # To create a db using flask sqlalchemy integration
 db = SQLAlchemy(app)
 
-# create a class that's going to hold our data
 
+# Creating route that will render html templates
 @app.route('/')
 def index():
     return render_template('index.html')
-
-# Creating endpoint to fetch tasks to the users
-
 
     # Spin-up the Flask Application
 if __name__ == "__main__":

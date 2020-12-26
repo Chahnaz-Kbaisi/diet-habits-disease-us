@@ -1,3 +1,5 @@
-// console.log('hi');
-
+//
+// d3.json().then((data) => {
+//     console.log(data);
+// });
 
