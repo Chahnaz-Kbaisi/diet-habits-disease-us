@@ -14,40 +14,45 @@
         integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
         crossorigin="" />
     <!-- Our CSS -->
-    <link rel="stylesheet" type="text/css" href="static/css/style.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="static/css/style.css" /> -->
 
 </head>
 
 <body>
+    <!-- Nav Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="/">Homepage</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
+            aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="">Approach</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="">Map</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="">Analysis</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="">Predications</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="">Conclusions</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
     <div class="container mt-4">
 
         <div class="jumbotron">
-            <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-                <!-- Brand -->
-                <a class="navbar-brand" href="#">Homepage</a>
-
-                <!-- Links -->
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Approach</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link 2</a>
-                    </li>
-
-                    <!-- Dropdown -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                            Dropdown link
-                        </a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Link 1</a>
-                            <a class="dropdown-item" href="#">Link 2</a>
-                            <a class="dropdown-item" href="#">Link 3</a>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
             <h1 class="display-4 text-primary">American Dietary Trends & Disease Prevalence</h1>
             <hr class="my-4">
             <ul id="tasks" class="list-group"></ul>
