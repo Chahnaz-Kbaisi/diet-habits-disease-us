@@ -40,6 +40,7 @@ def fetch_data():
             value = str(value) + ''
             if value == 'nan':
                 item[key] = ""
+        item['_id'] = str(item['_id'])
         data.append(item)
 
     return jsonify(data)
