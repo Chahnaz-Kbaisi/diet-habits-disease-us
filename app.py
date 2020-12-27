@@ -31,6 +31,14 @@ def index():
 def navbar():
     return render_template('navbar.html')
 
-    # Spin-up the Flask Application
+@app.route('/footer')
+def footer():
+    return render_template('footer.html')
+
+###############################################
+# Run the Flask Application
+###############################################
+
+# Spin-up the Flask Application
 if __name__ == "__main__":
     app.run(debug=True)
