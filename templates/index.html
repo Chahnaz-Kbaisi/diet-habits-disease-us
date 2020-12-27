@@ -3,70 +3,39 @@
 <html lang="en">
 
 <head>
-    <!-- Setting up titles -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>American Dietary Trends & Disease Prevalence</title>
-    <!-- d3 module -->
-    <script src="https://d3js.org/d3.v6.min.js"></script>
-    <!-- Leaflet CSS & JS-->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
-        integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
-        crossorigin="" />
-    <!-- Our CSS -->
-    <link rel="stylesheet" type="text/css" href="../static/css/style.css" />
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/style.css') }}" />
+
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/navbar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/footer.css') }}">
+    <script src="{{ url_for('static', filename='js/navbar.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/footer.js') }}"></script>
 </head>
 
 <body>
-    <!-- NavBar Navigation Section -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="/">Homepage</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
-            aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarColor01">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="">Approach</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="">Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="">Map</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="">Analysis</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="">Predications</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="">Conclusions</a>
-                </li>
-            </ul>
+    <div class="wrapper">
+        <!-- Navigation Bar -->
+        <div id="nav-placeholder"></div>
+
+        <!-- Page Content -->
+        <div class="container-fluid">
+            <!-- Main page row -->
         </div>
-    </nav>
-    <!-- Creating containers, rows & column -->
-    <div class="container mt-4">
-        <!-- Main page row -->
-        <div class="row">
-            <div class="col-md-12 jumbotron text-center">
-                <h1 class="display-4 text-primary">US Dietary Trends & Disease Prevalence</h1>
-                <hr class="my-4">
-                <!-- <ul id="tasks" class="list-group"></ul> -->
-            </div>
-        </div>
+
+        <!-- Footer -->
+        <div id="footer-placeholder"></div>
+
     </div>
-    <!-- Footer Section -->
-    <!-- <footer>
-        <div class="footer">&copy; US Diet Habits/Disease 2021</div>
-    </footer> -->
-    <!-- Run script -->
-    <script src="../static/js/main.js"></script>
     <!-- JS, Popper.js, CSS and jQuery -->
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
@@ -81,7 +50,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
         integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
         crossorigin="anonymous"></script>
-
+    <!-- Run script -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 
 </body>
 
