@@ -132,3 +132,45 @@ body {
         animation: smaller-subtitle 1.2s forwards linear;
     }
 }
+
+
+/* keyframe animations which will be used to animate the title */
+
+@keyframes title {
+    from {
+        opacity: 0;
+    }
+    to {
+        font-size: 4rem;
+        opacity: 1;
+    }
+}
+
+@keyframes smaller-title {
+    from {
+        opacity: 0;
+    }
+    to {
+        font-size: 2rem;
+        opacity: 1;
+    }
+}
+
+@keyframes subtitle {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes smaller-subtitle {
+    from {
+        opacity: 0;
+    }
+    to {
+        font-size: 1.5rem;
+        opacity: 1;
+    }
+}
