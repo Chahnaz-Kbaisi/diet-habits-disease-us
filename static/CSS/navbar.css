@@ -9,3 +9,14 @@ body {
     padding: 0;
     margin: 0;
 }
+
+
+/* The wrapper contains all of the page's content besides the footer, which is pushed to the bottom of the page */
+
+.wrapper {
+    position: relative;
+    min-height: 100%;
+    padding-bottom: 130px;
+    overflow: auto;
+    background: #1b3146;
+}
