@@ -16,6 +16,9 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='CSS/footer.css') }}">
     <script src="{{ url_for('static', filename='js/navbar.js') }}"></script>
     <script src="{{ url_for('static', filename='js/footer.js') }}"></script>
+    <!-- Our CSS -->
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css" />
+
 </head>
 
 <body>
@@ -24,9 +27,38 @@
         <div id="nav-placeholder"></div>
 
         <!-- Page Content -->
-        <div class="container-fluid">
-            <!-- Main page row -->
+        <!-- <div class="container-fluid"> -->
+        <!-- Main page row -->
+        <div class="flex-container">
+            <div class="column">
+                <h2>Overview</h2>
+                <p>Dietary choices and options vary
+                    across the United States. In addition,
+                    not every American has the same
+                    access to healthy food or the
+                    resources to consume a regular
+                    healthy diet. Although a person’s diet
+                    is an important determinant of their
+                    health and subsequent risk of
+                    disease, especially obesity,
+                    diabetes, and metabolic syndrome,
+                    there are other social factors that
+                    may play a crucial role. For example,
+                    household income might be indirect
+                    determinant of risk because it
+                    directly impacts the ability to acquire
+                    healthy food. Therefore, the goal of
+                    this project is to examine the dietary
+                    habits of Americans, and assess
+                    whether access to food, choice of
+                    diet, socioeconomic status, and
+                    other factors contribute to the
+                    development of disease.</p>
+            </div>
+            <div class="column bg-alt">Column 2</div>
         </div>
+        <!-- </div> -->
+
 
         <!-- Footer -->
         <div id="footer-placeholder"></div>
