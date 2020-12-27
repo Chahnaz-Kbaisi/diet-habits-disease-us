@@ -45,3 +45,16 @@ body {
 .custom-toggler.navbar-toggler {
     border-color: rgb(235, 235, 235);
 }
+
+
+/* This CSS styles the Logo icon in the navbar */
+
+.nav-class {
+    margin: 20px;
+}
+
+.nav-logo {
+    width: 150px;
+    color: white;
+    filter: invert(100) sepia(100) saturate(27) hue-rotate(264deg) brightness(96) contrast(102);
+}
