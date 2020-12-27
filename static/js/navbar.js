@@ -1,0 +1,1 @@
+// Embed navbar.html in place of nav-placeholder
