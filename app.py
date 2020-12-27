@@ -1,24 +1,22 @@
-# Import in Dependencies
+###############################################
+# Import Dependencies
+###############################################
 from flask import Flask, render_template, jsonify, request
-from flask_sqlalchemy import SQLAlchemy
 from os import environ
 from flask_pymongo import PyMongo
 
+###############################################
+# Database & Flask Setup
+###############################################
 
-# Setting up Flask
+# Creating new application of the flask module
 app = Flask(__name__)
 
-app.config['MONGO_URI'] = environ.get(
-    'MONGODB_URI', 'mongodb://localhost:27017/notepad')
+# config app with mongodb
+app.config['MONGO_URI'] = environ.get('MONGODB_URL') or 'mongodb://localhost:27017/diethabitsDB'
 
+# Initializing mongo applicaiton
 mongo = PyMongo(app)
-
-app.config['SQLALCHEMY_DATABASE_URI'] = environ.get(
-    'DATABASE_URL') or "sqlite:///notepad.sqlite"
-
-# To create a db using flask sqlalchemy integration
-db = SQLAlchemy(app)
-
 
 # Creating route that will render html templates
 @app.route('/')
