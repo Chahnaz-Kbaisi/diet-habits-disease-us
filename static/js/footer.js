@@ -1,0 +1,1 @@
+// Embed footer HTML code in place of footer-placeholder
