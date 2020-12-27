@@ -58,3 +58,24 @@ body {
     color: white;
     filter: invert(100) sepia(100) saturate(27) hue-rotate(264deg) brightness(96) contrast(102);
 }
+
+
+/* The styles for the Image Bar */
+
+.bg-image {
+    position: relative;
+    height: 250px;
+    padding: 20px;
+    margin: 0;
+    background-image: url("https://prod.static9.net.au/fs/5d96b1fe-22ba-42bc-b175-1ff0b09e4f7a");
+    /* Add the blur effect */
+    filter: blur(3px);
+    -webkit-filter: blur(3px);
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    /* background-position: bottom center; */
+    color: darkslategray;
+}
