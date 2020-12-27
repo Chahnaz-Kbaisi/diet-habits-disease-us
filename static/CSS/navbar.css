@@ -20,3 +20,28 @@ body {
     overflow: auto;
     background: #1b3146;
 }
+
+
+/* This CSS styles the navbar and navbar items */
+
+.navbar {
+    padding: 5px;
+    margin: 0;
+}
+
+.navbar-brand {
+    padding: 10px;
+    font-size: 19px;
+}
+
+.nav-link {
+    font-size: 14px;
+}
+
+.custom-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(235,235,235, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.custom-toggler.navbar-toggler {
+    border-color: rgb(235, 235, 235);
+}
