@@ -1,0 +1,176 @@
+* {
+    box-sizing: border-box;
+    font-family: Ubuntu, sans-serif;
+}
+
+html,
+body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+
+/* The wrapper contains all of the page's content besides the footer, which is pushed to the bottom of the page */
+
+.wrapper {
+    position: relative;
+    min-height: 100%;
+    padding-bottom: 130px;
+    overflow: auto;
+    background: #1b3146;
+}
+
+
+/* This CSS styles the navbar and navbar items */
+
+.navbar {
+    padding: 5px;
+    margin: 0;
+}
+
+.navbar-brand {
+    padding: 10px;
+    font-size: 19px;
+}
+
+.nav-link {
+    font-size: 14px;
+}
+
+.custom-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(235,235,235, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.custom-toggler.navbar-toggler {
+    border-color: rgb(235, 235, 235);
+}
+
+
+/* This CSS styles the Logo icon in the navbar */
+
+.nav-class {
+    margin: 20px;
+}
+
+.nav-logo {
+    width: 150px;
+    color: white;
+    filter: invert(100) sepia(100) saturate(27) hue-rotate(264deg) brightness(96) contrast(102);
+}
+
+
+/* The styles for the Image Bar */
+
+.bg-image {
+    position: relative;
+    height: 250px;
+    padding: 20px;
+    margin: 0;
+    background-image: url("https://prod.static9.net.au/fs/5d96b1fe-22ba-42bc-b175-1ff0b09e4f7a");
+    /* Add the blur effect */
+    filter: blur(3px);
+    -webkit-filter: blur(3px);
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    /* background-position: bottom center; */
+    color: darkslategray;
+}
+
+
+/* Position text in the middle of the page/image */
+
+.bg-text {
+    /* Fallback color */
+    background-color: rgb(0, 0, 0);
+    /* Black w/opacity/see-through */
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    font-weight: bold;
+    border: 3px solid #f1f1f1;
+    position: absolute;
+    top: 11%;
+    left: 10%;
+    z-index: 1;
+    width: 80%;
+    padding: 20px;
+    text-align: center;
+}
+
+.bg-text h1 {
+    font-size: 0.1rem;
+    animation: title 1.2s forwards linear;
+}
+
+.bg-text h2 {
+    font-size: 2rem;
+    opacity: 0;
+    animation: subtitle 1.2s forwards linear;
+    animation-delay: 1.2s;
+}
+
+
+/* media queries which will only be activated at specific screen sizes */
+
+@media (max-width: 615px) {
+    .bg-text {
+        top: 7%;
+    }
+}
+
+@media (max-width: 576px) {
+    .bg-text {
+        top: 13%;
+    }
+    .bg-text h1 {
+        animation: smaller-title 1.2s forwards linear;
+    }
+    .bg-text h2 {
+        animation: smaller-subtitle 1.2s forwards linear;
+    }
+}
+
+
+/* keyframe animations which will be used to animate the title */
+
+@keyframes title {
+    from {
+        opacity: 0;
+    }
+    to {
+        font-size: 4rem;
+        opacity: 1;
+    }
+}
+
+@keyframes smaller-title {
+    from {
+        opacity: 0;
+    }
+    to {
+        font-size: 2rem;
+        opacity: 1;
+    }
+}
+
+@keyframes subtitle {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes smaller-subtitle {
+    from {
+        opacity: 0;
+    }
+    to {
+        font-size: 1.5rem;
+        opacity: 1;
+    }
+}
