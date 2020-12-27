@@ -133,6 +133,12 @@ body {
     }
 }
 
+@media (max-width: 340px) {
+    .bg-text {
+        top: 11%;
+    }
+}
+
 
 /* keyframe animations which will be used to animate the title */
 
