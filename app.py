@@ -18,10 +18,18 @@ app.config['MONGO_URI'] = environ.get('MONGODB_URL') or 'mongodb://localhost:270
 # Initializing mongo applicaiton
 mongo = PyMongo(app)
 
+###############################################
+# Flask Routes
+###############################################
+
 # Creating route that will render html templates
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/navbar')
+def navbar():
+    return render_template('navbar.html')
 
     # Spin-up the Flask Application
 if __name__ == "__main__":
