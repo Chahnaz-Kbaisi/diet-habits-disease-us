@@ -111,3 +111,24 @@ body {
     animation: subtitle 1.2s forwards linear;
     animation-delay: 1.2s;
 }
+
+
+/* media queries which will only be activated at specific screen sizes */
+
+@media (max-width: 615px) {
+    .bg-text {
+        top: 7%;
+    }
+}
+
+@media (max-width: 576px) {
+    .bg-text {
+        top: 13%;
+    }
+    .bg-text h1 {
+        animation: smaller-title 1.2s forwards linear;
+    }
+    .bg-text h2 {
+        animation: smaller-subtitle 1.2s forwards linear;
+    }
+}
