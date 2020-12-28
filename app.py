@@ -1,6 +1,7 @@
 ###############################################
 # Import Dependencies
 ###############################################
+
 from flask import Flask, render_template, jsonify, request
 from os import environ
 from flask_pymongo import PyMongo
@@ -22,7 +23,34 @@ mongo = PyMongo(app)
 # Flask Routes
 ###############################################
 
-# Creating route that will render html templates
+# route to fetch the data
+@app.route('/fetchdata')
+def fetch_data():
+
+    # Fetch data from database
+    rows = mongo.db.countyleveldiethabits.find({})
+
+    # Variable to hold array of dictionaries
+    data = []
+    
+    # Create a simple dictionary and append to list
+    for row in rows:
+        item = row
+        for key, value in item.items():
+            value = str(value) + ''
+            if value == 'nan':
+                item[key] = ""
+        item['_id'] = str(item['_id'])
+        data.append(item)
+
+    return jsonify(data)
+
+# route to display the data
+@app.route('/data')
+def data():
+    return render_template('data.html')
+
+# Creating routes that will render html templates
 @app.route('/')
 def index():
     return render_template('index.html')
