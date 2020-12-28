@@ -31,4 +31,9 @@
     opacity: 0.9;
     transform: scale(3);
     transition: all 0.3s linear 0s;
+  } 
+  
+.our-team:hover .picture::before {
+    height: 100%;
   }  
+  
