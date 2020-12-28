@@ -63,6 +63,10 @@ def navbar():
 def footer():
     return render_template('footer.html')
 
+@app.route('/collaborators')
+def collaborators():
+    return render_template('collaborators.html')       
+
 ###############################################
 # Run the Flask Application
 ###############################################
