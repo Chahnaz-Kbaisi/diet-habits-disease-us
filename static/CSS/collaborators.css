@@ -86,5 +86,14 @@
 
 .our-team .social li {
     display: inline-block;
+  } 
+  
+.our-team .social li a {
+    display: block;
+    padding: 10px;
+    font-size: 17px;
+    color: white;
+    transition: all 0.3s ease 0s;
+    text-decoration: none;
   }  
   
