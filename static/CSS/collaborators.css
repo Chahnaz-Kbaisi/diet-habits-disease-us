@@ -79,4 +79,8 @@
     left: 0;
     transition: all 0.5s ease 0s;
   }  
+
+.our-team:hover .social {
+    bottom: 0;
+  }  
   
