@@ -83,4 +83,8 @@
 .our-team:hover .social {
     bottom: 0;
   }  
+
+.our-team .social li {
+    display: inline-block;
+  }  
   
