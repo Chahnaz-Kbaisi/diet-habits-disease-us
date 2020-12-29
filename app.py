@@ -69,7 +69,11 @@ def collaborators():
 
 @app.route('/conclusion')
 def conclusion():
-    return render_template('conclusion.html')              
+    return render_template('conclusion.html')  
+
+@app.route('/predications')   
+def predications():
+    return render_template('predications.html')                  
 
 ###############################################
 # Run the Flask Application
