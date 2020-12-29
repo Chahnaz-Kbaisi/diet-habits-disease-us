@@ -65,7 +65,11 @@ def footer():
 
 @app.route('/collaborators')
 def collaborators():
-    return render_template('collaborators.html')       
+    return render_template('collaborators.html')
+
+@app.route('/conclusion')
+def conclusion():
+    return render_template('conclusion.html')              
 
 ###############################################
 # Run the Flask Application
