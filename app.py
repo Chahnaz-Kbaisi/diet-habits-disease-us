@@ -75,6 +75,10 @@ def conclusion():
 def predications():
     return render_template('predictions.html')
 
+@app.route('/approach')   
+def approach():
+    return render_template('approach.html')
+
 ###############################################
 # Run the Flask Application
 ###############################################
