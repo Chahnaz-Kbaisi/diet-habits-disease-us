@@ -79,6 +79,10 @@ def predications():
 def approach():
     return render_template('approach.html')
 
+@app.route('/lineplot')   
+def approach():
+    return render_template('lineplot.html')
+
 ###############################################
 # Run the Flask Application
 ###############################################
