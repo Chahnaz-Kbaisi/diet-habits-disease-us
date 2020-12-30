@@ -80,7 +80,7 @@ def approach():
     return render_template('approach.html')
 
 @app.route('/lineplot')   
-def approach():
+def lineplot():
     return render_template('lineplot.html')
 
 ###############################################
