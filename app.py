@@ -87,6 +87,10 @@ def lineplot():
 def dashboard():
     return render_template('dashboard.html')
 
+@app.route('/bubbleplot')
+def bubbleplot():
+    return render_template('bubbleplot.html')      
+
 ###############################################
 # Run the Flask Application
 ###############################################
