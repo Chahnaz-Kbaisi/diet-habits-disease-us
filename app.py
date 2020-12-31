@@ -83,6 +83,10 @@ def approach():
 def lineplot():
     return render_template('lineplot.html')
 
+@app.route('/dashboard')
+def dashboard():
+    return render_template('dashboard.html')
+
 ###############################################
 # Run the Flask Application
 ###############################################
