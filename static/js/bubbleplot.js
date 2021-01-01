@@ -1,4 +1,4 @@
-// Bubble Chart Plot 
+// Bubble Chart Plot page
 
 // Change page title
 d3.select("#page-title").text("Interactive Visualizations");
