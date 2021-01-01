@@ -150,6 +150,7 @@ function createStateLevelBubblePlot(data, state, impact) {
         x: yearArray,
         y: impactArray,
         text: impact,
+        name: impact,
         mode: 'markers',
         marker: {
             color: yearArray,
@@ -163,6 +164,7 @@ function createStateLevelBubblePlot(data, state, impact) {
         x: yearArray,
         y: obesityArray,
         text: `Obesity %`,
+        name: '% Adults with Obesity',
         mode: 'markers',
         marker: {
             color: yearArray,
@@ -176,6 +178,7 @@ function createStateLevelBubblePlot(data, state, impact) {
         x: yearArray,
         y: diabetesArray,
         text: `Diabetes %`,
+        name: '% Adults with Diabetes',
         mode: 'markers',
         marker: {
             color: yearArray,
