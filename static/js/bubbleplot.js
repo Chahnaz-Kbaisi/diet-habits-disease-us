@@ -70,7 +70,60 @@ function createStateLevelBubblePlot(data, state, impact) {
         var impact = impact + " (in Thousands)"
     };
 
-    // State Level Bubble Chart Plot
+    opacity = yearArray.map(id => 0.75);
+
+    //   State Level Bubble Plot: 
+    var impactTrace = {
+        x: yearArray,
+        y: impactArray,
+        text: impact,
+        mode: 'markers',
+        marker: {
+            color: yearArray,
+            colorscale: 'Rainbow',
+            opacity: opacity,
+            size: impactArray
+        }
+    };
+
+    var obesityTrace = {
+        x: yearArray,
+        y: obesityArray,
+        text: `Obesity %`,
+        mode: 'markers',
+        marker: {
+            color: yearArray,
+            colorscale: "Rainbow",
+            opacity: opacity,
+            size: obesityArray
+        }
+    };
+
+    var diabetesTrace = {
+        x: yearArray,
+        y: diabetesArray,
+        text: `Diabetes %`,
+        mode: 'markers',
+        marker: {
+            color: yearArray,
+            colorscale: "Rainbow",
+            opacity: opacity,
+            size: diabetesArray
+        }
+    };
+
+    // Create the data arrays for the plot
+    var dataStateLevelPlot = [impactTrace, obesityTrace, diabetesTrace];
+
+    // Define the plot layout
+    var layoutStateLevelPlot = {
+        title: `${impact} vs Disease Prevalence - ${state}`,
+        showlegend: false
+    };
+
+    // Plot the "bubble" plot
+    Plotly.newPlot('stateLevelPlot', dataStateLevelPlot, layoutStateLevelPlot);
+
 };
 
 // Function for loading County Dropdown options
