@@ -143,7 +143,7 @@ function createStateLevelBubblePlot(data, state, impact) {
         var impact = impact + " (in Thousands)"
     };
 
-    opacity = yearArray.map(id => 0.75);
+    opacity = yearArray.map(id => 0.95);
 
     //   State Level Bubble Plot: 
     var impactTrace = {
