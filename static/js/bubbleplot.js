@@ -36,7 +36,7 @@ function createCountyLevelBubblePlot(data, state, county, impact) {
         impact = impact + " (in Thousands)"
     };
 
-    opacity = yearArray.map(id => 0.60);
+    opacity = yearArray.map(id => 0.95);
 
     //   County Level Bubble Plot:
     var impactTrace = {
