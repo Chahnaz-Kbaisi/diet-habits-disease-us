@@ -36,6 +36,7 @@ function createCountyLevelBubblePlot(data, state, county, impact) {
         impact = impact + " (in Thousands)"
     };
 
+    opacity = yearArray.map(id => 0.60);
 
     //   County Level Bubble Plot:
     var impactTrace = {
@@ -83,7 +84,28 @@ function createCountyLevelBubblePlot(data, state, county, impact) {
     // Define the plot layout
     var layoutStateLevelPlot = {
         title: `${impact} vs Disease Prevalence - ${county}, ${state}`,
-        showlegend: false,
+
+        // Adding ticks on the axis
+        xaxis: {
+            showgrid: true,
+            showline: true,
+            linecolor: 'rgb(200, 0, 0)',
+            ticks: 'inside',
+            tickcolor: 'rgb(200, 0, 0)',
+            tickwidth: 1
+        },
+
+        yaxis: {
+            showgrid: true,
+            showline: true,
+            linecolor: 'rgb(200, 0, 0)',
+            ticks: 'inside',
+            tickcolor: 'rgb(200, 0, 0)',
+            tickwidth: 1
+        },
+
+        paper_bgcolor: 'RGB(219, 233, 235)',
+        plot_bgcolor: 'RGB(219, 233, 235)'
 
     };
 
