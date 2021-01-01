@@ -191,7 +191,28 @@ function createStateLevelBubblePlot(data, state, impact) {
     // Define the plot layout
     var layoutStateLevelPlot = {
         title: `${impact} vs Disease Prevalence - ${state}`,
-        showlegend: false
+
+        // Adding ticks on the axis
+        xaxis: {
+            showgrid: true,
+            showline: true,
+            linecolor: 'rgb(200, 0, 0)',
+            ticks: 'inside',
+            tickcolor: 'rgb(200, 0, 0)',
+            tickwidth: 1
+        },
+
+        yaxis: {
+            showgrid: true,
+            showline: true,
+            linecolor: 'rgb(200, 0, 0)',
+            ticks: 'inside',
+            tickcolor: 'rgb(200, 0, 0)',
+            tickwidth: 1
+        },
+
+        paper_bgcolor: 'RGB(219, 233, 235)',
+        plot_bgcolor: 'RGB(219, 233, 235)'
     };
 
     // Plot the "bubble" plot
