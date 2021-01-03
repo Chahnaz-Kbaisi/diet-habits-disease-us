@@ -20,34 +20,37 @@ app.config['MONGO_URI'] = environ.get('MONGODB_URL') or 'mongodb://localhost:270
 mongo = PyMongo(app)
 
 ###############################################
+# Fetch data from Database
+###############################################
+
+# Fetch data from database
+rows = mongo.db.countyleveldiethabits.find({})
+
+# Variable to hold array of dictionaries
+data = []
+
+# Create a simple dictionary and append to list
+for row in rows:
+    item = row
+    for key, value in item.items():
+        value = str(value) + ''
+        if value == 'nan':
+            item[key] = ""
+    item['_id'] = str(item['_id'])
+    data.append(item)
+
+###############################################
 # Flask Routes
 ###############################################
 
 # route to fetch the data
 @app.route('/fetchdata')
 def fetch_data():
-
-    # Fetch data from database
-    rows = mongo.db.countyleveldiethabits.find({})
-
-    # Variable to hold array of dictionaries
-    data = []
-    
-    # Create a simple dictionary and append to list
-    for row in rows:
-        item = row
-        for key, value in item.items():
-            value = str(value) + ''
-            if value == 'nan':
-                item[key] = ""
-        item['_id'] = str(item['_id'])
-        data.append(item)
-
     return jsonify(data)
 
 # route to display the data
 @app.route('/data')
-def data():
+def datapage():
     return render_template('data.html')
 
 # Creating routes that will render html templates
