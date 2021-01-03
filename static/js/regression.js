@@ -70,3 +70,16 @@ function loadYear(impact) {
         cell.property("value", year).text(year);
     });
 }
+
+/***************************************************
+EVENT HANDLERS
+****************************************************/
+
+// generates regression plot based on user selections
+$("#year-select").change(function() {
+    var year = $(this).val();
+    var impact = $("#impact-select").val();
+    var disease = $("input[type='radio'][name='disease-select']:checked").attr('id');
+
+    createRegressionPlot(disease, impact, year);
+});
