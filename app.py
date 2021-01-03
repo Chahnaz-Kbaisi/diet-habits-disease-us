@@ -94,6 +94,10 @@ def dashboard():
 def bubbleplot():
     return render_template('bubbleplot.html')      
 
+@app.route('/regression')
+def regression():
+    return render_template('regression.html')
+
 ###############################################
 # Run the Flask Application
 ###############################################
