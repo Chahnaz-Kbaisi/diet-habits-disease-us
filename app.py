@@ -98,6 +98,19 @@ def bubbleplot():
 def regression():
     return render_template('regression.html')
 
+@app.route('/embedRegression/<year>/<impact>/<disease>')
+def embedRegression(year, impact, disease):
+    df =  pd.DataFrame(data)
+    df_year = df.loc[(df["County"] == "") & (df["Year"] == int(year))]
+    fig = px.scatter(df_year, x=impact, y=disease, hover_data=["State"], trendline="ols")
+    fig.update_layout(
+        title=impact + " vs " + disease + " (" + year + ")",
+        xaxis_title=impact,
+        yaxis_title=disease,
+    )
+    fig.write_html("templates/regressionplot.html")
+    return render_template('regressionplot.html')
+
 ###############################################
 # Run the Flask Application
 ###############################################
