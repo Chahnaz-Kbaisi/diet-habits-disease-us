@@ -92,3 +92,55 @@ $('input[name="disease-select"]').change(function() {
 
     createRegressionPlot(disease, impact, year);
 });
+
+// loads the year dropdown based on the user selected impact option and
+// generates regression plot based on user selections
+$("#impact-select").change(function() {
+    var impact = $(this).val();
+    var selectedYear = $("#year-select").val();
+
+    loadYear(impact);
+
+    var year;
+    if (impact == "% Limited Access to Healthy Foods" || impact == "High School Graduation Rate") {
+        if (selectedYear >= 2013) {
+            year = selectedYear;
+            $("#year-select").val(selectedYear);
+        } else {
+            year = $("#year-select").val();
+        }
+    } else if (impact == "Food Environment Index" || impact == "% With Access to Exercise Opportunities") {
+        if (selectedYear >= 2014) {
+            year = selectedYear;
+            $("#year-select").val(selectedYear);
+        } else {
+            year = $("#year-select").val();
+        }
+    } else if (impact == "Income Ratio") {
+        if (selectedYear >= 2015) {
+            year = selectedYear;
+            $("#year-select").val(selectedYear);
+        } else {
+            year = $("#year-select").val();
+        }
+    } else if (impact == "Expenditures per capita, fast food" || impact == "Expenditures per capita, restaurants" || impact == "Direct farm sales per capita") {
+        year = 2012;
+    } else if (impact == 'Household Income (Hispanic)' || impact == 'Household Income (Black)' || impact == "Household Income (White)") {
+        if (selectedYear >= 2017) {
+            year = selectedYear;
+            $("#year-select").val(selectedYear);
+        } else {
+            year = $("#year-select").val();
+        }
+    } else if (impact == 'Household Income (Asian)') {
+        year = 2020;
+        $("#year-select").val(year);
+    } else {
+        year = selectedYear;
+        $("#year-select").val(selectedYear);
+    }
+
+    var disease = $("input[type='radio'][name='disease-select']:checked").attr('id');
+
+    createRegressionPlot(disease, impact, year);
+});
