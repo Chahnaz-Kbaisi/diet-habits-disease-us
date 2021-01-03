@@ -5,6 +5,9 @@
 from flask import Flask, render_template, jsonify, request
 from os import environ
 from flask_pymongo import PyMongo
+import pandas as pd
+import pymongo
+import plotly.express as px
 
 ###############################################
 # Database & Flask Setup
