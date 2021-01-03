@@ -58,7 +58,6 @@ pyparsing==2.4.7
 pyrsistent==0.17.3
 python-dateutil==2.8.1
 pytz==2020.4
-pywin32==227
 pywinpty==0.5.7
 pyzmq==20.0.0
 requests==2.25.1
@@ -66,7 +65,6 @@ retrying==1.3.3
 scipy==1.5.4
 selenium==3.141.0
 Send2Trash==1.5.0
-setuptools==51.0.0.post20201207
 six==1.15.0
 soupsieve==2.1
 splinter==0.14.0
