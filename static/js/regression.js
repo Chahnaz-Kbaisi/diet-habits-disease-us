@@ -83,3 +83,12 @@ $("#year-select").change(function() {
 
     createRegressionPlot(disease, impact, year);
 });
+
+// generates regression plot based on user selections
+$('input[name="disease-select"]').change(function() {
+    var disease = $(this).attr('id');
+    var impact = $("#impact-select").val();
+    var year = $("#year-select").val();
+
+    createRegressionPlot(disease, impact, year);
+});
