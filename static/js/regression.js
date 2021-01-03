@@ -144,3 +144,20 @@ $("#impact-select").change(function() {
 
     createRegressionPlot(disease, impact, year);
 });
+
+/***************************************************
+ON PAGE LOAD
+****************************************************/
+
+// change page title
+d3.select("#page-title").text("Interactive Visualizations");
+
+var year = "2020";
+var impact = "% Limited Access to Healthy Foods";
+var disease = "% Adults with Obesity";
+
+// load the year dropdown
+loadYear(impact);
+
+// generate regression plot
+createRegressionPlot(disease, impact, year);
