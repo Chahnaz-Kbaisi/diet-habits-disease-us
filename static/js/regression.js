@@ -13,3 +13,15 @@ function disableFields() {
     $(".message").attr('style', 'margin-top: 100px; margin-bottom: 100px;');
     $("#loading").attr('style', 'text-align:center').text('Loading Plot - Please wait...');
 }
+
+// enables the fields and removes the message
+function enableFields() {
+    // remove the message
+    $(".message").attr('style', null);
+    $("#loading").attr('style', null).text("");
+
+    // enable the fields
+    $('input[name="disease-select"]').attr("disabled", null).attr('style', null);
+    $("#impact-select").attr("disabled", null).attr('style', null);
+    $("#year-select").attr("disabled", null).attr('style', null);
+}
