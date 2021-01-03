@@ -100,9 +100,35 @@ def regression():
 
 @app.route('/embedRegression/<year>/<impact>/<disease>')
 def embedRegression(year, impact, disease):
+    impact = impact.replace(u'\xa0', u' ')
+    impacts = ['Expenditures per capita, fast food',
+               'Expenditures per capita, restaurants',
+               'Direct farm sales per capita']
+    income_impacts = ['Household Income (Asian)',
+                      'Household Income (Black)', 
+                      'Household Income (Hispanic)',
+                      'Household Income (White)']
     df =  pd.DataFrame(data)
-    df_year = df.loc[(df["County"] == "") & (df["Year"] == int(year))]
-    fig = px.scatter(df_year, x=impact, y=disease, hover_data=["State"], trendline="ols")
+    impact = impact.replace(u'\xa0', u' ')
+    if impact in impacts:
+        impact = impact.replace(u'\xa0', u' ')
+        df_2012 = df.loc[(df[impact].isnull() == False) &
+                         (df["Year"] == int(year))]
+        df_2012 = df.loc[(df[impact] != "")]
+        df_2012[impact] = df_2012[impact].astype(float)
+        df_2012_grouped = df_2012.groupby("State")[impact].first()
+        df_2012_grouped.reset_index()
+        df_2012_disease = df.loc[(df['County'] == "") & (df["Year"] == int(year))]
+        df_2012_disease = df_2012_disease[['State','Year',disease]]
+        df_year = df_2012_disease.merge(df_2012_grouped, on="State")
+    elif impact in income_impacts:
+        df_year = df.loc[(df["Year"] == int(year)) & (df[impact] != "")]
+    else:
+        df_year = df.loc[(df["County"] == "") & (df["Year"] == int(year))]
+    if impact in income_impacts:
+        fig = px.scatter(df_year, x=impact, y=disease, hover_data=["State","County"], trendline="ols")
+    else:
+        fig = px.scatter(df_year, x=impact, y=disease, hover_data=["State"], trendline="ols")
     fig.update_layout(
         title=impact + " vs " + disease + " (" + year + ")",
         xaxis_title=impact,
