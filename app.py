@@ -97,6 +97,10 @@ def bubbleplot():
 def bubbleplot():
     return render_template('map.html') 
 
+@app.route('/analysis')
+def bubbleplot():
+    return render_template('analysis.html')     
+
 @app.route('/regression')
 def regression():
     return render_template('regression.html')
