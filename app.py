@@ -91,7 +91,11 @@ def dashboard():
 
 @app.route('/bubbleplot')
 def bubbleplot():
-    return render_template('bubbleplot.html')      
+    return render_template('bubbleplot.html')  
+
+@app.route('/map')
+def bubbleplot():
+    return render_template('map.html') 
 
 @app.route('/regression')
 def regression():
