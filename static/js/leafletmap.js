@@ -70,3 +70,26 @@ function loadYear(impact, selectedYear) {
         cell.property("value", year).text(year);
     });
 }
+
+// Creates the map based on user selections
+function createJsonMap(level) {
+    console.log("createJsonMap");
+    if (level == "County") {
+        removeMarkers();
+        countyMap();
+    } else {
+        console.log("State Level");
+        removeMarkers();
+        stateMap();
+        console.log("Created State Level Map");
+    }
+}
+
+// function to remove geoJSON layers 
+function removeMarkers() {
+    map.eachLayer(function(layer) {
+        if (layer.myTag && layer.myTag === "myGeoJSON") {
+            map.removeLayer(layer);
+        }
+    });
+}
