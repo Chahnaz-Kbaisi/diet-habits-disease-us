@@ -1,3 +1,13 @@
+var mongoDBdata;
+var impactArray;
+var diseaseArray;
+var stateArray;
+var countyArray;
+var regressionArray;
+var rSquared;
+var lineEquation;
+var hoverTextArray;
+
 /***************************************************
 USER DEFINED FUNCTIONS
 ****************************************************/
