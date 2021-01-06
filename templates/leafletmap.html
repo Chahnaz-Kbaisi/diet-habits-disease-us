@@ -29,6 +29,44 @@
         <!-- Page Content -->
         <div class="container-fluid mt-5">
             <!-- Main page row -->
+            <div class="container">
+                <div class="d-flex justify-content-start bd-highlight mb-3">
+                    <div class="p-2 bd-highlight align-self-stretch">
+                        <select id="impact-select" name="impact-select">
+                            <option value="% Adults with Obesity"> % Adults with Obesity</option>
+                            <option value="% Adults with Diabetes"> % Adults with Diabetes</option>
+                            <option value="% Limited Access to Healthy Foods"> % Limited Access to Healthy Foods</option>
+                            <option value="Food Environment Index"> Food Environment Index</option>
+                            <option value="% Physically Inactive"> % Physically Inactive</option>
+                            <option value="% With Access to Exercise Opportunities"> % With Access to Exercise Opportunities</option>
+                            <option value="High School Graduation Rate"> High School Graduation Rate</option>
+                            <option value="% Some College"> % Some College</option>
+                            <option value="Expenditures per capita, fast food"> Expenditures per capita, fast food</option>
+                            <option value="Expenditures per capita, restaurants"> Expenditures per capita, restaurants</option>
+                            <option value="Direct farm sales per capita"> Direct farm sales per capita</option>
+                            <option value="% Unemployed"> % Unemployed</option>
+                            <option value="Income Ratio"> Income Ratio</option>
+                            <option value="Median Household Income"> Median Household Income</option>
+                            <option value="Household Income (Asian)"> Household Income (Asian)</option>
+                            <option value="Household Income (Hispanic)"> Household Income (Hispanic)</option>
+                            <option value="Household Income (Black)"> Household Income (Black)</option>
+                            <option value="Household Income (White)"> Household Income (White)</option>
+                        </select>
+                        <select id="year-select" name="year-select">
+                        </select>
+                    </div>
+                    <div class="message">
+                        <h1 id="loading"></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <div id="map"></div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Footer -->
