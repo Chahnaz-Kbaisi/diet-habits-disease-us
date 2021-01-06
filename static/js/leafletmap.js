@@ -285,3 +285,10 @@ function countyMap() {
     // Adding legend to the map
     legend.addTo(map);
 }
+
+/***************************************************
+ON PAGE LOAD
+****************************************************/
+
+// Change page title
+d3.select("#page-title").text("Interactive Map");
