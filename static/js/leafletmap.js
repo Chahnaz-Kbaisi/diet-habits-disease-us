@@ -96,6 +96,10 @@ function fetchMongoData() {
 
         // Initialize prevZoom with current zoom level
         prevZoom = map.getZoom();
+
+        // Enable the fields and remove the message
+        enableFields();
+
     });
 }
 
@@ -288,6 +292,9 @@ d3.select("#page-title").text("Interactive Map");
 
 // Load the year dropdown
 loadYear(impact);
+
+// Disable fields and display message to user
+disableFields();
 
 // Creating map object
 map = L.map("map", {
