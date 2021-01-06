@@ -174,6 +174,10 @@ def embedRegression(year, impact, disease):
 def foodexp():
     return render_template('foodexp.html')
 
+@app.route('/getapikey')
+def getapikey():
+    return environ.get('API_KEY')
+
 ###############################################
 # Run the Flask Application
 ###############################################
