@@ -134,7 +134,6 @@ function createGeoJsonFiles() {
         });
         geoJsonStatedata["features"] = geoFeatures;
         geoJsonStateFile = geoJsonStatedata;
-        console.log(geoJsonStateFile);
 
         // Create Map
         createJsonMap("State");
@@ -160,6 +159,5 @@ function createGeoJsonFiles() {
         });
         geoJsondata["features"] = geoFeatures;
         geoJsonCountyFile = geoJsondata;
-        console.log(geoJsonCountyFile);
     });
 }
