@@ -85,11 +85,25 @@ function createJsonMap(level) {
     }
 }
 
-// function to remove geoJSON layers 
+// Removes geoJSON layers 
 function removeMarkers() {
     map.eachLayer(function(layer) {
         if (layer.myTag && layer.myTag === "myGeoJSON") {
             map.removeLayer(layer);
         }
+    });
+}
+
+// Fetches data from Remote MongoDB
+function fetchMongoData() {
+    d3.json('/fetchdata').then(data => {
+        // d3.json("/fetchdata", function(data) {
+        mongoDBdata = data;
+        console.log(mongoDBdata);
+        // Dynamically inject the data for user selection into geoJSON file
+        createGeoJsonFiles();
+
+        // Initialize prevZoom with current zoom level
+        prevZoom = map.getZoom();
     });
 }
