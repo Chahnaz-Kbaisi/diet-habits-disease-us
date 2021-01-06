@@ -130,8 +130,13 @@ function createGeoJsonFiles() {
         geoJsonStatedata["features"] = geoFeatures;
         geoJsonStateFile = geoJsonStatedata;
 
-        // Create Map
-        createJsonMap("State");
+        // Create Map based on current zoom level
+        var currentZoom = map.getZoom();
+        if (currentZoom > 5) {
+            createJsonMap("County");
+        } else if (currentZoom <= 5) {
+            createJsonMap("State");
+        }
     });
     // d3.json(geoCountyJSONFile, function(geoJsondata) {
     d3.json(geoCountyJSONFile).then(geoJsondata => {
