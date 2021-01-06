@@ -36,6 +36,25 @@ function enableFields() {
     $("#year-select").attr("disabled", null).attr('style', null);
 }
 
+// Fetches data from Remote MongoDB
+function fetchMongoData() {
+    d3.json('/fetchdata').then(data => {
+
+        mongoDBdata = data;
+
+        var year = "2020";
+        var impact = "% Limited Access to Healthy Foods";
+        var disease = "% Adults with Obesity";
+
+        // Dynamically inject the data for user selection into geoJSON file
+        createRegressionPlot(disease, impact, year);
+
+        // Enable the fields and remove the message
+        enableFields();
+
+    });
+}
+
 // generates the regression plot and displays the plot in the page
 function createRegressionPlot(disease, impact, year) {
     // disable fields and display message to user
