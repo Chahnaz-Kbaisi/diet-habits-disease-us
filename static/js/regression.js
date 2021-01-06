@@ -306,5 +306,8 @@ var disease = "% Adults with Obesity";
 // load the year dropdown
 loadYear(impact);
 
-// generate regression plot
-createRegressionPlot(disease, impact, year);
+// disable fields and display message to user
+disableFields();
+
+// Fetch data from remote DB and generate the plot
+fetchMongoData();
