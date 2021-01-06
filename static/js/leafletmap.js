@@ -44,3 +44,29 @@ function enableFields() {
     $("#impact-select").attr("disabled", null).attr('style', null);
     $("#year-select").attr("disabled", null).attr('style', null);
 }
+
+// Loads the year dropdown based on the user selected impact option
+function loadYear(impact, selectedYear) {
+    var yearList = [];
+    if (impact == "% Limited Access to Healthy Foods" || impact == "High School Graduation Rate") {
+        yearList = [2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013];
+    } else if (impact == "Food Environment Index" || impact == "% With Access to Exercise Opportunities") {
+        yearList = [2020, 2019, 2018, 2017, 2016, 2015, 2014];
+    } else if (impact == "Income Ratio") {
+        yearList = [2020, 2019, 2018, 2017, 2016, 2015];
+    } else if (impact == 'Expenditures per capita, fast food' || impact == 'Expenditures per capita, restaurants' || impact == "Direct farm sales per capita") {
+        yearList = [2012];
+    } else if (impact == 'Household Income (Hispanic)' || impact == 'Household Income (Black)' || impact == "Household Income (White)") {
+        yearList = [2020, 2019, 2018, 2017];
+    } else if (impact == 'Household Income (Asian)') {
+        yearList = [2020];
+    } else {
+        yearList = [2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011];
+    }
+    var yearDropDown = d3.select("#year-select")
+    yearDropDown.html("");
+    yearList.forEach(year => {
+        var cell = yearDropDown.append("option");
+        cell.property("value", year).text(year);
+    });
+}
