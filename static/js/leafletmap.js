@@ -394,3 +394,16 @@ $("#impact-select").change(function() {
     enableFields();
 
 });
+
+// Change between State level and County level maps based on zoom levels
+map.on('zoomend', function(e) {
+    var currZoom = map.getZoom();
+    if (currZoom > 5 & prevZoom <= 5) {
+        map.removeControl(legend);
+        createJsonMap("County");
+    } else if (currZoom <= 5 & prevZoom > 5) {
+        map.removeControl(legend);
+        createJsonMap("State");
+    }
+    prevZoom = currZoom;
+});
