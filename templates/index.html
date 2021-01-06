@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 
+
     <script src="https://d3js.org/d3.v6.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
@@ -30,6 +31,7 @@
         <!-- Page Content -->
         <div class="container-fluid mt-5">
             <!-- Main page row -->
+
             <div class="flex-container">
                 <div class="column">
                     <h2 style="font-size:300%; font-weight: bold;">Overview</h2>
@@ -44,18 +46,90 @@
 
                     <div class="d-flex flex-row justify-content-center mt-5">
                         <a class="mr-5"><img class="img-fluid mx-auto d-block" style="height: 215px;
-                            width: 80%;" src="../static/images/Economic-Burden.png"
-                                alt="Burden of Obesity & Diabetes"></a>
+                        width: 80%;" src="../static/images/Economic-Burden.png" alt="Burden of Obesity & Diabetes"></a>
                     </div>
                     <p style="text-align: center;">Adapted from <a
                             href="https://conscienhealth.org/2016/12/watching-costs-pile-untreated-obesity/">The
-                            Milken Institute,</a> Weighing America Down, The Health & Economic Impact of
+                            Milken
+                            Institute,</a> Weighing America Down, The Health & Economic Impact of
                         Obesity, 2016</p>
+                    <br>
+                    <p style="font-size:160%; line-height: 1.6;"> The Centers for Disease Control and Prevention <abbr
+                            title="Centers for Disease Control and Prevention">(CDC)</abbr> have indicated that <a
+                            href=" https://www.cdc.gov/diabetes/pdfs/data/statistics/national-diabetes-statistics-report.pdf ">diabetes
+                            increased</a> from 9.5% during 1999 to 2002 to 12% during 2013 to 2016. Moreover,
+                        epidemiological data suggests its prevalence varied based on race, SES and other factors. On
+                        the other hand, the rate of <a href="https://www.cdc.gov/obesity/data/adult.html">obesity
+                            increased</a> from 30.5% to 42.4% during the same periods and also
+                        showed variability based on several factors.</p>
+                    <div class="d-flex flex-row justify-content-center mt-5">
+                        <a href="https://www.aicr.org/resources/blog/processed-foods-calories-and-nutrients-americans-alarming-diet/"
+                            class="mr-5"><img class="img-fluid mx-auto d-block" style="height: 215px;
+                            width: 80%;" src="../static/images/American-Diet-Choices.png"
+                                alt="American's Diet Choices"></a>
+                    </div>
+                    <br>
+                    <p style="font-size:160%; line-height: 1.6;"><b>Diet is one of the most important determinants of
+                            health. Day-to-day dietary choices impact the risk of disease, and they are impacted by
+                            numerous factors:</b></p>
+                    <ul style="list-style: circle; font-size: 160%;">
+                        <li>Availability of foods, especially those that are healthy and nutritious, vary across the
+                            United States despite it being a developed country. </li>
+                        <li>Not every American has the same access to healthy foods or the resources to consume a
+                            regular healthy diet. </li>
+                        <li>There are regionally disparate social factors that may play a crucial role. For example,
+                            household income might be an indirect determinant of risk because it directly impacts the
+                            ability to acquire healthy food. </li>
+                        <li>There is a significant amount of data that suggests education level and employment play an
+                            important part in dietary choices and subsequent disease incidence. </li>
+                        <li>Comprehensive analysis of current data on diet, demographics and lifestyle in the United
+                            States is lacking, especially a close examination of specific factors that shed light on why
+                            certain Americans are predisposed to developing diabetes and/or obesity. </li>
+                    </ul>
+                    <br>
+                    <h2 style="font-size:250%; font-weight: bold;">Objectives</h2>
+                    <hr>
+
+                    <div class="card bg-light">
+                        <div class="card-body">
+                            <p class="card-text" style="list-style: circle; font-size: 160%;">Therefore, the goal of
+                                this project was to examine the dietary habits of Americans, and assess whether access
+                                to food, choice of diet, socioeconomic status, and other factors contribute to the
+                                development of diabetes and obesity. Presented here is a state-by-state analysis of
+                                dietary trends using the food-environment index, which is an overall indicator of
+                                healthy food availability, access to grocery stores and restaurants (e.g., fast-food),
+                                household income by race, education level, and exercise habits. Furthermore, the
+                                relationship between these factors and the prevalence of diabetes and obesity are
+                                depicted across the country and clearly show specific positive associations that are
+                                indicative of causality. Map-based data visualization is provided for more focused
+                                insight and can be used for subsequent analyses. </p>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="column bg-alt">
                     <h2 style="font-size:300%; font-weight: bold;">Visualizations</h2>
-                    <br>
-                    <h3>Click on any of the following images for a comprehensive & interactive visualization </h3>
+                    <hr>
+                    <h3><b>Click on any of the following images for a comprehensive & interactive visualization</b>
+                    </h3>
+                    <div class="d-flex flex-row justify-content-center mt-5">
+                        <a href="/lineplot" class="mr-5"><img class="img-fluid mx-auto d-block"
+                                src="static/images/lineplot.png" alt="Line Plot"></a>
+                        <a href="/regression"><img class="img-fluid mx-auto d-block" src="static/images/regression.png"
+                                alt="Regression Plot"></a>
+                    </div>
+                    <div class="d-flex flex-row justify-content-center mt-5">
+                        <a href="/bubbleplot" class="mr-5"><img class="img-fluid mx-auto d-block"
+                                src="../static/images/BubblePlotState.png" alt="Bubble Plot"></a>
+                        <a href="/bubbleplot"><img class="img-fluid mx-auto d-block"
+                                src="../static/images/BubblePlotCounty.png" alt="Bubble Plot"></a>
+                    </div>
+                    <div class="d-flex flex-row justify-content-center mt-5 mb-5">
+                        <a href="/lineplot" class="mr-5"><img class="img-fluid mx-auto d-block"
+                                src="static/images/lineplot.png" alt="Line Plot"></a>
+                        <a href="/lineplot"><img class="img-fluid mx-auto d-block" src="static/images/lineplot.png"
+                                alt="Line Plot"></a>
+                    </div>
                 </div>
             </div>
         </div>
