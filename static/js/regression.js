@@ -225,7 +225,13 @@ $('input[name="disease-select"]').change(function() {
     var impact = $("#impact-select").val();
     var year = $("#year-select").val();
 
+    // disable fields and display message to user
+    disableFields();
+
     createRegressionPlot(disease, impact, year);
+
+    // Enable the fields and remove the message
+    enableFields();
 });
 
 // loads the year dropdown based on the user selected impact option and
