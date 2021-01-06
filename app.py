@@ -172,6 +172,39 @@ def embedRegression(year, impact, disease):
     # Return the generated html file with plot
     return render_template('regressionplot.html')
 
+@app.route('/fetchRegressionLine/')
+def fetchRegressionLine():
+    
+    # Fetch x and y axis values passed from Client
+    impactArray = json.loads(request.args.get('impactArray'))
+    diseaseArray = json.loads(request.args.get('diseaseArray'))
+
+    # Replacing null values with 0
+    impactArray = [0 if value is None else value for value in impactArray]
+
+    # Determine the regression values
+    (slope, intercept, rvalue, pvalue, stderr) = linregress(impactArray, diseaseArray)
+    sortedImpactArray = impactArray
+    sortedImpactArray.sort()
+    regressValues = []
+    for impact in sortedImpactArray:
+        regressValue = impact * slope + intercept
+        regressValues.append(regressValue)
+
+    # Determine the line equation and r squared value
+    lineEq = "y = " + str(round(slope,2)) + "x + " + str(round(intercept,2))
+    rSquared = f"{round(rvalue ** 2,2)}"
+
+    # Return X axis values, Regression values, R^2 and Line equation
+    regressionData = [{
+        "X":sortedImpactArray,
+        "Y":regressValues,
+        "R": rSquared,
+        "EQUATION": lineEq
+    }]
+
+    return jsonify(regressionData)
+
 @app.route('/foodexp')
 def foodexp():
     return render_template('foodexp.html')
