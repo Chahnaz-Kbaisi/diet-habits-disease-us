@@ -107,3 +107,59 @@ function fetchMongoData() {
         prevZoom = map.getZoom();
     });
 }
+
+// Injects data inside geoJSON files
+function createGeoJsonFiles() {
+    console.log("createGeoJsonFiles");
+
+    var year = $("#year-select").val();
+    var impact = $("#impact-select").val()
+        // d3.json(geoStateJSONFile, function(geoJsonStatedata) {
+    d3.json(geoStateJSONFile).then(geoJsonStatedata => {
+
+        var geoFeatures = geoJsonStatedata.features;
+
+        geoFeatures.forEach(feature => {
+            var FIPS = parseInt(feature.properties["STATE"]);
+            var yearFilter = mongoDBdata.filter(row => row["Year"] == year);
+            var countyFilter = yearFilter.filter(row => row["County"] == "");
+            var filteredData = countyFilter.filter(row => parseInt(row["FIPS"]) / 1000 === FIPS);
+            if (filteredData.length > 0) {
+                feature.properties["DATA"] = filteredData[0][impact];
+                feature.properties["STATENAME"] = filteredData[0]["State"];
+            } else {
+                feature.properties["DATA"] = "";
+                feature.properties["STATENAME"] = feature.properties["NAME"];
+            }
+        });
+        geoJsonStatedata["features"] = geoFeatures;
+        geoJsonStateFile = geoJsonStatedata;
+        console.log(geoJsonStateFile);
+
+        // Create Map
+        createJsonMap("State");
+    });
+    // d3.json(geoCountyJSONFile, function(geoJsondata) {
+    d3.json(geoCountyJSONFile).then(geoJsondata => {
+
+        var geoFeatures = geoJsondata.features;
+
+        geoFeatures.forEach(feature => {
+            var FIPS = parseInt(feature.properties["STATE"] + feature.properties["COUNTY"]);
+            var yearFilter = mongoDBdata.filter(row => row["Year"] == year);
+            var filteredData = yearFilter.filter(row => parseInt(row["FIPS"]) === FIPS);
+            if (filteredData.length > 0) {
+                feature.properties["DATA"] = filteredData[0][impact];
+                feature.properties["STATENAME"] = filteredData[0]["State"];
+                feature.properties["COUNTYNAME"] = filteredData[0]["County"];
+            } else {
+                feature.properties["DATA"] = "";
+                feature.properties["STATENAME"] = feature.properties["STATE"];
+                feature.properties["COUNTYNAME"] = feature.properties["NAME"];
+            }
+        });
+        geoJsondata["features"] = geoFeatures;
+        geoJsonCountyFile = geoJsondata;
+        console.log(geoJsonCountyFile);
+    });
+}
