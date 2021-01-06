@@ -68,15 +68,12 @@ function loadYear(impact, selectedYear) {
 
 // Creates the map based on user selections
 function createJsonMap(level) {
-    console.log("createJsonMap");
     if (level == "County") {
         removeMarkers();
         countyMap();
     } else {
-        console.log("State Level");
         removeMarkers();
         stateMap();
-        console.log("Created State Level Map");
     }
 }
 
@@ -92,9 +89,8 @@ function removeMarkers() {
 // Fetches data from Remote MongoDB
 function fetchMongoData() {
     d3.json('/fetchdata').then(data => {
-        // d3.json("/fetchdata", function(data) {
         mongoDBdata = data;
-        console.log(mongoDBdata);
+
         // Dynamically inject the data for user selection into geoJSON file
         createGeoJsonFiles();
 
@@ -105,11 +101,10 @@ function fetchMongoData() {
 
 // Injects data inside geoJSON files
 function createGeoJsonFiles() {
-    console.log("createGeoJsonFiles");
 
     var year = $("#year-select").val();
     var impact = $("#impact-select").val()
-        // d3.json(geoStateJSONFile, function(geoJsonStatedata) {
+
     d3.json(geoStateJSONFile).then(geoJsonStatedata => {
 
         var geoFeatures = geoJsonStatedata.features;
@@ -138,7 +133,7 @@ function createGeoJsonFiles() {
             createJsonMap("State");
         }
     });
-    // d3.json(geoCountyJSONFile, function(geoJsondata) {
+
     d3.json(geoCountyJSONFile).then(geoJsondata => {
 
         var geoFeatures = geoJsondata.features;
@@ -175,7 +170,6 @@ function stateMap() {
 
         // Set color scale
         scale: ["#ffffb2", "#b10026"],
-        // scale: ["#081d58", "#ffffd9"],
 
         // Number of breaks in step range
         steps: 10,
@@ -237,7 +231,6 @@ function countyMap() {
 
         // Set color scale
         scale: ["#ffffb2", "#b10026"],
-        // scale: ["#081d58", "#ffffd9"],
 
         // Number of breaks in step range
         steps: 10,
