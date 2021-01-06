@@ -68,7 +68,6 @@ function createRegressionPlot(disease, impact, year) {
         'Household Income (White)'
     ];
     if (d3.set(expenditureImpacts).has(impact)) {
-        console.log("ExpenditureImpact>>>>>>>>")
         var yearFilter = mongoDBdata.filter(row => row["Year"] == year);
 
         // Get State List and State Level Obesity (or) Diabetes Data
@@ -89,7 +88,6 @@ function createRegressionPlot(disease, impact, year) {
             impactArray.push(impactValue);
         });
         hoverTextArray = stateArray;
-        console.log(impactArray, diseaseArray, stateArray, hoverTextArray);
     } else if (d3.set(incomeImpacts).has(impact)) {
         var yearFilter = mongoDBdata.filter(row => row["Year"] == year);
         var impactFilter = yearFilter.filter(row => row[impact] != "");
@@ -100,7 +98,6 @@ function createRegressionPlot(disease, impact, year) {
         hoverTextArray = countyArray.map(function(county, index) {
             return county + " , " + stateArray[index];
         });
-        console.log(impactArray, diseaseArray, stateArray, countyArray, hoverTextArray);
     } else {
         var yearFilter = mongoDBdata.filter(row => row["Year"] == year);
         var countyFilter = yearFilter.filter(row => row["County"] == "");
@@ -108,15 +105,12 @@ function createRegressionPlot(disease, impact, year) {
         impactArray = countyFilter.map(row => row[impact]);
         stateArray = countyFilter.map(row => row["State"]);
         hoverTextArray = stateArray;
-        console.log(impactArray, diseaseArray, stateArray, hoverTextArray);
     }
 
-    // d3.json('/fetchRegressionLine').then(data => {
     $.getJSON('/fetchRegressionLine', {
         impactArray: JSON.stringify(impactArray),
         diseaseArray: JSON.stringify(diseaseArray)
     }, function(data) {
-        console.log("data from server", data);
         sortedImpactArray = data[0]["X"];
         regressionArray = data[0]["Y"];
         rSquared = data[0]["R"];
