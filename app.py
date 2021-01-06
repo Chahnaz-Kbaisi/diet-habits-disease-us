@@ -170,6 +170,10 @@ def embedRegression(year, impact, disease):
     # Return the generated html file with plot
     return render_template('regressionplot.html')
 
+@app.route('/foodexp')
+def foodexp():
+    return render_template('foodexp.html')
+
 ###############################################
 # Run the Flask Application
 ###############################################
