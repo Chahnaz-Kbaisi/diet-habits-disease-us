@@ -48,8 +48,6 @@ fetching.style("text-align", "center").text("Fetching Data - Please wait...");
 
 // fetch data
 d3.json('/fetchdata').then(data => {
-    console.log(data);
-
     // load table data
     loadTableData(data);
     fetching.text("");
