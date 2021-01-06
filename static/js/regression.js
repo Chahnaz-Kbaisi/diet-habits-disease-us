@@ -283,7 +283,13 @@ $("#impact-select").change(function() {
 
     var disease = $("input[type='radio'][name='disease-select']:checked").attr('id');
 
+    // disable fields and display message to user
+    disableFields();
+
     createRegressionPlot(disease, impact, year);
+
+    // Enable the fields and remove the message
+    enableFields();
 });
 
 /***************************************************
