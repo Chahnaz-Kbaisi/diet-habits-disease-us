@@ -1,3 +1,13 @@
+var mongoDBdata;
+var impactArray;
+var diseaseArray;
+var stateArray;
+var countyArray;
+var regressionArray;
+var rSquared;
+var lineEquation;
+var hoverTextArray;
+
 /***************************************************
 USER DEFINED FUNCTIONS
 ****************************************************/
@@ -26,22 +36,135 @@ function enableFields() {
     $("#year-select").attr("disabled", null).attr('style', null);
 }
 
+// Fetches data from Remote MongoDB
+function fetchMongoData() {
+    d3.json('/fetchdata').then(data => {
+
+        mongoDBdata = data;
+
+        var year = "2020";
+        var impact = "% Limited Access to Healthy Foods";
+        var disease = "% Adults with Obesity";
+
+        // Dynamically inject the data for user selection into geoJSON file
+        createRegressionPlot(disease, impact, year);
+
+        // Enable the fields and remove the message
+        enableFields();
+
+    });
+}
+
 // generates the regression plot and displays the plot in the page
 function createRegressionPlot(disease, impact, year) {
-    // disable fields and display message to user
-    disableFields();
 
-    // remove the previous plot (if any)
-    $("#regressionPlot").empty();
+    var expenditureImpacts = ['Expenditures per capita, fast food',
+        'Expenditures per capita, restaurants',
+        'Direct farm sales per capita'
+    ];
+    var incomeImpacts = ['Household Income (Asian)',
+        'Household Income (Black)',
+        'Household Income (Hispanic)',
+        'Household Income (White)'
+    ];
+    if (d3.set(expenditureImpacts).has(impact)) {
+        var yearFilter = mongoDBdata.filter(row => row["Year"] == year);
 
-    // generate regression plot
-    var url = "/embedRegression/" + year + "/" + impact + "/" + disease;
-    $.get(url, function(data) {
-        // display the generated plot in the page
-        $("#regressionPlot").append(data);
+        // Get State List and State Level Obesity (or) Diabetes Data
+        var countyFilter = yearFilter.filter(row => row["County"] == "");
+        stateArray = countyFilter.map(row => row["State"]);
+        diseaseArray = countyFilter.map(row => row[disease]);
 
-        // enable the fields and remove the message
-        enableFields();
+        // Get impact value for each State
+        impactArray = []
+        var impactFilter = yearFilter.filter(row => row[impact] != "");
+        stateArray.forEach(state => {
+            var stateFilter = impactFilter.filter(row => row["State"] == state);
+            if (stateFilter.length > 0) {
+                impactValue = stateFilter[0][impact]
+            } else {
+                impactValue = null
+            }
+            impactArray.push(impactValue);
+        });
+        hoverTextArray = stateArray;
+    } else if (d3.set(incomeImpacts).has(impact)) {
+        var yearFilter = mongoDBdata.filter(row => row["Year"] == year);
+        var impactFilter = yearFilter.filter(row => row[impact] != "");
+        diseaseArray = impactFilter.map(row => row[disease]);
+        impactArray = impactFilter.map(row => row[impact]);
+        stateArray = impactFilter.map(row => row["State"]);
+        countyArray = impactFilter.map(row => row["County"]);
+        hoverTextArray = countyArray.map(function(county, index) {
+            return county + " , " + stateArray[index];
+        });
+    } else {
+        var yearFilter = mongoDBdata.filter(row => row["Year"] == year);
+        var countyFilter = yearFilter.filter(row => row["County"] == "");
+        diseaseArray = countyFilter.map(row => row[disease]);
+        impactArray = countyFilter.map(row => row[impact]);
+        stateArray = countyFilter.map(row => row["State"]);
+        hoverTextArray = stateArray;
+    }
+
+    $.getJSON('/fetchRegressionLine', {
+        impactArray: JSON.stringify(impactArray),
+        diseaseArray: JSON.stringify(diseaseArray)
+    }, function(data) {
+        sortedImpactArray = data[0]["X"];
+        regressionArray = data[0]["Y"];
+        rSquared = data[0]["R"];
+        lineEquation = data[0]["EQUATION"];
+
+        // remove the previous plot (if any)
+        $("#regressionPlot").empty();
+
+        var scatterTrace = {
+            x: impactArray,
+            y: diseaseArray,
+            mode: 'markers',
+            name: "",
+            text: hoverTextArray,
+            marker: {
+                color: 'rgb(55, 128, 191)',
+                size: 10
+            }
+        };
+
+        var lineTrace = {
+            x: sortedImpactArray,
+            y: regressionArray,
+            mode: 'lines+markers',
+            name: `R<sup>2</sup> = ${rSquared}`,
+            text: `R<sup>2</sup> = ${rSquared} <br> ${lineEquation}`,
+            line: {
+                color: 'rgb(128, 0, 128)',
+                width: 5
+            },
+            marker: {
+                color: "white",
+                size: 2
+            }
+        };
+
+        var data = [scatterTrace, lineTrace];
+
+        var layout = {
+            title: `${impact} vs ${disease} (${year})`,
+            xaxis: {
+                title: impact,
+                showline: true,
+                linecolor: 'black',
+                ticks: 'inside',
+                tickcolor: 'black',
+                tickwidth: 1
+            },
+            yaxis: {
+                title: disease
+            }
+        };
+
+        Plotly.newPlot('regressionPlot', data, layout);
     });
 }
 
@@ -81,7 +204,13 @@ $("#year-select").change(function() {
     var impact = $("#impact-select").val();
     var disease = $("input[type='radio'][name='disease-select']:checked").attr('id');
 
+    // disable fields and display message to user
+    disableFields();
+
     createRegressionPlot(disease, impact, year);
+
+    // Enable the fields and remove the message
+    enableFields();
 });
 
 // generates regression plot based on user selections
@@ -90,7 +219,13 @@ $('input[name="disease-select"]').change(function() {
     var impact = $("#impact-select").val();
     var year = $("#year-select").val();
 
+    // disable fields and display message to user
+    disableFields();
+
     createRegressionPlot(disease, impact, year);
+
+    // Enable the fields and remove the message
+    enableFields();
 });
 
 // loads the year dropdown based on the user selected impact option and
@@ -142,7 +277,13 @@ $("#impact-select").change(function() {
 
     var disease = $("input[type='radio'][name='disease-select']:checked").attr('id');
 
+    // disable fields and display message to user
+    disableFields();
+
     createRegressionPlot(disease, impact, year);
+
+    // Enable the fields and remove the message
+    enableFields();
 });
 
 /***************************************************
@@ -159,5 +300,8 @@ var disease = "% Adults with Obesity";
 // load the year dropdown
 loadYear(impact);
 
-// generate regression plot
-createRegressionPlot(disease, impact, year);
+// disable fields and display message to user
+disableFields();
+
+// Fetch data from remote DB and generate the plot
+fetchMongoData();
