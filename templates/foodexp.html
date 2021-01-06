@@ -21,10 +21,12 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/foodexp.css') }}" />
 
 </head>
+
 <body>
     <div class="wrapper">
         <!-- Navigation Bar -->
         <div id="nav-placeholder"></div>
+
         <!-- Page Content -->
         <div class="container-fluid mt-5">
             <!-- Main page row -->
@@ -41,9 +43,20 @@
                     </div>
                 </div>
             </div>
+
+            <div class="container">
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <div id="histogramPlot"></div>
+                    </div>
+                </div>
+            </div>
+
         </div>
+
         <!-- Footer -->
         <div id="footer-placeholder"></div>
+
     </div>
     <!-- JS, Popper.js, CSS and jQuery -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
