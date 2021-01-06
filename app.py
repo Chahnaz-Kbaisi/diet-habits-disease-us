@@ -172,7 +172,7 @@ def embedRegression(year, impact, disease):
     # Return the generated html file with plot
     return render_template('regressionplot.html')
 
-@app.route('/fetchRegressionLine/')
+@app.route('/fetchRegressionLine')
 def fetchRegressionLine():
     
     # Fetch x and y axis values passed from Client
