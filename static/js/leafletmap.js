@@ -321,15 +321,76 @@ EVENT HANDLERS
 
 // Generates map based on user selections
 $("#year-select").change(function() {
-    // disable fields and display message to user
+    // Disable fields and display message to user
     disableFields();
 
-    // remove legends
+    // Remove legends
     map.removeControl(legend);
 
     // Dynamically inject the data for user selection into geoJSON file & create Map
     createGeoJsonFiles();
 
-    // enable the fields and remove the message
+    // Enable the fields and remove the message
     enableFields();
+});
+
+// Loads the year dropdown based on the user selected impact option and
+// generates map based on user selections
+$("#impact-select").change(function() {
+    var impact = $(this).val();
+    var selectedYear = $("#year-select").val();
+
+    loadYear(impact, selectedYear);
+
+    var year;
+    if (impact == "% Limited Access to Healthy Foods" || impact == "High School Graduation Rate") {
+        if (selectedYear >= 2013) {
+            year = selectedYear;
+            $("#year-select").val(selectedYear);
+        } else {
+            year = $("#year-select").val();
+        }
+    } else if (impact == "Food Environment Index" || impact == "% With Access to Exercise Opportunities") {
+        if (selectedYear >= 2014) {
+            year = selectedYear;
+            $("#year-select").val(selectedYear);
+        } else {
+            year = $("#year-select").val();
+        }
+    } else if (impact == "Income Ratio") {
+        if (selectedYear >= 2015) {
+            year = selectedYear;
+            $("#year-select").val(selectedYear);
+        } else {
+            year = $("#year-select").val();
+        }
+    } else if (impact == "Expenditures per capita, fast food" || impact == "Expenditures per capita, restaurants" || impact == "Direct farm sales per capita") {
+        year = 2012;
+    } else if (impact == 'Household Income (Hispanic)' || impact == 'Household Income (Black)' || impact == "Household Income (White)") {
+        if (selectedYear >= 2017) {
+            year = selectedYear;
+            $("#year-select").val(selectedYear);
+        } else {
+            year = $("#year-select").val();
+        }
+    } else if (impact == 'Household Income (Asian)') {
+        year = 2020;
+        $("#year-select").val(year);
+    } else {
+        year = selectedYear;
+        $("#year-select").val(selectedYear);
+    }
+
+    // Disable fields and display message to user
+    disableFields();
+
+    // Remove legends
+    map.removeControl(legend);
+
+    // Dynamically inject the data for user selection into geoJSON file & create Map
+    createGeoJsonFiles();
+
+    // Enable the fields and remove the message
+    enableFields();
+
 });
