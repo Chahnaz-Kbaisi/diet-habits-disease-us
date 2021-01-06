@@ -210,7 +210,13 @@ $("#year-select").change(function() {
     var impact = $("#impact-select").val();
     var disease = $("input[type='radio'][name='disease-select']:checked").attr('id');
 
+    // disable fields and display message to user
+    disableFields();
+
     createRegressionPlot(disease, impact, year);
+
+    // Enable the fields and remove the message
+    enableFields();
 });
 
 // generates regression plot based on user selections
