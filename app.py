@@ -176,7 +176,8 @@ def foodexp():
 
 @app.route('/getapikey')
 def getapikey():
-    return environ.get('API_KEY')
+    key = [{"API_KEY": environ.get('API_KEY') }]
+    return jsonify(key)
 
 @app.route('/leafletmap')
 def leafletmap():
