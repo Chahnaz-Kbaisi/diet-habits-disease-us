@@ -16,7 +16,7 @@ var API_KEY;
 
 // fetch API_KEY
 d3.json('/getapikey').then(key => {
-    API_KEY = key;
+    API_KEY = key[0]["API_KEY"];
 });
 
 /***************************************************
