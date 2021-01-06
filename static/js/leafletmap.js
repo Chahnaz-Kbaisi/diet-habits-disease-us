@@ -14,11 +14,6 @@ var mongoDBdata;
 var prevZoom;
 var API_KEY;
 
-// fetch API_KEY
-d3.json('/getapikey').then(key => {
-    API_KEY = key[0]["API_KEY"];
-});
-
 /***************************************************
 USER DEFINED FUNCTIONS
 ****************************************************/
@@ -302,18 +297,23 @@ map = L.map("map", {
     zoom: 4
 });
 
-// Adding tile layer
-L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
-    attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
-    tileSize: 512,
-    maxZoom: 18,
-    zoomOffset: -1,
-    id: "mapbox/streets-v11",
-    accessToken: API_KEY
-}).addTo(map);
+// fetch API_KEY
+d3.json('/getapikey').then(key => {
+    API_KEY = key[0]["API_KEY"];
 
-// Fetch data from remote DB and create the map
-fetchMongoData();
+    // Adding tile layer
+    L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+        attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
+        tileSize: 512,
+        maxZoom: 18,
+        zoomOffset: -1,
+        id: "mapbox/streets-v11",
+        accessToken: API_KEY
+    }).addTo(map);
+
+    // Fetch data from remote DB and create the map
+    fetchMongoData();
+});
 
 /***************************************************
 EVENT HANDLERS
