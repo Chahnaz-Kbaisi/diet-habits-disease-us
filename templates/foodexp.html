@@ -27,7 +27,20 @@
         <div id="nav-placeholder"></div>
         <!-- Page Content -->
         <div class="container-fluid mt-5">
-            
+            <!-- Main page row -->
+            <div class="container">
+                <h1>Food Expenditures vs Disease Prevalence</h1>
+                <div class="d-flex justify-content-start bd-highlight mb-3">
+                    <div class="p-2 bd-highlight align-self-stretch">
+
+                        <select id="impact-select" name="impact-select" onchange="impactChanged(this.value)">
+                            <option value="Expenditures per capita, fast food"> Expenditures per capita, fast food</option>
+                            <option value="Expenditures per capita, restaurants"> Expenditures per capita, restaurants</option>
+                            <option value="Direct farm sales per capita"> Direct farm sales per capita</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- Footer -->
         <div id="footer-placeholder"></div>
