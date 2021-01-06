@@ -222,5 +222,4 @@ function stateMap() {
     };
     // Adding legend to the map
     legend.addTo(map);
-    console.log("Done creating State Level Map");
 }
