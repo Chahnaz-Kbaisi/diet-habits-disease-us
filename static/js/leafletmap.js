@@ -295,3 +295,9 @@ d3.select("#page-title").text("Interactive Map");
 
 // Load the year dropdown
 loadYear(impact);
+
+// Creating map object
+map = L.map("map", {
+    center: [39.8283, -98.5795],
+    zoom: 4
+});
