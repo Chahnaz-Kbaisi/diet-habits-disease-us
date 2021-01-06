@@ -8,6 +8,8 @@ from flask_pymongo import PyMongo
 import pandas as pd
 import pymongo
 import plotly.express as px
+import json
+from scipy.stats import linregress
 
 ###############################################
 # Database & Flask Setup
