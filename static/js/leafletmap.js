@@ -292,3 +292,6 @@ ON PAGE LOAD
 
 // Change page title
 d3.select("#page-title").text("Interactive Map");
+
+// Load the year dropdown
+loadYear(impact);
