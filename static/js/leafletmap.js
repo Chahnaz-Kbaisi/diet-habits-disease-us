@@ -284,5 +284,4 @@ function countyMap() {
     };
     // Adding legend to the map
     legend.addTo(map);
-    console.log("Done creating County Level Map");
 }
