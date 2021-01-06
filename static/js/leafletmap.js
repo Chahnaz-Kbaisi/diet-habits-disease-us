@@ -161,3 +161,66 @@ function createGeoJsonFiles() {
         geoJsonCountyFile = geoJsondata;
     });
 }
+
+// Creates State Map
+function stateMap() {
+    var year = $("#year-select").val();
+    var impact = $("#impact-select").val()
+
+    // Create a new choropleth layer
+    geojson = L.choropleth(geoJsonStateFile, {
+
+        // Define what  property in the features to use
+        valueProperty: "DATA",
+
+        // Set color scale
+        scale: ["#ffffb2", "#b10026"],
+        // scale: ["#081d58", "#ffffd9"],
+
+        // Number of breaks in step range
+        steps: 10,
+
+        // q for quartile, e for equidistant, k for k-means
+        mode: "q",
+        style: {
+            // Border color
+            color: "#fff",
+            weight: 1,
+            fillOpacity: 0.8
+        },
+
+        // Binding a pop-up to each layer
+        onEachFeature: function(feature, layer) {
+            layer.myTag = "myGeoJSON";
+            layer.bindPopup("<h4>State: " + feature.properties.STATENAME + "<br>Year: " + year + "<br><br></h4><h2>" + impact + ":<br>" + feature.properties.DATA + "</h2>");
+        }
+    }).addTo(map);
+
+    // Set up the legend
+    legend = L.control({ position: "bottomright" });
+    legend.onAdd = function() {
+        var div = L.DomUtil.create("div", "info legend");
+        var limits = geojson.options.limits;
+        var colors = geojson.options.colors;
+        var labels = [];
+
+        // Add min & max
+        var legendInfo = "<h1>" + impact + " (" + year + ")</h1>" +
+            "<div class=\"labels\">" +
+            "<div class=\"min\">" + limits[0] + "</div>" +
+            "<div class=\"max\">" + limits[limits.length - 1] + "</div>" +
+            "</div>";
+
+        div.innerHTML = legendInfo;
+
+        limits.forEach(function(limit, index) {
+            labels.push("<li style=\"background-color: " + colors[index] + "\"></li>");
+        });
+
+        div.innerHTML += "<ul>" + labels.join("") + "</ul>";
+        return div;
+    };
+    // Adding legend to the map
+    legend.addTo(map);
+    console.log("Done creating State Level Map");
+}
