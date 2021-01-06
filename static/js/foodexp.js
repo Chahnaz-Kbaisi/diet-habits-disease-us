@@ -68,3 +68,14 @@ function createStackedBarPlot(data, impact) {
     Plotly.newPlot('stackedBarPlot', stackedBarData, stackedBarLayout);
 
 }
+
+/***************************************************
+EVENT HANDLERS
+****************************************************/
+
+// Impact Event Handler - Load Histogram Plots
+function impactChanged(impact) {
+
+    createStackedBarPlot(tableData, impact);
+
+};
