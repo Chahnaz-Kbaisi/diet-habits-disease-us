@@ -314,3 +314,22 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 
 // Fetch data from remote DB and create the map
 fetchMongoData();
+
+/***************************************************
+EVENT HANDLERS
+****************************************************/
+
+// Generates map based on user selections
+$("#year-select").change(function() {
+    // disable fields and display message to user
+    disableFields();
+
+    // remove legends
+    map.removeControl(legend);
+
+    // Dynamically inject the data for user selection into geoJSON file & create Map
+    createGeoJsonFiles();
+
+    // enable the fields and remove the message
+    enableFields();
+});
