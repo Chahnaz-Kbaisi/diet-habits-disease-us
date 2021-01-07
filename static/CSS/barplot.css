@@ -1,0 +1,32 @@
+/* Bar Plot Styling Sheet */
+
+.container {
+    background-color: #dbdfe5;
+}
+
+label,
+select,
+input {
+    height: calc(1.5em + 1.5rem + 0px);
+    font-size: 1.25rem;
+    font-weight: 400;
+    line-height: 1.5;
+    vertical-align: middle;
+    padding: 0.75rem 2.5rem 0.75rem 1.5rem;
+    min-height: 1.2em;
+}
+
+option {
+    font-size: 1.25rem;
+    font-weight: 400;
+    display: block;
+    white-space: pre;
+    min-height: 1em;
+    padding: 0px 2px 1px;
+}
+
+.p-2,
+.btn-lg {
+    font-size: 1.25rem;
+    font-weight: 400;
+}
