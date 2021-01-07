@@ -152,6 +152,7 @@ def getapikey():
 @app.route('/leafletmap')
 def leafletmap():
     return render_template('leafletmap.html')
+    
 
 ###############################################
 # Run the Flask Application
