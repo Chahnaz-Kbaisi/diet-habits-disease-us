@@ -107,11 +107,12 @@ def regression():
 def fetchRegressionLine():
     
     # Fetch x and y axis values passed from Client
-    impactArray = json.loads(request.args.get('impactArray'))
-    diseaseArray = json.loads(request.args.get('diseaseArray'))
+    impactArray = json.loads(request.form["impactArray"])
+    diseaseArray = json.loads(request.form["diseaseArray"])
 
     # Replacing null values with 0
     impactArray = [0 if value is None else value for value in impactArray]
+    diseaseArray = [0 if value is None else value for value in diseaseArray]
 
     # Determine the regression values
     (slope, intercept, rvalue, pvalue, stderr) = linregress(impactArray, diseaseArray)

@@ -117,65 +117,69 @@ function createRegressionPlot(disease, impact, year) {
         hoverTextArray = stateArray;
     }
 
-    $.getJSON('/fetchRegressionLine', {
-        impactArray: JSON.stringify(impactArray),
-        diseaseArray: JSON.stringify(diseaseArray)
-    }, function(data) {
-        sortedImpactArray = data[0]["X"];
-        regressionArray = data[0]["Y"];
-        rSquared = data[0]["R"];
-        lineEquation = data[0]["EQUATION"];
+    $.post("/fetchRegressionLine", {
+            impactArray: JSON.stringify(impactArray),
+            diseaseArray: JSON.stringify(diseaseArray)
+        },
+        function(data, status) {
+            sortedImpactArray = data[0]["X"];
+            regressionArray = data[0]["Y"];
+            rSquared = data[0]["R"];
+            lineEquation = data[0]["EQUATION"];
 
-        // remove the previous plot (if any)
-        $("#regressionPlot").empty();
+            // remove the previous plot (if any)
+            $("#regressionPlot").empty();
 
-        var scatterTrace = {
-            x: impactArray,
-            y: diseaseArray,
-            mode: 'markers',
-            name: "",
-            text: hoverTextArray,
-            marker: {
-                color: 'rgb(55, 128, 191)',
-                size: 10
-            }
-        };
+            var scatterTrace = {
+                x: impactArray,
+                y: diseaseArray,
+                mode: 'markers',
+                name: "",
+                text: hoverTextArray,
+                marker: {
+                    color: 'rgb(55, 128, 191)',
+                    size: 10
+                }
+            };
 
-        var lineTrace = {
-            x: sortedImpactArray,
-            y: regressionArray,
-            mode: 'lines+markers',
-            name: `R<sup>2</sup> = ${rSquared}`,
-            text: `R<sup>2</sup> = ${rSquared} <br> ${lineEquation}`,
-            line: {
-                color: 'rgb(128, 0, 128)',
-                width: 5
-            },
-            marker: {
-                color: "white",
-                size: 2
-            }
-        };
+            var lineTrace = {
+                x: sortedImpactArray,
+                y: regressionArray,
+                mode: 'lines+markers',
+                name: `R<sup>2</sup> = ${rSquared}`,
+                text: `R<sup>2</sup> = ${rSquared} <br> ${lineEquation}`,
+                line: {
+                    color: 'rgb(128, 0, 128)',
+                    width: 5
+                },
+                marker: {
+                    color: "white",
+                    size: 2
+                }
+            };
 
-        var data = [scatterTrace, lineTrace];
+            var data = [scatterTrace, lineTrace];
 
-        var layout = {
-            title: `${impact} vs ${disease} (${year})`,
-            xaxis: {
-                title: impact,
-                showline: true,
-                linecolor: 'black',
-                ticks: 'inside',
-                tickcolor: 'black',
-                tickwidth: 1
-            },
-            yaxis: {
-                title: disease
-            }
-        };
+            var layout = {
+                title: `${impact} vs ${disease} (${year})`,
+                xaxis: {
+                    title: impact,
+                    zeroline: false,
+                    showline: true,
+                    linecolor: 'black',
+                    ticks: 'inside',
+                    tickcolor: 'black',
+                    tickwidth: 1
+                },
+                yaxis: {
+                    title: disease,
+                    zeroline: false,
+                    showline: true,
+                }
+            };
 
-        Plotly.newPlot('regressionPlot', data, layout);
-    });
+            Plotly.newPlot('regressionPlot', data, layout, { responsive: true });
+        });
 }
 
 // loads the year dropdown based on the user selected impact option
