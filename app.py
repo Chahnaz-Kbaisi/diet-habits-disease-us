@@ -103,7 +103,7 @@ def analysis():
 def regression():
     return render_template('regression.html')
 
-@app.route('/fetchRegressionLine')
+@app.route('/fetchRegressionLine', methods=['POST'])
 def fetchRegressionLine():
     
     # Fetch x and y axis values passed from Client
