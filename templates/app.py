@@ -93,7 +93,11 @@ def dashboard():
 
 @app.route('/bubbleplot')
 def bubbleplot():
-    return render_template('bubbleplot.html')  
+    return render_template('bubbleplot.html')
+
+@app.route('/barplot')
+def bubbleplot():
+    return render_template('barplot.html')
 
 @app.route('/analysis')
 def analysis():
