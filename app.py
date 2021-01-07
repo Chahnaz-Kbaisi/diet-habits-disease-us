@@ -7,9 +7,9 @@ from os import environ
 from flask_pymongo import PyMongo
 import pandas as pd
 import pymongo
-import plotly.express as px
 import json
 from scipy.stats import linregress
+import os
 
 ###############################################
 # Database & Flask Setup
@@ -149,6 +149,20 @@ def getapikey():
 @app.route('/leafletmap')
 def leafletmap():
     return render_template('leafletmap.html')
+
+@app.route('/getwriteup')
+def getwriteup():
+
+    # Set the xls file path
+    input_file_path = os.path.join("static","data","Analysis_Writeups.xls")
+
+    # Read excel into dataframe
+    final_df = pd.read_excel(input_file_path)
+
+    # Convert dataframe to array of dictionary
+    writeup = final_df.to_dict('records')
+
+    return jsonify(writeup)
 
 ###############################################
 # Run the Flask Application
