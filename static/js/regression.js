@@ -59,8 +59,7 @@ function fetchMongoData() {
 function createRegressionPlot(disease, impact, year) {
 
     var expenditureImpacts = ['Expenditures per capita, fast food',
-        'Expenditures per capita, restaurants',
-        'Direct farm sales per capita'
+        'Expenditures per capita, restaurants'
     ];
     var incomeImpacts = ['Household Income (Asian)',
         'Household Income (Black)',
@@ -95,6 +94,17 @@ function createRegressionPlot(disease, impact, year) {
         impactArray = impactFilter.map(row => row[impact]);
         stateArray = impactFilter.map(row => row["State"]);
         countyArray = impactFilter.map(row => row["County"]);
+        hoverTextArray = countyArray.map(function(county, index) {
+            return county + " , " + stateArray[index];
+        });
+    } else if (impact == "Direct farm sales per capita") {
+        var yearFilter = mongoDBdata.filter(row => row["Year"] == year);
+        var impactFilter = yearFilter.filter(row => row[impact] != "");
+        var countyFilter = impactFilter.filter(row => row["County"] != "");
+        diseaseArray = countyFilter.map(row => row[disease]);
+        impactArray = countyFilter.map(row => row[impact]);
+        stateArray = countyFilter.map(row => row["State"]);
+        countyArray = countyFilter.map(row => row["County"]);
         hoverTextArray = countyArray.map(function(county, index) {
             return county + " , " + stateArray[index];
         });
@@ -177,7 +187,7 @@ function loadYear(impact) {
         yearList = [2020, 2019, 2018, 2017, 2016, 2015, 2014];
     } else if (impact == "Income Ratio") {
         yearList = [2020, 2019, 2018, 2017, 2016, 2015];
-    } else if (impact == 'Expenditures per capita, fast food' || impact == 'Expenditures per capita, restaurants' || impact == "Direct farm sales per capita") {
+    } else if (impact == 'Expenditures per capita, fast food' || impact == 'Expenditures per capita, restaurants' || impact == "Direct farm sales per capita") {
         yearList = [2012];
     } else if (impact == 'Household Income (Hispanic)' || impact == 'Household Income (Black)' || impact == "Household Income (White)") {
         yearList = [2020, 2019, 2018, 2017];
@@ -258,7 +268,7 @@ $("#impact-select").change(function() {
         } else {
             year = $("#year-select").val();
         }
-    } else if (impact == "Expenditures per capita, fast food" || impact == "Expenditures per capita, restaurants" || impact == "Direct farm sales per capita") {
+    } else if (impact == "Expenditures per capita, fast food" || impact == "Expenditures per capita, restaurants" || impact == "Direct farm sales per capita") {
         year = 2012;
     } else if (impact == 'Household Income (Hispanic)' || impact == 'Household Income (Black)' || impact == "Household Income (White)") {
         if (selectedYear >= 2017) {
