@@ -157,10 +157,13 @@ def getwriteup():
     input_file_path = os.path.join("static","data","Analysis_Writeups.xls")
 
     # Read excel into dataframe
-    final_df = pd.read_excel(input_file_path)
+    writeup_df = pd.read_excel(input_file_path)
+
+    # Convert null to empty string
+    writeup_df['Writeup'] = df.Writeup.fillna(" ")
 
     # Convert dataframe to array of dictionary
-    writeup = final_df.to_dict('records')
+    writeup = writeup_df.to_dict('records')
 
     return jsonify(writeup)
 
