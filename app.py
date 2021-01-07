@@ -93,11 +93,7 @@ def dashboard():
 
 @app.route('/bubbleplot')
 def bubbleplot():
-    return render_template('bubbleplot.html')
-
-@app.route('/barplot')
-def bubbleplot():
-    return render_template('barplot.html')
+    return render_template('bubbleplot.html')  
 
 @app.route('/analysis')
 def analysis():
@@ -152,7 +148,6 @@ def getapikey():
 @app.route('/leafletmap')
 def leafletmap():
     return render_template('leafletmap.html')
-    
 
 ###############################################
 # Run the Flask Application
