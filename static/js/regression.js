@@ -7,6 +7,7 @@ var regressionArray;
 var rSquared;
 var lineEquation;
 var hoverTextArray;
+var analysisWriteups;
 
 /***************************************************
 USER DEFINED FUNCTIONS
@@ -41,26 +42,29 @@ function fetchMongoData() {
     d3.json('/fetchdata').then(data => {
 
         mongoDBdata = data;
+        d3.json("/getwriteup").then(writeups => {
+            analysisWriteups = writeups;
 
-        var year = "2020";
-        var impact = "% Limited Access to Healthy Foods";
-        var disease = "% Adults with Obesity";
+            var year = "2020";
+            var impact = "% Limited Access to Healthy Foods";
+            var disease = "% Adults with Obesity";
 
-        // Dynamically inject the data for user selection into geoJSON file
-        createRegressionPlot(disease, impact, year);
+            // Dynamically inject the data for user selection into geoJSON file
+            createRegressionPlot(disease, impact, year);
 
-        // Enable the fields and remove the message
-        enableFields();
+            // Enable the fields and remove the message
+            enableFields();
 
+        });
     });
+
 }
 
 // generates the regression plot and displays the plot in the page
 function createRegressionPlot(disease, impact, year) {
 
     var expenditureImpacts = ['Expenditures per capita, fast food',
-        'Expenditures per capita, restaurants',
-        'Direct farm sales per capita'
+        'Expenditures per capita, restaurants'
     ];
     var incomeImpacts = ['Household Income (Asian)',
         'Household Income (Black)',
@@ -98,6 +102,17 @@ function createRegressionPlot(disease, impact, year) {
         hoverTextArray = countyArray.map(function(county, index) {
             return county + " , " + stateArray[index];
         });
+    } else if (impact == "Direct farm sales per capita") {
+        var yearFilter = mongoDBdata.filter(row => row["Year"] == year);
+        var impactFilter = yearFilter.filter(row => row[impact] != "");
+        var countyFilter = impactFilter.filter(row => row["County"] != "");
+        diseaseArray = countyFilter.map(row => row[disease]);
+        impactArray = countyFilter.map(row => row[impact]);
+        stateArray = countyFilter.map(row => row["State"]);
+        countyArray = countyFilter.map(row => row["County"]);
+        hoverTextArray = countyArray.map(function(county, index) {
+            return county + " , " + stateArray[index];
+        });
     } else {
         var yearFilter = mongoDBdata.filter(row => row["Year"] == year);
         var countyFilter = yearFilter.filter(row => row["County"] == "");
@@ -107,65 +122,76 @@ function createRegressionPlot(disease, impact, year) {
         hoverTextArray = stateArray;
     }
 
-    $.getJSON('/fetchRegressionLine', {
-        impactArray: JSON.stringify(impactArray),
-        diseaseArray: JSON.stringify(diseaseArray)
-    }, function(data) {
-        sortedImpactArray = data[0]["X"];
-        regressionArray = data[0]["Y"];
-        rSquared = data[0]["R"];
-        lineEquation = data[0]["EQUATION"];
+    $.post("/fetchRegressionLine", {
+            impactArray: JSON.stringify(impactArray),
+            diseaseArray: JSON.stringify(diseaseArray)
+        },
+        function(data, status) {
+            sortedImpactArray = data[0]["X"];
+            regressionArray = data[0]["Y"];
+            rSquared = data[0]["R"];
+            lineEquation = data[0]["EQUATION"];
 
-        // remove the previous plot (if any)
-        $("#regressionPlot").empty();
+            // remove the previous plot (if any)
+            $("#regressionPlot").empty();
 
-        var scatterTrace = {
-            x: impactArray,
-            y: diseaseArray,
-            mode: 'markers',
-            name: "",
-            text: hoverTextArray,
-            marker: {
-                color: 'rgb(55, 128, 191)',
-                size: 10
+            var scatterTrace = {
+                x: impactArray,
+                y: diseaseArray,
+                mode: 'markers',
+                name: "",
+                text: hoverTextArray,
+                marker: {
+                    color: 'rgb(55, 128, 191)',
+                    size: 10
+                }
+            };
+
+            var lineTrace = {
+                x: sortedImpactArray,
+                y: regressionArray,
+                mode: 'lines+markers',
+                name: `R<sup>2</sup> = ${rSquared}`,
+                text: `R<sup>2</sup> = ${rSquared} <br> ${lineEquation}`,
+                line: {
+                    color: 'rgb(128, 0, 128)',
+                    width: 5
+                },
+                marker: {
+                    color: "white",
+                    size: 2
+                }
+            };
+
+            var data = [scatterTrace, lineTrace];
+
+            var layout = {
+                title: `${impact} vs ${disease} (${year})`,
+                xaxis: {
+                    title: impact,
+                    zeroline: false,
+                    showline: true,
+                    linecolor: 'black',
+                    ticks: 'inside',
+                    tickcolor: 'black',
+                    tickwidth: 1
+                },
+                yaxis: {
+                    title: disease,
+                    zeroline: false,
+                    showline: true,
+                }
+            };
+
+            Plotly.newPlot('regressionPlot', data, layout, { responsive: true });
+
+            writeupFilter = analysisWriteups.filter(row => row["Disease"] == disease);
+            writeupFilter = writeupFilter.filter(row => row["Impact"] == impact);
+            if (writeupFilter.length > 0) {
+                d3.select("#analysisWriteup").html("").text(writeupFilter[0]["Writeup"]);
             }
-        };
 
-        var lineTrace = {
-            x: sortedImpactArray,
-            y: regressionArray,
-            mode: 'lines+markers',
-            name: `R<sup>2</sup> = ${rSquared}`,
-            text: `R<sup>2</sup> = ${rSquared} <br> ${lineEquation}`,
-            line: {
-                color: 'rgb(128, 0, 128)',
-                width: 5
-            },
-            marker: {
-                color: "white",
-                size: 2
-            }
-        };
-
-        var data = [scatterTrace, lineTrace];
-
-        var layout = {
-            title: `${impact} vs ${disease} (${year})`,
-            xaxis: {
-                title: impact,
-                showline: true,
-                linecolor: 'black',
-                ticks: 'inside',
-                tickcolor: 'black',
-                tickwidth: 1
-            },
-            yaxis: {
-                title: disease
-            }
-        };
-
-        Plotly.newPlot('regressionPlot', data, layout);
-    });
+        });
 }
 
 // loads the year dropdown based on the user selected impact option
@@ -177,7 +203,7 @@ function loadYear(impact) {
         yearList = [2020, 2019, 2018, 2017, 2016, 2015, 2014];
     } else if (impact == "Income Ratio") {
         yearList = [2020, 2019, 2018, 2017, 2016, 2015];
-    } else if (impact == 'Expenditures per capita, fast food' || impact == 'Expenditures per capita, restaurants' || impact == "Direct farm sales per capita") {
+    } else if (impact == 'Expenditures per capita, fast food' || impact == 'Expenditures per capita, restaurants' || impact == "Direct farm sales per capita") {
         yearList = [2012];
     } else if (impact == 'Household Income (Hispanic)' || impact == 'Household Income (Black)' || impact == "Household Income (White)") {
         yearList = [2020, 2019, 2018, 2017];
@@ -258,7 +284,7 @@ $("#impact-select").change(function() {
         } else {
             year = $("#year-select").val();
         }
-    } else if (impact == "Expenditures per capita, fast food" || impact == "Expenditures per capita, restaurants" || impact == "Direct farm sales per capita") {
+    } else if (impact == "Expenditures per capita, fast food" || impact == "Expenditures per capita, restaurants" || impact == "Direct farm sales per capita") {
         year = 2012;
     } else if (impact == 'Household Income (Hispanic)' || impact == 'Household Income (Black)' || impact == "Household Income (White)") {
         if (selectedYear >= 2017) {
