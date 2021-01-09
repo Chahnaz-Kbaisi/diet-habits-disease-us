@@ -177,6 +177,10 @@ def dashboard():
 def bubbleplot():
     return render_template('bubbleplot.html')  
 
+@app.route('/barplot')
+def barplot():
+    return render_template('barplot.html')
+    
 @app.route('/analysis')
 def analysis():
     return render_template('analysis.html')     
