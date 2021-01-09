@@ -17,6 +17,7 @@ input {
     padding: 0.75rem 2.5rem 0.75rem 1.5rem;
     min-height: 1.2em;
 }
+/* styling for drop down options */
 
 option {
     font-size: 1.25rem;
