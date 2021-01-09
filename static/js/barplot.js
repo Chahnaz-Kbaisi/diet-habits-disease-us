@@ -120,7 +120,7 @@ function createStateLevelPlot(data, state, impact) {
 
     var layoutStateLevelPlot = {
         title: `${impact} vs Disease Prevalence - ${state}`,
-        barmode: 'stack'
+        barmode: 'group'
     };
 
     Plotly.newPlot('stateLevelPlot', dataStateLevelPlot, layoutStateLevelPlot);
