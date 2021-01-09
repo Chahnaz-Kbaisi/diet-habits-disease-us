@@ -198,6 +198,9 @@ def getapikey():
 def leafletmap():
     return render_template('leafletmap.html')
 
+@app.route('/waterfall')
+def waterfall():
+    return render_template('waterfall.html')						
 ###############################################
 # Run the Flask Application
 ###############################################
