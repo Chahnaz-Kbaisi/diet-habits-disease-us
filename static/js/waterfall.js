@@ -58,4 +58,34 @@ function createWaterfallPlot(data, state, county, impact) {
         measure: measureArray,
         y: impactArrayRelative,
         name: impactString
-    };					
+    };
+
+    var diabetesTrace = {
+        type: "waterfall",
+        x: [yearArray, yearArray],
+        text: "% Adults with Diabetes",
+        measure: measureArray,
+        y: diabetesArrayRelative,
+        name: "% Adults with Diabetes"
+    };
+
+    var obesityTrace = {
+        type: "waterfall",
+        x: [yearArray, yearArray],
+        text: "% Adults with Obesity",
+        measure: measureArray,
+        y: obesityArrayRelative,
+        name: "% Adults with Obesity"
+    };
+
+    var data = [impactTrace, diabetesTrace, obesityTrace];
+
+    var layout = {
+        waterfallgroupgap : 0.5,
+        title: `${impact} vs Disease Prevalence`,
+        xaxis: {
+        title: "Year",
+        tickfont: {size: 16},
+        ticks: "outside"
+        }
+    }					
