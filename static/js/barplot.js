@@ -37,21 +37,21 @@ function createCountyLevelPlot(data, state, county, impact) {
         impact = impact + " (in Thousands)"
     }
 
-    // Bar Plot County
+    // Trace for impact
     var impactTrace = {
         x: yearArray,
         y: impactArray,
         name: impact,
         type: 'bar',
     };
-
+    // Trace for obesity
     var obesityTrace = {
         x: yearArray,
         y: obesityArray,
         name: '% Adults with Obesity',
         type: 'bar',
     };
-
+    // Trace for diabetes
     var diabetesTrace = {
         x: yearArray,
         y: diabetesArray,
@@ -63,7 +63,7 @@ function createCountyLevelPlot(data, state, county, impact) {
 
     var layoutCountyLevelPlot = {
         title: `${impact} vs Disease Prevalence - ${county},${state}`,
-        barmode: 'stack'
+        barmode: 'group'
     };
 
     Plotly.newPlot('countyLevelPlot', dataCountyLevelPlot, layoutCountyLevelPlot);
@@ -120,7 +120,7 @@ function createStateLevelPlot(data, state, impact) {
 
     var layoutStateLevelPlot = {
         title: `${impact} vs Disease Prevalence - ${state}`,
-        barmode: 'stack'
+        barmode: 'group'
     };
 
     Plotly.newPlot('stateLevelPlot', dataStateLevelPlot, layoutStateLevelPlot);
