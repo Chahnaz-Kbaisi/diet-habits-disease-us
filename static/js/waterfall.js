@@ -195,4 +195,37 @@ function loadCountyDropDown(selectedState) {
     });
 }
 
-/***************************************************					
+/***************************************************
+EVENT HANDLERS
+****************************************************/
+
+// State Event Handler - Load County dropdown and State/County Level Plots
+function stateChanged(selectedState) {
+
+    // Load County dropdown
+    loadCountyDropDown(selectedState);
+
+};
+
+// County Event Handler - Load County Level Plot
+function countyChanged(county) {
+
+    var state = d3.select("#state-select").property("value");
+    var impact = d3.select("#impact-select").property("value");
+
+    createWaterfallPlot(tableData, state, county, impact);
+};
+
+// Impact Event Handler - Load State/County Level Plots
+function impactChanged(impact) {
+
+    var state = d3.select("#state-select").property("value");
+    var county = d3.select("#county-select").property("value");
+
+    createWaterfallPlot(tableData, state, county, impact);
+};
+
+/***************************************************
+ON PAGE LOAD
+****************************************************/
+console.log("Before disabling the state and impact");					
