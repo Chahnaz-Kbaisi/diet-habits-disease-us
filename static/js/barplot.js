@@ -63,7 +63,7 @@ function createCountyLevelPlot(data, state, county, impact) {
 
     var layoutCountyLevelPlot = {
         title: `${impact} vs Disease Prevalence - ${county},${state}`,
-        barmode: 'stack'
+        barmode: 'group'
     };
 
     Plotly.newPlot('countyLevelPlot', dataCountyLevelPlot, layoutCountyLevelPlot);
