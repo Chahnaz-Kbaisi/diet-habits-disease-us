@@ -7,9 +7,9 @@ from os import environ
 from flask_pymongo import PyMongo
 import pandas as pd
 import pymongo
-import plotly.express as px
 import json
 from scipy.stats import linregress
+import os
 
 ###############################################
 # Database & Flask Setup
@@ -103,15 +103,16 @@ def analysis():
 def regression():
     return render_template('regression.html')
 
-@app.route('/fetchRegressionLine')
+@app.route('/fetchRegressionLine', methods=['POST'])
 def fetchRegressionLine():
     
     # Fetch x and y axis values passed from Client
-    impactArray = json.loads(request.args.get('impactArray'))
-    diseaseArray = json.loads(request.args.get('diseaseArray'))
+    impactArray = json.loads(request.form["impactArray"])
+    diseaseArray = json.loads(request.form["diseaseArray"])
 
     # Replacing null values with 0
     impactArray = [0 if value is None else value for value in impactArray]
+    diseaseArray = [0 if value is None else value for value in diseaseArray]
 
     # Determine the regression values
     (slope, intercept, rvalue, pvalue, stderr) = linregress(impactArray, diseaseArray)
@@ -148,6 +149,23 @@ def getapikey():
 @app.route('/leafletmap')
 def leafletmap():
     return render_template('leafletmap.html')
+
+@app.route('/getwriteup')
+def getwriteup():
+
+    # Set the xls file path
+    input_file_path = os.path.join("static","data","Analysis_Writeups.xls")
+
+    # Read excel into dataframe
+    writeup_df = pd.read_excel(input_file_path)
+
+    # Convert null to empty string
+    writeup_df['Writeup'] = writeup_df.Writeup.fillna(" ")
+
+    # Convert dataframe to array of dictionary
+    writeup = writeup_df.to_dict('records')
+
+    return jsonify(writeup)
 
 ###############################################
 # Run the Flask Application
