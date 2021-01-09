@@ -88,5 +88,13 @@
                             <option value="Wisconsin">Wisconsin</option>
                             <option value="Wyoming">Wyoming</option>
                         </select>
-							<div class="container">
-                <h1>County Level Waterfall Plot</h1>
+                        <select id="county-select" name="county-select" onchange="countyChanged(this.value)">
+                        </select>
+                        <select id="impact-select" name="impact-select" onchange="impactChanged(this.value)">
+                            <option value="Median Household Income"> Median Household Income</option>
+                            <option value="Income Ratio"> Income Ratio</option>
+                            <option value="Household Income (Hispanic)"> Household Income (Hispanic)</option>
+                            <option value="Household Income (Black)"> Household Income (Black)</option>
+                            <option value="Household Income (White)"> Household Income (White)</option>
+                        </select>																					 
+					  
