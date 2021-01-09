@@ -7,9 +7,9 @@ from os import environ
 from flask_pymongo import PyMongo
 import pandas as pd
 import pymongo
-import plotly.express as px
 import json
 from scipy.stats import linregress
+import os
 
 ###############################################
 # Database & Flask Setup
@@ -49,12 +49,94 @@ def fetch_data():
 
     return jsonify(data)
 
-# route to display the data
+# route to calculate regression values
+@app.route('/fetchRegressionLine', methods=['POST'])
+def fetchRegressionLine():
+    
+    # Fetch x and y axis values passed from Client
+    impactArray = json.loads(request.form["impactArray"])
+    diseaseArray = json.loads(request.form["diseaseArray"])
+
+    # Replacing null values with 0
+    impactArray = [0 if value is None else value for value in impactArray]
+    diseaseArray = [0 if value is None else value for value in diseaseArray]
+
+    # Determine the regression values
+    (slope, intercept, rvalue, pvalue, stderr) = linregress(impactArray, diseaseArray)
+    sortedImpactArray = impactArray
+    sortedImpactArray.sort()
+    regressValues = []
+    for impact in sortedImpactArray:
+        regressValue = impact * slope + intercept
+        regressValues.append(regressValue)
+
+    # Determine the line equation and r squared value
+    lineEq = "y = " + str(round(slope,2)) + "x + " + str(round(intercept,2))
+    rSquared = f"{round(rvalue ** 2,2)}"
+
+    # Return X axis values, Regression values, R^2 and Line equation
+    regressionData = [{
+        "X":sortedImpactArray,
+        "Y":regressValues,
+        "R": rSquared,
+        "EQUATION": lineEq
+    }]
+
+    return jsonify(regressionData)
+
+# route to get write up
+@app.route('/getwriteup')
+def getwriteup():
+
+    # Set the xls file path
+    input_file_path = os.path.join("static","data","Analysis_Writeups.xls")
+
+    # Read excel into dataframe
+    writeup_df = pd.read_excel(input_file_path)
+
+    # Convert null to empty string
+    writeup_df['Writeup'] = writeup_df.Writeup.fillna(" ")
+
+    # Convert dataframe to array of dictionary
+    writeup = writeup_df.to_dict('records')
+
+    return jsonify(writeup)
+
+# route to fetch page data
+@app.route('/fetchpagedata/<pageNumber>')
+def fetchpagedata(pageNumber):
+
+    nPerPage = 1000
+
+    skipCount = ( ( int(pageNumber) - 1 ) * nPerPage ) if (int(pageNumber) > 0) else 0 
+
+    print("skipCount", skipCount)
+
+    # Fetch data from database
+    rows = mongo.db.countyleveldiethabits.find().sort([('_id', 1)]).skip(skipCount).limit( nPerPage )
+
+    # Variable to hold array of dictionaries
+    data = []
+
+    # Create a simple dictionary and append to list
+    rowCount = 0
+    for row in rows:
+        item = row
+        for key, value in item.items():
+            value = str(value) + ''
+            if value == 'nan':
+                item[key] = ""
+        item['_id'] = str(item['_id'])
+        data.append(item)
+        rowCount += 1
+    
+    return jsonify(data)
+
+# Creating routes that will render html templates
 @app.route('/data')
 def datapage():
     return render_template('data.html')
 
-# Creating routes that will render html templates
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -103,39 +185,6 @@ def analysis():
 def regression():
     return render_template('regression.html')
 
-@app.route('/fetchRegressionLine')
-def fetchRegressionLine():
-    
-    # Fetch x and y axis values passed from Client
-    impactArray = json.loads(request.args.get('impactArray'))
-    diseaseArray = json.loads(request.args.get('diseaseArray'))
-
-    # Replacing null values with 0
-    impactArray = [0 if value is None else value for value in impactArray]
-
-    # Determine the regression values
-    (slope, intercept, rvalue, pvalue, stderr) = linregress(impactArray, diseaseArray)
-    sortedImpactArray = impactArray
-    sortedImpactArray.sort()
-    regressValues = []
-    for impact in sortedImpactArray:
-        regressValue = impact * slope + intercept
-        regressValues.append(regressValue)
-
-    # Determine the line equation and r squared value
-    lineEq = "y = " + str(round(slope,2)) + "x + " + str(round(intercept,2))
-    rSquared = f"{round(rvalue ** 2,2)}"
-
-    # Return X axis values, Regression values, R^2 and Line equation
-    regressionData = [{
-        "X":sortedImpactArray,
-        "Y":regressValues,
-        "R": rSquared,
-        "EQUATION": lineEq
-    }]
-
-    return jsonify(regressionData)
-
 @app.route('/foodexp')
 def foodexp():
     return render_template('foodexp.html')
@@ -149,6 +198,9 @@ def getapikey():
 def leafletmap():
     return render_template('leafletmap.html')
 
+@app.route('/waterfall')
+def waterfall():
+    return render_template('waterfall.html')						
 ###############################################
 # Run the Flask Application
 ###############################################

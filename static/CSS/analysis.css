@@ -1,1 +1,18 @@
 /* Analysis Styling Page */
+
+.h1 {
+    font-size:250%; 
+    font-weight: bold;
+}
+
+.h2 {
+    font-size:200%;
+}
+
+.p {
+    font-size: 140%;
+}
+.h3 {
+    text-align: center;
+    color: steelblue;
+}
