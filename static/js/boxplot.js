@@ -121,3 +121,9 @@ function createStateLevelPlot(data, state, impact) {
         type: 'box'
     };
     var dataStateLevelPlot = [impactTrace, obesityTrace, diabetesTrace];
+
+    var layoutStateLevelPlot = {
+        title: `${impact} vs Disease Prevalence - ${state}`,
+        zeroline: false,
+        boxmode: 'group'
+    };
