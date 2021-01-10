@@ -61,3 +61,9 @@ function createCountyLevelPlot(data, state, county, impact) {
         type: 'box'
     };
     var dataStateLevelPlot = [impactTrace, obesityTrace, diabetesTrace];
+
+    var layoutStateLevelPlot = {
+        title: `${impact} vs Disease Prevalence - ${county}, ${state}`,
+        zeroline: false,
+        boxmode: 'group'
+        };
