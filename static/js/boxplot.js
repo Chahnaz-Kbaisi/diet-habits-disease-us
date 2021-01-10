@@ -139,3 +139,14 @@ function loadCountyDropDown(selectedState) {
 
     // sort the counties in ascending
     uniqueCounties.sort(d3.ascending)
+
+    // Load the County dropdown
+    var countyDropDown = d3.select("#county-select");
+    countyDropDown.html("");
+    uniqueCounties.forEach(county => {
+        if (county != "") {
+            var cell = countyDropDown.append("option");
+            cell.property("value", county).text(county);
+        }
+    });
+}
