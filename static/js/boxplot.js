@@ -67,3 +67,6 @@ function createCountyLevelPlot(data, state, county, impact) {
         zeroline: false,
         boxmode: 'group'
         };
+
+        Plotly.newPlot('countyLevelPlot', dataStateLevelPlot, layoutStateLevelPlot); 
+};
