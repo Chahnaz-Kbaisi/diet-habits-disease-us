@@ -104,3 +104,11 @@ function createStateLevelPlot(data, state, impact) {
         marker: { color: '#3D9970' },
         type: 'box'
     };
+
+    var obesityTrace = {
+        x: yearArray,
+        y: obesityArray,
+        name: '% Adults with Obesity',
+        marker: { color: '#FF4136' },
+        type: 'box'
+    };
