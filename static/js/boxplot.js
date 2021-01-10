@@ -8,7 +8,7 @@ var tableData = []
 USER DEFINED FUNCTIONS
 ****************************************************/
 
-// function creates County Level Line Plot
+// function creates County Level Box Plot
 function createCountyLevelPlot(data, state, county, impact) {
     var yearFilter = data;
     if (impact == "% Limited Access to Healthy Foods" || impact == "High School Graduation Rate") {
@@ -41,7 +41,7 @@ function createCountyLevelPlot(data, state, county, impact) {
         x: yearArray,
         y: impactArray,
         name: impact,
-        marker: {color: '#3D9970'},
+        marker: { color: '#3D9970' },
         type: 'box'
     };
 
@@ -49,7 +49,7 @@ function createCountyLevelPlot(data, state, county, impact) {
         x: yearArray,
         y: obesityArray,
         name: '% Adults with Obesity',
-        marker: {color: '#FF4136'},
+        marker: { color: '#FF4136' },
         type: 'box'
     };
 
@@ -57,7 +57,7 @@ function createCountyLevelPlot(data, state, county, impact) {
         x: yearArray,
         y: diabetesArray,
         name: '% Adults with Diabetes',
-        marker: {color: '#FF851B'},
+        marker: { color: '#FF851B' },
         type: 'box'
     };
     var dataStateLevelPlot = [impactTrace, obesityTrace, diabetesTrace];
@@ -66,7 +66,7 @@ function createCountyLevelPlot(data, state, county, impact) {
         title: `${impact} vs Disease Prevalence - ${county}, ${state}`,
         zeroline: false,
         boxmode: 'group'
-        };
+    };
 
-        Plotly.newPlot('countyLevelPlot', dataStateLevelPlot, layoutStateLevelPlot); 
+    Plotly.newPlot('countyLevelPlot', dataStateLevelPlot, layoutStateLevelPlot); 
 };
