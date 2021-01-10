@@ -37,3 +37,10 @@ function createCountyLevelPlot(data, state, county, impact) {
         impact = impact + " (in Thousands)"
     }
     // Box Plot - County Level 
+    var impactTrace = {
+        x: yearArray,
+        y: impactArray,
+        name: impact,
+        marker: {color: '#3D9970'},
+        type: 'box'
+    };
