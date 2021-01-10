@@ -150,3 +150,20 @@ function loadCountyDropDown(selectedState) {
         }
     });
 }
+
+/***************************************************
+EVENT HANDLERS
+****************************************************/
+
+// State Event Handler - Load County dropdown and State/County Level Plots
+function stateChanged(selectedState) {
+
+    // Load County dropdown
+    loadCountyDropDown(selectedState);
+
+    var county = d3.select("#county-select").property("value");
+    var impact = d3.select("#impact-select").property("value");
+
+    createStateLevelPlot(tableData, selectedState, impact);
+    createCountyLevelPlot(tableData, selectedState, county, impact);
+};
