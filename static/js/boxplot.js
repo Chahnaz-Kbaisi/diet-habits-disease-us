@@ -36,3 +36,4 @@ function createCountyLevelPlot(data, state, county, impact) {
         impactArray = impactArray.map(impactVal => impactVal / 1000)
         impact = impact + " (in Thousands)"
     }
+    // Box Plot - County Level 
