@@ -96,3 +96,11 @@ function createStateLevelPlot(data, state, impact) {
         impactArray = impactArray.map(impactVal => impactVal / 1000)
         var impact = impact + " (in Thousands)"
     }
+    // Box Plot - State Level 
+    var impactTrace = {
+        x: yearArray,
+        y: impactArray,
+        name: impact,
+        marker: { color: '#3D9970' },
+        type: 'box'
+    };
