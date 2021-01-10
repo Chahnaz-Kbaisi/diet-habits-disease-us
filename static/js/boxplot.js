@@ -186,3 +186,11 @@ function impactChanged(impact) {
     createStateLevelPlot(tableData, state, impact);
     createCountyLevelPlot(tableData, state, county, impact);
 };
+
+/***************************************************
+ON PAGE LOAD
+****************************************************/
+var prevStateBkgnd = d3.select("#state-select").style("background");
+var prevImpactBkgnd = d3.select("#impact-select").style("background");
+d3.select("#state-select").attr("disabled", "disabled").style("background", "gray");
+d3.select("#impact-select").attr("disabled", "disabled").style("background", "gray");
