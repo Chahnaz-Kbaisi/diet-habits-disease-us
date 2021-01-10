@@ -120,3 +120,4 @@ function createStateLevelPlot(data, state, impact) {
         marker: { color: '#FF851B' },
         type: 'box'
     };
+    var dataStateLevelPlot = [impactTrace, obesityTrace, diabetesTrace];
