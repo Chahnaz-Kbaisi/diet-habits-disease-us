@@ -127,3 +127,6 @@ function createStateLevelPlot(data, state, impact) {
         zeroline: false,
         boxmode: 'group'
     };
+
+    Plotly.newPlot('stateLevelPlot', dataStateLevelPlot, layoutStateLevelPlot);
+};
