@@ -1,5 +1,6 @@
 // Change page title
 d3.select("#page-title").text("Interactive Visualizations");
+console.log("Hiii from JS");
 
 // Array variable to hold table data 
 var tableData = []
@@ -8,68 +9,118 @@ var tableData = []
 USER DEFINED FUNCTIONS
 ****************************************************/
 
-// function creates County Level Bar Plot
-function createCountyLevelPlot(data, state, county, impact) {
-    var yearFilter = data;
-    if (impact == "% Limited Access to Healthy Foods" || impact == "High School Graduation Rate") {
-        yearFilter = yearFilter.filter(row => row["Year"] >= "2013");
-    } else if (impact == "Food Environment Index" || impact == "% With Access to Exercise Opportunities") {
-        yearFilter = yearFilter.filter(row => row["Year"] >= "2014");
-    } else if (impact == "Income Ratio") {
-        yearFilter = yearFilter.filter(row => row["Year"] >= "2015");
-    } else {
-        yearFilter = yearFilter.filter(row => row["Year"] != "2010");
-    }
-
-    var stateFilter = yearFilter.filter(row => row["State"] === state);
+// function creates County Level Waterfall Plot
+function createWaterfallPlot(data, state, county, impact) {
+    var yearArray;
+    
+    var impactFilter = tableData.filter(row => row[impact] != "");
+    console.log("impactFilter",impactFilter);
+    var stateFilter = impactFilter.filter(row => row["State"] == state);
+    console.log("stateFilter",stateFilter);
     var countyFilter = stateFilter.filter(row => row["County"] == county);
+    console.log("countyFilter",countyFilter);
+    countyFilter.sort(function (a,b) {return d3.ascending(a["Year"], b["Year"]);});
+    // countyFilter = countyFilter.sort(d3.ascending);
 
-    // sort by year
-    var countyFilter = countyFilter.sort((a, b) => b["Year"] - a["Year"]);
+    yearArray = countyFilter.map(row => row["Year"]);
+    obesityArray = countyFilter.map(row => row["% Adults with Obesity"]);
+    diabetesArray = countyFilter.map(row => row["% Adults with Diabetes"]);
+    impactArray = countyFilter.map(row => row[impact]);
+    console.log(yearArray, obesityArray, diabetesArray, impactArray);
 
-    var yearArray = countyFilter.map(row => row["Year"]);
-    var impactArray = countyFilter.map(row => row[impact]);
-    var obesityArray = countyFilter.map(row => row["% Adults with Obesity"]);
-    var diabetesArray = countyFilter.map(row => row["% Adults with Diabetes"]);
-
-    if (impact == "Median Household Income") {
-        impactArray = impactArray.map(impactVal => impactVal / 1000)
-        impact = impact + " (in Thousands)"
+    var impactArrayRelative = []
+    var obesityArrayRelative = []
+    var diabetesArrayRelative = []
+    var impactString = impact;
+    if (impact != "Income Ratio"){
+        impactArray = impactArray.map(val => val/1000);
+        impactString += " (in Thousands)"
+        console.log("impactArray in thousands", impactArray);
     }
-
-    // Trace for impact
+    for(i=0; i < impactArray.length; i++){
+        if(i == 0){
+            impactArrayRelative.push(impactArray[i]);
+            obesityArrayRelative.push(obesityArray[i]);
+            diabetesArrayRelative.push(diabetesArray[i]);
+        }else{
+            impactArrayRelative.push(impactArray[i] - impactArray[i-1]);
+            obesityArrayRelative.push(obesityArray[i] - obesityArray[i-1]);
+            diabetesArrayRelative.push(diabetesArray[i] - diabetesArray[i-1]);
+        }
+    }
+    console.log("Relative arrays", impactArrayRelative, obesityArrayRelative, diabetesArrayRelative);
+    measureArray = yearArray.map(year => "relative");
+    console.log("measureArray", measureArray);
     var impactTrace = {
-        x: yearArray,
-        y: impactArray,
-        name: impact,
-        type: 'bar',
+        type: "waterfall",
+        x: [yearArray, yearArray],
+        text: impact,
+        measure: measureArray,
+        y: impactArrayRelative,
+        name: impactString
     };
-    // Trace for obesity
-    var obesityTrace = {
-        x: yearArray,
-        y: obesityArray,
-        name: '% Adults with Obesity',
-        type: 'bar',
-    };
-    // Trace for diabetes
+
     var diabetesTrace = {
-        x: yearArray,
-        y: diabetesArray,
-        name: '% Adults with Diabetes',
-        type: 'bar'
+        type: "waterfall",
+        x: [yearArray, yearArray],
+        text: "% Adults with Diabetes",
+        measure: measureArray,
+        y: diabetesArrayRelative,
+        name: "% Adults with Diabetes"
     };
 
-    var dataCountyLevelPlot = [impactTrace, obesityTrace, diabetesTrace];
-
-    var layoutCountyLevelPlot = {
-        title: `${impact} vs Disease Prevalence - ${county},${state}`,
-        barmode: 'group'
+    var obesityTrace = {
+        type: "waterfall",
+        x: [yearArray, yearArray],
+        text: "% Adults with Obesity",
+        measure: measureArray,
+        y: obesityArrayRelative,
+        name: "% Adults with Obesity"
     };
 
-    Plotly.newPlot('countyLevelPlot', dataCountyLevelPlot, layoutCountyLevelPlot);
-};
+    var data = [impactTrace, diabetesTrace, obesityTrace];
 
-// function creates State Level Bar Plot
+    var layout = {
+        waterfallgroupgap : 0.5,
+        title: `${impact} vs Disease Prevalence`,
+        xaxis: {
+        title: "Year",
+        tickfont: {size: 16},
+        ticks: "outside"
+        }
+    }
+    Plotly.newPlot('waterfallPlot', data, layout);
+    // var impactTrace = {
+    //     x: yearArray,
+    //     y: impactArray,
+    //     name: impact,
+    //     mode: 'lines+markers',
+    // };
+
+    // var obesityTrace = {
+    //     x: yearArray,
+    //     y: obesityArray,
+    //     name: '% Adults with Obesity',
+    //     mode: 'lines+markers',
+    // };
+
+    // var diabetesTrace = {
+    //     x: yearArray,
+    //     y: diabetesArray,
+    //     name: '% Adults with Diabetes',
+    //     mode: 'lines+markers',
+    // };
+
+    // var dataCountyLevelPlot = [impactTrace, obesityTrace, diabetesTrace];
+
+    // var layoutCountyLevelPlot = {
+    //     title: `${impact} vs Disease Prevalence - ${county},${state}`
+    // };
+
+    // Plotly.newPlot('countyLevelPlot', dataCountyLevelPlot, layoutCountyLevelPlot);
+}
+
+// function creates State Level Line Plot
 function createStateLevelPlot(data, state, impact) {
     var yearFilter = data;
     if (impact == "% Limited Access to Healthy Foods" || impact == "High School Graduation Rate") {
@@ -94,33 +145,31 @@ function createStateLevelPlot(data, state, impact) {
         impactArray = impactArray.map(impactVal => impactVal / 1000)
         var impact = impact + " (in Thousands)"
     }
-    // Bar Plot State
 
     var impactTrace = {
         x: yearArray,
         y: impactArray,
         name: impact,
-        type: 'bar',
+        mode: 'lines+markers',
     };
 
     var obesityTrace = {
         x: yearArray,
         y: obesityArray,
         name: '% Adults with Obesity',
-        type: 'bar',
+        mode: 'lines+markers',
     };
 
     var diabetesTrace = {
         x: yearArray,
         y: diabetesArray,
         name: '% Adults with Diabetes',
-        type: 'bar',
+        mode: 'lines+markers',
     };
     var dataStateLevelPlot = [impactTrace, obesityTrace, diabetesTrace];
 
     var layoutStateLevelPlot = {
-        title: `${impact} vs Disease Prevalence - ${state}`,
-        barmode: 'group'
+        title: `${impact} vs Disease Prevalence - ${state}`
     };
 
     Plotly.newPlot('stateLevelPlot', dataStateLevelPlot, layoutStateLevelPlot);
@@ -156,11 +205,6 @@ function stateChanged(selectedState) {
     // Load County dropdown
     loadCountyDropDown(selectedState);
 
-    var county = d3.select("#county-select").property("value");
-    var impact = d3.select("#impact-select").property("value");
-
-    createStateLevelPlot(tableData, selectedState, impact);
-    createCountyLevelPlot(tableData, selectedState, county, impact);
 };
 
 // County Event Handler - Load County Level Plot
@@ -169,7 +213,7 @@ function countyChanged(county) {
     var state = d3.select("#state-select").property("value");
     var impact = d3.select("#impact-select").property("value");
 
-    createCountyLevelPlot(tableData, state, county, impact);
+    createWaterfallPlot(tableData, state, county, impact);
 };
 
 // Impact Event Handler - Load State/County Level Plots
@@ -178,32 +222,37 @@ function impactChanged(impact) {
     var state = d3.select("#state-select").property("value");
     var county = d3.select("#county-select").property("value");
 
-    createStateLevelPlot(tableData, state, impact);
-    createCountyLevelPlot(tableData, state, county, impact);
+    createWaterfallPlot(tableData, state, county, impact);
 };
 
 /***************************************************
 ON PAGE LOAD
 ****************************************************/
+console.log("Before disabling the state and impact");
+
 var prevStateBkgnd = d3.select("#state-select").style("background");
 var prevImpactBkgnd = d3.select("#impact-select").style("background");
 d3.select("#state-select").attr("disabled", "disabled").style("background", "gray");
 d3.select("#impact-select").attr("disabled", "disabled").style("background", "gray");
+console.log("After disabling the state and impact");
 
 // fetch data, load county dropdown & create plots
 d3.json('/fetchdata').then(data => {
     tableData = data;
+    console.log("After fetching data", tableData);
     d3.select("#state-select").attr("disabled", null).style("background", null);
     d3.select("#impact-select").attr("disabled", null).style("background", null);
+    console.log("After enabling the state and impact");
 
     var state = d3.select("#state-select").property("value");
 
     // load county dropdown
     loadCountyDropDown(state);
+    console.log("After loading the county dropdown");
 
     var county = d3.select("#county-select").property("value");
     var impact = d3.select("#impact-select").property("value");
 
-    createStateLevelPlot(tableData, state, impact);
-    createCountyLevelPlot(tableData, state, county, impact);
-});
+    createWaterfallPlot(tableData, state, county, impact);
+    console.log("After invoking the function for plot creation");
+});					
