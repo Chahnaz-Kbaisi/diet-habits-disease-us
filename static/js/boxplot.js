@@ -112,3 +112,11 @@ function createStateLevelPlot(data, state, impact) {
         marker: { color: '#FF4136' },
         type: 'box'
     };
+
+    var diabetesTrace = {
+        x: yearArray,
+        y: diabetesArray,
+        name: '% Adults with Diabetes',
+        marker: { color: '#FF851B' },
+        type: 'box'
+    };
