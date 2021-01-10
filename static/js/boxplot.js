@@ -130,3 +130,9 @@ function createStateLevelPlot(data, state, impact) {
 
     Plotly.newPlot('stateLevelPlot', dataStateLevelPlot, layoutStateLevelPlot);
 };
+
+// function loads County Dropdown options
+function loadCountyDropDown(selectedState) {
+    var stateFilteredData = tableData.filter(row => row.State === selectedState);
+    var countiesList = stateFilteredData.map(row => row.County);
+    var uniqueCounties = d3.set(countiesList).values();
