@@ -167,3 +167,12 @@ function stateChanged(selectedState) {
     createStateLevelPlot(tableData, selectedState, impact);
     createCountyLevelPlot(tableData, selectedState, county, impact);
 };
+
+// County Event Handler - Load County Level Plot
+function countyChanged(county) {
+
+    var state = d3.select("#state-select").property("value");
+    var impact = d3.select("#impact-select").property("value");
+
+    createCountyLevelPlot(tableData, state, county, impact);
+};
