@@ -136,3 +136,79 @@ function loadCountyDropDown(selectedState) {
     var stateFilteredData = tableData.filter(row => row.State === selectedState);
     var countiesList = stateFilteredData.map(row => row.County);
     var uniqueCounties = d3.set(countiesList).values();
+
+    // sort the counties in ascending
+    uniqueCounties.sort(d3.ascending)
+
+    // Load the County dropdown
+    var countyDropDown = d3.select("#county-select");
+    countyDropDown.html("");
+    uniqueCounties.forEach(county => {
+        if (county != "") {
+            var cell = countyDropDown.append("option");
+            cell.property("value", county).text(county);
+        }
+    });
+}
+
+/***************************************************
+EVENT HANDLERS
+****************************************************/
+
+// State Event Handler - Load County dropdown and State/County Level Plots
+function stateChanged(selectedState) {
+
+    // Load County dropdown
+    loadCountyDropDown(selectedState);
+
+    var county = d3.select("#county-select").property("value");
+    var impact = d3.select("#impact-select").property("value");
+
+    createStateLevelPlot(tableData, selectedState, impact);
+    createCountyLevelPlot(tableData, selectedState, county, impact);
+};
+
+// County Event Handler - Load County Level Plot
+function countyChanged(county) {
+
+    var state = d3.select("#state-select").property("value");
+    var impact = d3.select("#impact-select").property("value");
+
+    createCountyLevelPlot(tableData, state, county, impact);
+};
+
+// Impact Event Handler - Load State/County Level Plots
+function impactChanged(impact) {
+
+    var state = d3.select("#state-select").property("value");
+    var county = d3.select("#county-select").property("value");
+
+    createStateLevelPlot(tableData, state, impact);
+    createCountyLevelPlot(tableData, state, county, impact);
+};
+
+/***************************************************
+ON PAGE LOAD
+****************************************************/
+var prevStateBkgnd = d3.select("#state-select").style("background");
+var prevImpactBkgnd = d3.select("#impact-select").style("background");
+d3.select("#state-select").attr("disabled", "disabled").style("background", "gray");
+d3.select("#impact-select").attr("disabled", "disabled").style("background", "gray");
+
+// fetch data, load county dropdown & create plots
+d3.json('/fetchdata').then(data => {
+    tableData = data;
+    d3.select("#state-select").attr("disabled", null).style("background", null);
+    d3.select("#impact-select").attr("disabled", null).style("background", null);
+
+    var state = d3.select("#state-select").property("value");
+
+    // load county dropdown
+    loadCountyDropDown(state);
+
+    var county = d3.select("#county-select").property("value");
+    var impact = d3.select("#impact-select").property("value");
+
+    createStateLevelPlot(tableData, state, impact);
+    createCountyLevelPlot(tableData, state, county, impact);
+});
