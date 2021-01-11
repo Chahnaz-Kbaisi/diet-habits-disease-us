@@ -158,7 +158,7 @@ def conclusion():
     return render_template('conclusion.html')  
 
 @app.route('/predictions')   
-def predications():
+def predictions():
     return render_template('predictions.html')
 
 @app.route('/approach')   
