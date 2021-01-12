@@ -247,6 +247,43 @@ def fetchStackedBarPlotData(impact):
     
     return jsonify(final_dict)
 
+# Route that fetches and returns the data for Waterfall Plot
+@app.route('/fetchWaterfallPlotData/<state>/<county>/<impact>')
+def fetchWaterfallPlotData(state, county, impact):
+    # Fetch data from database
+    rows = mongo.db.countyleveldiethabits.find({})
+
+    # Variable to hold array of dictionaries
+    data = []
+
+    # Create a simple dictionary and append to list
+    for row in rows:
+        item = row
+        for key, value in item.items():
+            value = str(value) + ''
+            if value == 'nan':
+                item[key] = ""
+        item['_id'] = str(item['_id'])
+        data.append(item)
+    rows = ""
+
+    # Create dataframe from the data	
+    df =  pd.DataFrame(data)
+    data = ""
+    impact = impact.replace(u'\xa0', u' ')
+    df = df.loc[df['Year'] != ""]
+    df['Year'] = df['Year'].astype(float).astype(int)
+
+    waterfall_df = df.loc[(df[impact] != "") & (df["State"] == state) & (df["County"] == county)]
+    waterfall_df = waterfall_df.sort_values(['Year'])
+    df = ""
+    
+    print(waterfall_df)
+
+    final_dict = waterfall_df.to_dict(orient='records')
+    
+    return jsonify(final_dict)
+
 # Creating routes that will render html templates
 @app.route('/data')
 def datapage():
