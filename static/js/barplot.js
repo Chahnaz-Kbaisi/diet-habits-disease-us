@@ -57,6 +57,9 @@ function createCountyLevelPlot(data, state, county, impact) {
 // function creates State Level Bar Plot
 function createStateLevelPlot(data, state, impact) {
 
+    // sort by year
+    var countyFilter = data.sort((a, b) => b["Year"] - a["Year"]);
+
     var yearArray = data.map(row => row["Year"]);
     var impactArray = data.map(row => row[impact]);
     var obesityArray = data.map(row => row["% Adults with Obesity"]);
