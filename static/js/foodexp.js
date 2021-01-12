@@ -8,6 +8,7 @@ USER DEFINED FUNCTIONS
 
 // function creates Stacked Bar Plot based on user's selection
 function createStackedBarPlot(impact) {
+
     // fetch data for plotting
     d3.json(`/fetchStackedBarPlotData/${impact}`).then(data => {
 
@@ -51,6 +52,10 @@ function createStackedBarPlot(impact) {
         };
 
         Plotly.newPlot('stackedBarPlot', stackedBarData, stackedBarLayout);
+
+        // Enable the field 
+        d3.select("#impact-select").attr("disabled", null).style("background", null);
+
     });
 }
 
