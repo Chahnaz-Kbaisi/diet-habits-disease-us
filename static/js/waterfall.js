@@ -80,12 +80,6 @@ function createWaterfallPlot(data, state, county, impact) {
 
 // function loads County Dropdown options
 function loadCountyDropDown(selectedState) {
-    var stateFilteredData = tableData.filter(row => row.State === selectedState);
-    var countiesList = stateFilteredData.map(row => row.County);
-    var uniqueCounties = d3.set(countiesList).values();
-
-    // sort the counties in ascending
-    uniqueCounties.sort(d3.ascending)
 
     // Load the County dropdown
     var countyDropDown = d3.select("#county-select");
