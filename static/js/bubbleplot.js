@@ -6,7 +6,7 @@ d3.select("#page-title").text("Interactive Visualizations");
 // Followed the same procedure to set the filters as in the line plot
 // Function creates County Level Bubble Plot
 function createCountyLevelBubblePlot(data, state, county, impact) {
-    // sort by year
+    // Sort by year
     var countyFilter = data.sort((a, b) => b["Year"] - a["Year"]);
 
     var yearArray = countyFilter.map(row => row["Year"]);
@@ -102,7 +102,7 @@ function createCountyLevelBubblePlot(data, state, county, impact) {
 // Function creates State Level Bubble Plot
 function createStateLevelBubblePlot(data, state, impact) {
 
-    // sort by year
+    // Sort by year
     var data = data.sort((a, b) => b["Year"] - a["Year"]);
 
     var yearArray = data.map(row => row["Year"]);
@@ -198,7 +198,7 @@ function createStateLevelBubblePlot(data, state, impact) {
 // Function for loading County Dropdown options
 function loadCountyDropDown(selectedState) {
 
-    // fetch unique counties for state
+    // Fetch unique counties for state
     d3.json(`/fetchUniqueCounties/${selectedState}`).then(uniqueCounties => {
 
         // Load the County dropdown
@@ -214,7 +214,7 @@ function loadCountyDropDown(selectedState) {
         var county = d3.select("#county-select").property("value");
         var impact = d3.select("#impact-select").property("value");
 
-        // fetch data & create plots
+        // Fetch data & create plots
         d3.json(`/fetchPlotStateCountyData/${selectedState}/${county}/${impact}`).then(data => {
 
             var countyData = data[0]["CountyPlotData"];
@@ -223,7 +223,9 @@ function loadCountyDropDown(selectedState) {
             createStateLevelBubblePlot(stateData, selectedState, impact);
             createCountyLevelBubblePlot(countyData, selectedState, county, impact);
 
+            // Enable fields
             d3.select("#state-select").attr("disabled", null).style("background", null);
+            d3.select("#county-select").attr("disabled", null).style("background", null);
             d3.select("#impact-select").attr("disabled", null).style("background", null);
         });
     });
@@ -234,6 +236,11 @@ function loadCountyDropDown(selectedState) {
 
 // State level Event Handler - Loading County dropdown and State/County Level Plots
 function stateChanged(selectedState) {
+
+    // Disable fields
+    d3.select("#state-select").attr("disabled", "disabled").style("background", "gray");
+    d3.select("#county-select").attr("disabled", "disabled").style("background", "gray");
+    d3.select("#impact-select").attr("disabled", "disabled").style("background", "gray");
 
     // Load County dropdown and create plots
     loadCountyDropDown(selectedState);
@@ -246,10 +253,22 @@ function countyChanged(county) {
     var state = d3.select("#state-select").property("value");
     var impact = d3.select("#impact-select").property("value");
 
-    // fetch data & create plots
+    // Disable fields
+    d3.select("#state-select").attr("disabled", "disabled").style("background", "gray");
+    d3.select("#county-select").attr("disabled", "disabled").style("background", "gray");
+    d3.select("#impact-select").attr("disabled", "disabled").style("background", "gray");
+
+    // Fetch data & create plots
     d3.json(`/fetchPlotStateCountyData/${state}/${county}/${impact}`).then(data => {
+
         var countyData = data[0]["CountyPlotData"];
+
         createCountyLevelBubblePlot(countyData, state, county, impact);
+
+        // Enable fields
+        d3.select("#state-select").attr("disabled", null).style("background", null);
+        d3.select("#county-select").attr("disabled", null).style("background", null);
+        d3.select("#impact-select").attr("disabled", null).style("background", null);
     });
 };
 
@@ -259,23 +278,34 @@ function impactChanged(impact) {
     var state = d3.select("#state-select").property("value");
     var county = d3.select("#county-select").property("value");
 
-    // fetch data & create plots
+    // Disable fields
+    d3.select("#state-select").attr("disabled", "disabled").style("background", "gray");
+    d3.select("#county-select").attr("disabled", "disabled").style("background", "gray");
+    d3.select("#impact-select").attr("disabled", "disabled").style("background", "gray");
+
+    // Fetch data & create plots
     d3.json(`/fetchPlotStateCountyData/${state}/${county}/${impact}`).then(data => {
         var countyData = data[0]["CountyPlotData"];
         var stateData = data[0]["StatePlotData"];
         createStateLevelBubblePlot(stateData, state, impact);
         createCountyLevelBubblePlot(countyData, state, county, impact);
+
+        // Enable fields
+        d3.select("#state-select").attr("disabled", null).style("background", null);
+        d3.select("#county-select").attr("disabled", null).style("background", null);
+        d3.select("#impact-select").attr("disabled", null).style("background", null);
     });
 };
 
 
-// on Page Load 
+// On Page Load 
 d3.select("#state-select").attr("disabled", "disabled").style("background", "gray");
+d3.select("#county-select").attr("disabled", "disabled").style("background", "gray");
 d3.select("#impact-select").attr("disabled", "disabled").style("background", "gray");
 
 var state = d3.select("#state-select").property("value");
 var county = "Autauga";
 var impact = "% Limited Access to Healthy Foods";
 
-// load county dropdown
+// Load county dropdown
 loadCountyDropDown(state);
