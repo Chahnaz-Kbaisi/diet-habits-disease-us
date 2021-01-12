@@ -78,8 +78,7 @@ ON PAGE LOAD
 ****************************************************/
 d3.select("#impact-select").attr("disabled", "disabled").style("background", "gray");
 
-
-
+// create plot
 var impact = d3.select("#impact-select").property("value");
 
-createStackedBarPlot(tableData, impact);
+createStackedBarPlot(impact);
