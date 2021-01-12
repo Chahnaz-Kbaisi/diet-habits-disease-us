@@ -132,6 +132,27 @@ def fetchpagedata(pageNumber):
     
     return jsonify(data)
 
+# Route that fetches and returns all counties in a state
+@app.route("/fetchUniqueCounties/<state>")
+def fetchUniqueCounties(state):
+
+    # Fetch data from database
+    rows = mongo.db.countyleveldiethabits.find({'State':state})
+
+    # Variable to hold array of dictionaries
+    counties = []
+    # Create a simple dictionary and append to list
+    for row in rows:
+        for key, value in row.items():
+            if key == 'County':
+                value = str(value) + ''
+                if value != 'nan':
+                    counties.append(value)
+    counties = list(set(counties))
+    counties.sort()
+
+    return jsonify(counties)
+
 # Creating routes that will render html templates
 @app.route('/data')
 def datapage():
