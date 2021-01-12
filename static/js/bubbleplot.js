@@ -259,8 +259,13 @@ function impactChanged(impact) {
     var state = d3.select("#state-select").property("value");
     var county = d3.select("#county-select").property("value");
 
-    createStateLevelBubblePlot(tableData, state, impact);
-    createCountyLevelBubblePlot(tableData, state, county, impact);
+    // fetch data & create plots
+    d3.json(`/fetchPlotStateCountyData/${state}/${county}/${impact}`).then(data => {
+        var countyData = data[0]["CountyPlotData"];
+        var stateData = data[0]["StatePlotData"];
+        createStateLevelPlot(stateData, state, impact);
+        createCountyLevelPlot(countyData, state, county, impact);
+    });
 };
 
 
