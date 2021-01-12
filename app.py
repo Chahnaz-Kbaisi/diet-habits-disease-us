@@ -206,6 +206,47 @@ def fetchPlotStateCountyData(state, county, impact):
     
     return jsonify(final_dict)
 
+# Route that fetches and returns the data for Stacked Bar Plot
+@app.route('/fetchStackedBarPlotData/<impact>')
+def fetchStackedBarPlotData(impact):
+    # Fetch data from database
+    rows = mongo.db.countyleveldiethabits.find({})
+
+    # Variable to hold array of dictionaries
+    data = []
+
+    # Create a simple dictionary and append to list
+    for row in rows:
+        item = row
+        for key, value in item.items():
+            value = str(value) + ''
+            if value == 'nan':
+                item[key] = ""
+        item['_id'] = str(item['_id'])
+        data.append(item)
+    rows = ""
+
+    # Create dataframe from the data	
+    df =  pd.DataFrame(data)
+    data = ""
+
+    df = df.loc[df['Year'] != ""]
+    df['Year'] = df['Year'].astype(float).astype(int)
+
+    impact = impact.replace(u'\xa0', u' ')
+    county_df = df.loc[(df['Year'] == 2012) & (df['County'] == "")]
+    df_2012_disease = county_df[['State','Year','% Adults with Obesity','% Adults with Diabetes']]	
+
+    impact_df = df.loc[(df[impact]!= "") & (df['Year'] == 2012)]
+    print(impact_df)
+    df_2012_grouped = impact_df.groupby("State")[impact].first()
+    df = ""
+    df_2012_grouped.reset_index()
+    df_year = df_2012_disease.merge(df_2012_grouped, on="State")
+    final_dict = df_year.to_dict(orient='records')
+    
+    return jsonify(final_dict)
+
 # Creating routes that will render html templates
 @app.route('/data')
 def datapage():
