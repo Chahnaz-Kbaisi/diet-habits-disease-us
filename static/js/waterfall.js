@@ -95,6 +95,11 @@ function loadCountyDropDown(selectedState) {
         var county = d3.select("#county-select").property("value");
         var impact = d3.select("#impact-select").property("value");
 
+
+        // fetch data & create plots
+        d3.json(`/fetchWaterfallPlotData/${selectedState}/${county}/${impact}`).then(data => {
+
+        });
     });
 }
 
