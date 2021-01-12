@@ -140,7 +140,12 @@ function impactChanged(impact) {
     var state = d3.select("#state-select").property("value");
     var county = d3.select("#county-select").property("value");
 
-    createWaterfallPlot(tableData, state, county, impact);
+    // fetch data & create plots
+    d3.json(`/fetchWaterfallPlotData/${state}/${county}/${impact}`).then(data => {
+
+        createWaterfallPlot(data, state, county, impact);
+
+    });
 };
 
 /***************************************************
