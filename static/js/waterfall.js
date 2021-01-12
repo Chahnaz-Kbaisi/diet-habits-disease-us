@@ -76,34 +76,6 @@ function createWaterfallPlot(data, state, county, impact) {
         }
     }
     Plotly.newPlot('waterfallPlot', data, layout);
-    // var impactTrace = {
-    //     x: yearArray,
-    //     y: impactArray,
-    //     name: impact,
-    //     mode: 'lines+markers',
-    // };
-
-    // var obesityTrace = {
-    //     x: yearArray,
-    //     y: obesityArray,
-    //     name: '% Adults with Obesity',
-    //     mode: 'lines+markers',
-    // };
-
-    // var diabetesTrace = {
-    //     x: yearArray,
-    //     y: diabetesArray,
-    //     name: '% Adults with Diabetes',
-    //     mode: 'lines+markers',
-    // };
-
-    // var dataCountyLevelPlot = [impactTrace, obesityTrace, diabetesTrace];
-
-    // var layoutCountyLevelPlot = {
-    //     title: `${impact} vs Disease Prevalence - ${county},${state}`
-    // };
-
-    // Plotly.newPlot('countyLevelPlot', dataCountyLevelPlot, layoutCountyLevelPlot);
 }
 
 // function creates State Level Line Plot
