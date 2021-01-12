@@ -90,13 +90,14 @@ function createRegressionPlot(disease, impact, year) {
                 return county + " , " + stateArray[index];
             });
         } else if (impact == "Direct farm sales per capita") {
-            var yearFilter = mongoDBdata.filter(row => row["Year"] == year);
-            var impactFilter = yearFilter.filter(row => row[impact] != "");
-            var countyFilter = impactFilter.filter(row => row["County"] != "");
-            diseaseArray = countyFilter.map(row => row[disease]);
-            impactArray = countyFilter.map(row => row[impact]);
-            stateArray = countyFilter.map(row => row["State"]);
-            countyArray = countyFilter.map(row => row["County"]);
+            diseaseArray = mongoData.map(row => row[disease]);
+            impactArray = mongoData.map(row => row[impact]);
+            stateArray = mongoData.map(row => row["State"]);
+            countyArray = mongoData.map(row => row["County"]);
+            stateArray = stateArray.slice(0, stateArray.length - 1);
+            countyArray = countyArray.slice(0, countyArray.length - 1);
+            diseaseArray = diseaseArray.slice(0, diseaseArray.length - 1);
+            impactArray = impactArray.slice(0, impactArray.length - 1);
             hoverTextArray = countyArray.map(function(county, index) {
                 return county + " , " + stateArray[index];
             });
