@@ -161,7 +161,6 @@ var impact = "Median Household Income";
 
 // load county dropdown
 loadCountyDropDown(state);
-console.log("After loading the county dropdown");
 
 var county = d3.select("#county-select").property("value");
 var impact = d3.select("#impact-select").property("value");
