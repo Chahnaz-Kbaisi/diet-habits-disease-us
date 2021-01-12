@@ -162,8 +162,4 @@ var impact = "Median Household Income";
 // load county dropdown
 loadCountyDropDown(state);
 
-var county = d3.select("#county-select").property("value");
-var impact = d3.select("#impact-select").property("value");
-
-createWaterfallPlot(tableData, state, county, impact);
 console.log("After invoking the function for plot creation");
