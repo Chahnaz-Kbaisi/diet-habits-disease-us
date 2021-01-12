@@ -246,7 +246,11 @@ function countyChanged(county) {
     var state = d3.select("#state-select").property("value");
     var impact = d3.select("#impact-select").property("value");
 
-    createCountyLevelBubblePlot(tableData, state, county, impact);
+    // fetch data & create plots
+    d3.json(`/fetchPlotStateCountyData/${state}/${county}/${impact}`).then(data => {
+        var countyData = data[0]["CountyPlotData"];
+        createCountyLevelPlot(countyData, state, county, impact);
+    });
 };
 
 // Impact Event Handler - Loading State/County Level Plots
