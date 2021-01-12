@@ -112,4 +112,8 @@ Plot templates from [Plotly.js documentation](https://plotly.com/javascript/) we
    [Bar Plot 1](https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/js/barplot.js) | 
    [Bar Plot 2](https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/js/foodexp.js) | 
    [Waterfall Plot](https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/js/waterfall.js) | 
-     
+
+***
+# Leaflet Map
+A [leaflet map](https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/js/leafletmap.js) was developed to show the distribution and occurrence rates of the factors being examined state by state across the country. 
+***     
