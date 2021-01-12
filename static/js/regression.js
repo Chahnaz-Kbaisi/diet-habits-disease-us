@@ -39,23 +39,19 @@ function enableFields() {
 
 // Fetches data from Remote MongoDB
 function fetchMongoData() {
-    d3.json('/fetchdata').then(data => {
+    d3.json("/getwriteup").then(writeups => {
+        analysisWriteups = writeups;
 
-        mongoDBdata = data;
-        d3.json("/getwriteup").then(writeups => {
-            analysisWriteups = writeups;
+        var year = "2020";
+        var impact = "% Limited Access to Healthy Foods";
+        var disease = "% Adults with Obesity";
 
-            var year = "2020";
-            var impact = "% Limited Access to Healthy Foods";
-            var disease = "% Adults with Obesity";
+        // Dynamically inject the data for user selection into geoJSON file
+        createRegressionPlot(disease, impact, year);
 
-            // Dynamically inject the data for user selection into geoJSON file
-            createRegressionPlot(disease, impact, year);
+        // Enable the fields and remove the message
+        enableFields();
 
-            // Enable the fields and remove the message
-            enableFields();
-
-        });
     });
 
 }
