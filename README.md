@@ -179,3 +179,28 @@ A [leaflet map](https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/ma
     * Primary Care Physicians
     * Mental Health Providers
     * Mental Health Provider Rate
+
+***
+# Conclusion
+Dietary trends in the United States over the last decade provide insight into the general health and well-being of Americans. In addition, the foods Americans eat and their lifestyle choices determine the prevalence of certain chronic diseases like obesity and type 2 diabetes. Unfortunately, some lifestyle choices are determined by socioeconomic status and availability of resources, which are disparate and uneven throughout the country. Although there is plenty of data on the effects of diet on the incidence of obesity and diabetes, far less is known about the impacts of other modifying factors like education or income. 
+
+#### Factors that are associated with disease prevalence:
+   * Limited access to healthy foods varied from state to state and even within a state, and it appears that less access to healthy foods might contribute to obesity rates but not diabetes across the country. 
+   * The food environmental index, which indicates the quality of food in a given place, was weakly associated with the degree of disease. 
+   * The percentage of physical inactivity, or the number of Americans who do not engage in leisure-time exercise, directly contributed to both obesity and diabetes over the last ten years, especially the latter with which there is a strong positive association. 
+   * Median family income, which varied starkly across the United States, had a moderate negative association with both obesity and diabetes suggesting household earning might determine other health-related factors like what foods are eaten and other lifestyle choices.
+
+#### Factors that are not associated with disease prevalence:
+   * There was no link for disease prevalence with education level, nor with income ratio (i.e., the separation between high and low income) or unemployment rates. 
+   * There were no income-related effects based on race. 
+   
+#### Take away and future direction   
+
+The research presented here shows that certain factors (i.e., lifestyle, demographic, socioeconomic) play a major role in the prevalence of obesity and diabetes, both in terms of the choices Americans make in their personal lives and the social conditions of where they live. Among the lifestyle choices examined, lack of exercise had the strongest consistent association with disease rates over ten years, this may have been due to reduced availability of physical activity facilities. On the other hand, decreased local access to healthy food and household income were the most important contributors to disease prevalence in terms of demographic and socioeconomic factors, respectively. Thus, a combination of personal and social factors likely contribute to the number of people who develop these chronic conditions. These associations should be considered over several years and carefully weighed for significance given the cause of chronic conditions like obesity and diabetes is multifactorial. Future work should examine the role of specific nutrition choices (e.g., what Americans buy at grocery stores), heredity of disease (i.e., does someone in the family already have it), and availability of local nutrition education programs on disease rates.    
+
+
+
+- - -
+### Copyright
+
+American Dietary Trend & Disease Prevalence © 2021. All Rights Reserved.
