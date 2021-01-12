@@ -170,11 +170,11 @@ A [leaflet map](https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/ma
 
 ***
 # Limitations
-   * Data was not available for all years for all of the factors analyzed.
-   * The Food Environment Atlas only had data for 2007 and 2012, and nothing more current than that.
-   * Not all of the years could be included in the datasets because the columns were not consistently constructed from year to year and in some cases, data was inconsistent. 
-   * "Direct farm sales per capita (% change), 2007 - 12" could not be used for analysis due to lack of obesity/diabetes rate data for years 2007 through 2009.
-   *  The following columns were not used for analysis due to the inaccuracy of data readings in the [County Health Rankings](http://www.countyhealthrankings.org/content/data-changes):
+ * Data was not available for all years for all of the factors analyzed.
+ * The Food Environment Atlas only had data for 2007 and 2012, and nothing more current than that.
+ * Not all of the years could be included in the datasets because the columns were not consistently constructed from year to year and in some cases, data was inconsistent. 
+ * "Direct farm sales per capita (% change), 2007 - 12" could not be used for analysis due to lack of obesity/diabetes rate data for years 2007 through 2009.
+ *  The following columns were not used for analysis due to the inaccuracy of data readings in the [County Health Rankings & Roadmaps](http://www.countyhealthrankings.org/content/data-changes):
     * Primary Care Physicians Rate
     * Primary Care Physicians
     * Mental Health Providers
