@@ -17,19 +17,10 @@ function createStackedBarPlot(impact) {
         var obesityArray = data.map(row => row["% Adults with Obesity"]);
         var impactArray = data.map(row => row[impact]);
         var impactString = impact;
-        stateArray.forEach(state => {
-            var stateFilter = impactFilter.filter(row => row["State"] == state);
-            if (stateFilter.length > 0) {
-                impactValue = stateFilter[0][impact]
-            } else {
-                impactValue = null
-            }
-            if (impact == "Expenditures per capita, fast food" || impact == "Expenditures per capita, restaurants") {
-                impactValue = impactValue / 100;
-                impactString = `${impact} $ (100's)`
-            }
-            impactArray.push(impactValue);
-        });
+        if (impact == "Expenditures per capita, fast food" || impact == "Expenditures per capita, restaurants") {
+            impactArray = impactArray.map(impactValue => impactValue / 100);
+            impactString = `${impact} $ (in 100's)`
+        }
 
         var impactTrace = {
             x: stateArray,
