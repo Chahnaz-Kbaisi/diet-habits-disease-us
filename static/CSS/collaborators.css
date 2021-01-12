@@ -66,6 +66,12 @@
     box-shadow: 0 0 0 14px #f7f5ec;
     transform: scale(0.7);
   }
+
+.team-content {
+    resize: none;
+    height: 100px;
+    width: 100%;
+  }  
   
 .our-team .title {
     display: block;
