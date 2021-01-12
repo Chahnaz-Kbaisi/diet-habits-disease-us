@@ -99,6 +99,11 @@ function loadCountyDropDown(selectedState) {
         // fetch data & create plots
         d3.json(`/fetchWaterfallPlotData/${selectedState}/${county}/${impact}`).then(data => {
 
+            createWaterfallPlot(data, selectedState, county, impact);
+
+            // enable the fields
+            d3.select("#state-select").attr("disabled", null).style("background", null);
+            d3.select("#impact-select").attr("disabled", null).style("background", null);
         });
     });
 }
