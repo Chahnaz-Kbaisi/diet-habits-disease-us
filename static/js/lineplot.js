@@ -114,8 +114,15 @@ function loadCountyDropDown(selectedState) {
         // fetch data & create plots
         d3.json(`/fetchPlotStateCountyData/${selectedState}/${county}/${impact}`).then(data => {
 
+            var countyData = data[0]["CountyPlotData"];
+            var stateData = data[0]["StatePlotData"];
 
+            // create state level and county level plots
+            createStateLevelPlot(stateData, selectedState, impact);
+            createCountyLevelPlot(countyData, selectedState, county, impact);
 
+            d3.select("#state-select").attr("disabled", null).style("background", null);
+            d3.select("#state-impact-select").attr("disabled", null).style("background", null);
         });
     });
 }
