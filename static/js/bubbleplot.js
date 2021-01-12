@@ -220,8 +220,8 @@ function loadCountyDropDown(selectedState) {
             var countyData = data[0]["CountyPlotData"];
             var stateData = data[0]["StatePlotData"];
 
-            createStateLevelPlot(stateData, selectedState, impact);
-            createCountyLevelPlot(countyData, selectedState, county, impact);
+            createStateLevelBubblePlot(stateData, selectedState, impact);
+            createCountyLevelBubblePlot(countyData, selectedState, county, impact);
 
             d3.select("#state-select").attr("disabled", null).style("background", null);
             d3.select("#impact-select").attr("disabled", null).style("background", null);
