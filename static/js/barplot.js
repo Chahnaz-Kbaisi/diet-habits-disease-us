@@ -58,7 +58,7 @@ function createCountyLevelPlot(data, state, county, impact) {
 function createStateLevelPlot(data, state, impact) {
 
     // sort by year
-    var data = data.sort((a, b) => b["Year"] - a["Year"]);
+    data = data.sort((a, b) => b["Year"] - a["Year"]);
 
     var yearArray = data.map(row => row["Year"]);
     var impactArray = data.map(row => row[impact]);
