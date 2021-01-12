@@ -161,5 +161,3 @@ var impact = "Median Household Income";
 
 // load county dropdown
 loadCountyDropDown(state);
-
-console.log("After invoking the function for plot creation");
