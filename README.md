@@ -101,3 +101,15 @@ To present our data we created an interactive dashboard that included various pl
     11. Income ratio
     12. Median Household Income
     13. Median Household Income (for Asian, Hispanic, black, white)
+
+Plot templates from [Plotly.js documentation](https://plotly.com/javascript/) were used to generate the figures. The javascript files used to construct each of the plots are available below:
+### Plots 
+   Ploty Plots  |
+   ----------------- | 
+   [Line Plot](https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/js/lineplot.js) |
+   [Bubble Plot](https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/js/bubbleplot.js) |
+   [Box Plot](https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/js/boxplot.js) |   
+   [Bar Plot 1](https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/js/barplot.js) | 
+   [Bar Plot 2](https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/js/foodexp.js) | 
+   [Waterfall Plot](https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/js/waterfall.js) | 
+     
