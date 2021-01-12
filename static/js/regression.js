@@ -78,12 +78,14 @@ function createRegressionPlot(disease, impact, year) {
             impactArray = impactArray.slice(0, impactArray.length - 1);
             hoverTextArray = stateArray;
         } else if (d3.set(incomeImpacts).has(impact)) {
-            var yearFilter = mongoDBdata.filter(row => row["Year"] == year);
-            var impactFilter = yearFilter.filter(row => row[impact] != "");
-            diseaseArray = impactFilter.map(row => row[disease]);
-            impactArray = impactFilter.map(row => row[impact]);
-            stateArray = impactFilter.map(row => row["State"]);
-            countyArray = impactFilter.map(row => row["County"]);
+            diseaseArray = mongoData.map(row => row[disease]);
+            impactArray = mongoData.map(row => row[impact]);
+            stateArray = mongoData.map(row => row["State"]);
+            countyArray = mongoData.map(row => row["County"]);
+            stateArray = stateArray.slice(0, stateArray.length - 1);
+            countyArray = countyArray.slice(0, countyArray.length - 1);
+            diseaseArray = diseaseArray.slice(0, diseaseArray.length - 1);
+            impactArray = impactArray.slice(0, impactArray.length - 1);
             hoverTextArray = countyArray.map(function(county, index) {
                 return county + " , " + stateArray[index];
             });
