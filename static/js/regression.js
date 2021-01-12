@@ -70,25 +70,12 @@ function createRegressionPlot(disease, impact, year) {
             'Household Income (White)'
         ];
         if (d3.set(expenditureImpacts).has(impact)) {
-            var yearFilter = mongoDBdata.filter(row => row["Year"] == year);
-
-            // Get State List and State Level Obesity (or) Diabetes Data
-            var countyFilter = yearFilter.filter(row => row["County"] == "");
-            stateArray = countyFilter.map(row => row["State"]);
-            diseaseArray = countyFilter.map(row => row[disease]);
-
-            // Get impact value for each State
-            impactArray = []
-            var impactFilter = yearFilter.filter(row => row[impact] != "");
-            stateArray.forEach(state => {
-                var stateFilter = impactFilter.filter(row => row["State"] == state);
-                if (stateFilter.length > 0) {
-                    impactValue = stateFilter[0][impact]
-                } else {
-                    impactValue = null
-                }
-                impactArray.push(impactValue);
-            });
+            stateArray = mongoData.map(row => row["State"]);
+            diseaseArray = mongoData.map(row => row[disease]);
+            impactArray = mongoData.map(row => row[impact]);
+            stateArray = stateArray.slice(0, stateArray.length - 1);
+            diseaseArray = diseaseArray.slice(0, diseaseArray.length - 1);
+            impactArray = impactArray.slice(0, impactArray.length - 1);
             hoverTextArray = stateArray;
         } else if (d3.set(incomeImpacts).has(impact)) {
             var yearFilter = mongoDBdata.filter(row => row["Year"] == year);
