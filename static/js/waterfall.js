@@ -20,7 +20,6 @@ function createWaterfallPlot(data, state, county, impact) {
     if (impact != "Income Ratio") {
         impactArray = impactArray.map(val => val / 1000);
         impactString += " (in Thousands)"
-        console.log("impactArray in thousands", impactArray);
     }
     for (i = 0; i < impactArray.length; i++) {
         if (i == 0) {
