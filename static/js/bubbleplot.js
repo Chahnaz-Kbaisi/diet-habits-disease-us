@@ -65,7 +65,7 @@ function createCountyLevelBubblePlot(data, state, county, impact) {
     };
 
     // Create the data arrays for the plot
-    var dataStateLevelPlot = [impactTrace, obesityTrace, diabetesTrace];
+    var dataCountyLevelPlot = [impactTrace, obesityTrace, diabetesTrace];
 
     // Define the plot layout
     var layoutStateLevelPlot = {
