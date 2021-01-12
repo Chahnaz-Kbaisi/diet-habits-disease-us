@@ -68,7 +68,7 @@ function createCountyLevelBubblePlot(data, state, county, impact) {
     var dataCountyLevelPlot = [impactTrace, obesityTrace, diabetesTrace];
 
     // Define the plot layout
-    var layoutStateLevelPlot = {
+    var layoutCountyLevelPlot = {
         title: `${impact} vs Disease Prevalence - ${county}, ${state}`,
 
         // Adding ticks on the axis
