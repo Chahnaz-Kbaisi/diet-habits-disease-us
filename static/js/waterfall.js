@@ -34,7 +34,6 @@ function createWaterfallPlot(data, state, county, impact) {
     }
     measureArray = yearArray.map(year => "relative");
     qtrArray = yearArray.map(year => " ");
-    console.log("measureArray", measureArray);
     var impactTrace = {
         type: "waterfall",
         x: [yearArray, qtrArray],
