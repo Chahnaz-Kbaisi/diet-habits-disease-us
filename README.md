@@ -44,3 +44,7 @@ The goal of this project was to examine the dietary habits of Americans, and ass
 
 # Approach 
 For this project, we used data from the datasets below, and performed an ETL pipeline using the languages listed.
+
+## Data Sets: 
+* [Food Environment Atlas](https://www.ers.usda.gov/data-products/food-environment-atlas/data-access-and-documentation-downloads/)
+* [County Health Rankings & Roadmaps](https://www.countyhealthrankings.org/app/alabama/2019/downloads)
