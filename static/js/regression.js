@@ -102,11 +102,12 @@ function createRegressionPlot(disease, impact, year) {
                 return county + " , " + stateArray[index];
             });
         } else {
-            var yearFilter = mongoDBdata.filter(row => row["Year"] == year);
-            var countyFilter = yearFilter.filter(row => row["County"] == "");
-            diseaseArray = countyFilter.map(row => row[disease]);
-            impactArray = countyFilter.map(row => row[impact]);
-            stateArray = countyFilter.map(row => row["State"]);
+            diseaseArray = mongoData.map(row => row[disease]);
+            impactArray = mongoData.map(row => row[impact]);
+            stateArray = mongoData.map(row => row["State"]);
+            stateArray = stateArray.slice(0, stateArray.length - 1);
+            diseaseArray = diseaseArray.slice(0, diseaseArray.length - 1);
+            impactArray = impactArray.slice(0, impactArray.length - 1);
             hoverTextArray = stateArray;
         }
 
