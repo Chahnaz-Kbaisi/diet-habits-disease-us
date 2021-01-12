@@ -154,7 +154,6 @@ ON PAGE LOAD
 
 d3.select("#state-select").attr("disabled", "disabled").style("background", "gray");
 d3.select("#impact-select").attr("disabled", "disabled").style("background", "gray");
-console.log("After disabling the state and impact");
 
 // fetch data, load county dropdown & create plots
 d3.json('/fetchdata').then(data => {
