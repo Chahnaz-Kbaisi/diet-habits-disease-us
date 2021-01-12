@@ -155,23 +155,20 @@ ON PAGE LOAD
 d3.select("#state-select").attr("disabled", "disabled").style("background", "gray");
 d3.select("#impact-select").attr("disabled", "disabled").style("background", "gray");
 
-// fetch data, load county dropdown & create plots
-d3.json('/fetchdata').then(data => {
-    tableData = data;
-    console.log("After fetching data", tableData);
-    d3.select("#state-select").attr("disabled", null).style("background", null);
-    d3.select("#impact-select").attr("disabled", null).style("background", null);
-    console.log("After enabling the state and impact");
+tableData = data;
+console.log("After fetching data", tableData);
+d3.select("#state-select").attr("disabled", null).style("background", null);
+d3.select("#impact-select").attr("disabled", null).style("background", null);
+console.log("After enabling the state and impact");
 
-    var state = d3.select("#state-select").property("value");
+var state = d3.select("#state-select").property("value");
 
-    // load county dropdown
-    loadCountyDropDown(state);
-    console.log("After loading the county dropdown");
+// load county dropdown
+loadCountyDropDown(state);
+console.log("After loading the county dropdown");
 
-    var county = d3.select("#county-select").property("value");
-    var impact = d3.select("#impact-select").property("value");
+var county = d3.select("#county-select").property("value");
+var impact = d3.select("#impact-select").property("value");
 
-    createWaterfallPlot(tableData, state, county, impact);
-    console.log("After invoking the function for plot creation");
-});
+createWaterfallPlot(tableData, state, county, impact);
+console.log("After invoking the function for plot creation");
