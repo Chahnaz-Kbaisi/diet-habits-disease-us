@@ -4,3 +4,20 @@
 
 ![app](https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/images/Navbar.png)
 
+# Table of Contents
+
+* [Project Description](#project-description)
+* [Approach](#approach)
+  * [Data Sets](#data-sets) 
+  * [ETL](#ETL)
+* [Requirements](#requirements)  
+  * [Languages And Libraries](#languages-and-libraries)
+* [Dashboard](#dashboard)
+  * [Plots](#plots)
+* [Leaflet Map](#leaflet-map)  
+* [Data Analysis](#data-analysis)
+  * [Linear Regression](#linear-regression)
+* [Limitations](#limitations) 
+* [Collaborators](#collaborators)
+* [Conclusion](#conclusion)
+  * [Take away and future direction](#Take-away-and-future-direction)
