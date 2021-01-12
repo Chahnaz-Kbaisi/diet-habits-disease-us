@@ -249,7 +249,7 @@ function countyChanged(county) {
     // fetch data & create plots
     d3.json(`/fetchPlotStateCountyData/${state}/${county}/${impact}`).then(data => {
         var countyData = data[0]["CountyPlotData"];
-        createCountyLevelPlot(countyData, state, county, impact);
+        createCountyLevelBubblePlot(countyData, state, county, impact);
     });
 };
 
