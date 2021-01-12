@@ -111,76 +111,70 @@ function createRegressionPlot(disease, impact, year) {
             hoverTextArray = stateArray;
         }
 
-        $.post("/fetchRegressionLine", {
-                impactArray: JSON.stringify(impactArray),
-                diseaseArray: JSON.stringify(diseaseArray)
+        sortedImpactArray = data[0]["X"];
+        regressionArray = data[0]["Y"];
+        rSquared = data[0]["R"];
+        lineEquation = data[0]["EQUATION"];
+
+        // remove the previous plot (if any)
+        $("#regressionPlot").empty();
+
+        var scatterTrace = {
+            x: impactArray,
+            y: diseaseArray,
+            mode: 'markers',
+            name: "",
+            text: hoverTextArray,
+            marker: {
+                color: 'rgb(55, 128, 191)',
+                size: 10
+            }
+        };
+
+        var lineTrace = {
+            x: sortedImpactArray,
+            y: regressionArray,
+            mode: 'lines+markers',
+            name: `R<sup>2</sup> = ${rSquared}`,
+            text: `R<sup>2</sup> = ${rSquared} <br> ${lineEquation}`,
+            line: {
+                color: 'rgb(128, 0, 128)',
+                width: 5
             },
-            function(data, status) {
-                sortedImpactArray = data[0]["X"];
-                regressionArray = data[0]["Y"];
-                rSquared = data[0]["R"];
-                lineEquation = data[0]["EQUATION"];
+            marker: {
+                color: "white",
+                size: 2
+            }
+        };
 
-                // remove the previous plot (if any)
-                $("#regressionPlot").empty();
+        var data = [scatterTrace, lineTrace];
 
-                var scatterTrace = {
-                    x: impactArray,
-                    y: diseaseArray,
-                    mode: 'markers',
-                    name: "",
-                    text: hoverTextArray,
-                    marker: {
-                        color: 'rgb(55, 128, 191)',
-                        size: 10
-                    }
-                };
+        var layout = {
+            title: `${impact} vs ${disease} (${year})`,
+            xaxis: {
+                title: impact,
+                zeroline: false,
+                showline: true,
+                linecolor: 'black',
+                ticks: 'inside',
+                tickcolor: 'black',
+                tickwidth: 1
+            },
+            yaxis: {
+                title: disease,
+                zeroline: false,
+                showline: true,
+            }
+        };
 
-                var lineTrace = {
-                    x: sortedImpactArray,
-                    y: regressionArray,
-                    mode: 'lines+markers',
-                    name: `R<sup>2</sup> = ${rSquared}`,
-                    text: `R<sup>2</sup> = ${rSquared} <br> ${lineEquation}`,
-                    line: {
-                        color: 'rgb(128, 0, 128)',
-                        width: 5
-                    },
-                    marker: {
-                        color: "white",
-                        size: 2
-                    }
-                };
+        Plotly.newPlot('regressionPlot', data, layout, { responsive: true });
 
-                var data = [scatterTrace, lineTrace];
+        writeupFilter = analysisWriteups.filter(row => row["Disease"] == disease);
+        writeupFilter = writeupFilter.filter(row => row["Impact"] == impact);
+        if (writeupFilter.length > 0) {
+            d3.select("#analysisWriteup").html("").text(writeupFilter[0]["Writeup"]);
+        }
 
-                var layout = {
-                    title: `${impact} vs ${disease} (${year})`,
-                    xaxis: {
-                        title: impact,
-                        zeroline: false,
-                        showline: true,
-                        linecolor: 'black',
-                        ticks: 'inside',
-                        tickcolor: 'black',
-                        tickwidth: 1
-                    },
-                    yaxis: {
-                        title: disease,
-                        zeroline: false,
-                        showline: true,
-                    }
-                };
-
-                Plotly.newPlot('regressionPlot', data, layout, { responsive: true });
-
-                writeupFilter = analysisWriteups.filter(row => row["Disease"] == disease);
-                writeupFilter = writeupFilter.filter(row => row["Impact"] == impact);
-                if (writeupFilter.length > 0) {
-                    d3.select("#analysisWriteup").html("").text(writeupFilter[0]["Writeup"]);
-                }
-
-            });
     });
 }
 
