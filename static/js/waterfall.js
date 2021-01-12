@@ -32,7 +32,6 @@ function createWaterfallPlot(data, state, county, impact) {
             diabetesArrayRelative.push(diabetesArray[i] - diabetesArray[i - 1]);
         }
     }
-    console.log("Relative arrays", impactArrayRelative, obesityArrayRelative, diabetesArrayRelative);
     measureArray = yearArray.map(year => "relative");
     qtrArray = yearArray.map(year => " ");
     console.log("measureArray", measureArray);
