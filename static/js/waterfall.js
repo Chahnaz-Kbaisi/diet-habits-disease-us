@@ -68,7 +68,7 @@ function createWaterfallPlot(data, state, county, impact) {
 
     var layout = {
         waterfallgroupgap: 0.5,
-        title: `${impact} vs Disease Prevalence`,
+        title: `${impact} vs Disease Prevalence for ${county}, ${state}`,
         xaxis: {
             title: "Year",
             tickfont: { size: 16 },
