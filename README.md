@@ -137,3 +137,33 @@ A [leaflet map](https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/ma
 
 ## Linear Regression 
 [Linear regression](https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/js/regression.js) analyses were performed to determine if there was an association between several factors and the prevalence of obesity and diabetes.This analysis was performed to determine the relationship between several independent variables like access to healthy foods and the dependent variables obesity and diabetes.
+
+***
+# Collaborators 
+<a href="https://github.com/Prarthna-design">
+  <img src="https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/images/Prarthna.png?size=50">
+</a>
+
+
+<a href="https://github.com/cdalsania">
+  <img src="https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/images/Crystal.png?size=50">
+</a>
+
+<a href="https://github.com/JayyMaurice2020">
+  <img src="https://github.com/Chahnaz-Kbaisi/Draft-Working/blob/master/Jamel.png?size=10">
+</a>
+
+
+   <a href="https://github.com/Chahnaz-Kbaisi">
+  <img src="https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/images/Chahnaz.png?size=50">
+</a>
+
+
+<a href="https://github.com/ushaakumaar">
+  <img src="https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/images/Usha.png?size=50">
+</a>
+
+
+<a href="https://github.com/SusanCThomas">
+  <img src="https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/images/Susan.png?size=50">
+</a>
