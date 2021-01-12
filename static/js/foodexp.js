@@ -7,7 +7,7 @@ USER DEFINED FUNCTIONS
 ****************************************************/
 
 // function creates Stacked Bar Plot based on user's selection
-function createStackedBarPlot(data, impact) {
+function createStackedBarPlot(impact) {
 
     var yearFilter = data.filter(row => row["Year"] == "2012");
 
