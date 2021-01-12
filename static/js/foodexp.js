@@ -76,7 +76,6 @@ function impactChanged(impact) {
 /***************************************************
 ON PAGE LOAD
 ****************************************************/
-var prevImpactBkgnd = d3.select("#impact-select").style("background");
 d3.select("#impact-select").attr("disabled", "disabled").style("background", "gray");
 
 // fetch data, load county dropdown & create plots
