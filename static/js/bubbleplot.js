@@ -263,8 +263,8 @@ function impactChanged(impact) {
     d3.json(`/fetchPlotStateCountyData/${state}/${county}/${impact}`).then(data => {
         var countyData = data[0]["CountyPlotData"];
         var stateData = data[0]["StatePlotData"];
-        createStateLevelPlot(stateData, state, impact);
-        createCountyLevelPlot(countyData, state, county, impact);
+        createStateLevelBubblePlot(stateData, state, impact);
+        createCountyLevelBubblePlot(countyData, state, county, impact);
     });
 };
 
