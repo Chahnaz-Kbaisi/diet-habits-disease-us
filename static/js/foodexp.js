@@ -11,13 +11,11 @@ function createStackedBarPlot(impact) {
     // fetch data for plotting
     d3.json(`/fetchStackedBarPlotData/${impact}`).then(data => {
 
-        var stateArray = countyFilter.map(row => row["State"]);
-        var diabetesArray = countyFilter.map(row => row["% Adults with Diabetes"]);
-        var obesityArray = countyFilter.map(row => row["% Adults with Obesity"]);
-
-        // Get impact value for each State
-        var impactArray = []
-        var impactFilter = yearFilter.filter(row => row[impact] != "");
+        // Get State List and State Level Obesity, Diabetes and Impact Data
+        var stateArray = data.map(row => row["State"]);
+        var diabetesArray = data.map(row => row["% Adults with Diabetes"]);
+        var obesityArray = data.map(row => row["% Adults with Obesity"]);
+        var impactArray = data.map(row => row[impact]);
         var impactString = impact;
         stateArray.forEach(state => {
             var stateFilter = impactFilter.filter(row => row["State"] == state);
