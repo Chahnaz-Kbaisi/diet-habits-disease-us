@@ -48,3 +48,14 @@ For this project, we used data from the datasets below, and performed an ETL pip
 ## Data Sets: 
 * [Food Environment Atlas](https://www.ers.usda.gov/data-products/food-environment-atlas/data-access-and-documentation-downloads/)
 * [County Health Rankings & Roadmaps](https://www.countyhealthrankings.org/app/alabama/2019/downloads)
+
+## ETL: 
+### Extract, Transform, Load
+[Data Preprocessing & ETL](https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/tree/main/ETL)
+   * Extracted data from the County Health & Roadmaps website
+   * Investigated data and determined that it was too comprehensive (548 excel sheets) to use in its entirety
+   * Developed a [script](https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/ETL/Web_Scrape_ETL.ipynb) for web scraping only the relevant data and categories from the 548 excel sheets
+   * Condensed two worksheets (Restaurants and Local) from the [Food Environment Atlas](https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/data/FoodEnvironmentAtlas.xls)
+   * Consolidated both retrieved datasets into one data frame
+   * Cleaned the data and renamed the columns
+   * Loaded the web scraped data into one [excel file](https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/data/Web_Scraped_Data.xls) and remote MongoDB since a relational database was not sought
