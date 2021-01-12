@@ -12,7 +12,6 @@ function createWaterfallPlot(data, state, county, impact) {
     obesityArray = data.map(row => row["% Adults with Obesity"]);
     diabetesArray = data.map(row => row["% Adults with Diabetes"]);
     impactArray = data.map(row => row[impact]);
-    console.log(yearArray, obesityArray, diabetesArray, impactArray);
 
     var impactArrayRelative = []
     var obesityArrayRelative = []
