@@ -132,42 +132,6 @@ def fetchpagedata(pageNumber):
     
     return jsonify(data)
 
-# route to fetch the data required for loading the leaflet map
-@app.route('/fetchGeoJsonFileData/<year>/<fips>/<level>')
-def fetchGeoJsonFileData(year, fips, level):
-    fips = int(fips)
-    if level == 'State':
-        fips = fips * 1000
-
-    # Fetch data from database
-    rows = mongo.db.countyleveldiethabits.find({})
-
-    # Variable to hold array of dictionaries
-    data = []
-
-    # Create a simple dictionary and append to list
-    for row in rows:
-        item = row
-        for key, value in item.items():
-            value = str(value) + ''
-            if value == 'nan':
-                item[key] = ""
-        item['_id'] = str(item['_id'])
-        data.append(item)
-    rows = ""
-
-    # Create dataframe from the data	
-    df =  pd.DataFrame(data)
-    data = ""
-
-    df = df.loc[df['Year'] != ""]
-    df['Year'] = df['Year'].astype(float).astype(int)
-
-    final_df = df.loc[(df['Year'] == int(year)) & (df['County'] == "") & (df['FIPS'] == fips)]
-    final_dict = final_df.to_dict(orient='records')
-
-    return jsonify(final_dict)
-
 # Creating routes that will render html templates
 @app.route('/data')
 def datapage():
