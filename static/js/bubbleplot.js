@@ -235,14 +235,9 @@ function loadCountyDropDown(selectedState) {
 // State level Event Handler - Loading County dropdown and State/County Level Plots
 function stateChanged(selectedState) {
 
-    // Load County dropdown
+    // Load County dropdown and create plots
     loadCountyDropDown(selectedState);
 
-    var county = d3.select("#county-select").property("value");
-    var impact = d3.select("#impact-select").property("value");
-
-    createStateLevelBubblePlot(tableData, selectedState, impact);
-    createCountyLevelBubblePlot(tableData, selectedState, county, impact);
 };
 
 // County Level Event Handler - Loading County level Plot
