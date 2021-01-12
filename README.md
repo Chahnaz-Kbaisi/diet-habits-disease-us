@@ -59,3 +59,27 @@ For this project, we used data from the datasets below, and performed an ETL pip
    * Consolidated both retrieved datasets into one data frame
    * Cleaned the data and renamed the columns
    * Loaded the web scraped data into one [excel file](https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/data/Web_Scraped_Data.xls) and remote MongoDB since a relational database was not sought
+
+***
+# Requirements
+## Languages And Libraries
+The following is a list of the required languages, modules and libraries that we used. For a more detailed list of all modules and libraries that we installed in our project environment please see the project [requirements file](https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/requirements.txt)
+
+* Jupyter Notebook
+* Python
+  * Pandas
+  * Matplotlib Library
+  * Flask API
+* HTML
+* MongoDB 
+* Javascript
+  * D3.js
+  * DOM Manipulation
+  * Plotly.JS
+  * Leaflet.js
+    * Choropleth
+* JQuery 
+* CSS
+  * Bootstrap 
+* JSON
+***
