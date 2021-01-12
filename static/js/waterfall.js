@@ -156,6 +156,8 @@ d3.select("#state-select").attr("disabled", "disabled").style("background", "gra
 d3.select("#impact-select").attr("disabled", "disabled").style("background", "gray");
 
 var state = d3.select("#state-select").property("value");
+var county = "Autauga";
+var impact = "Median Household Income";
 
 // load county dropdown
 loadCountyDropDown(state);
