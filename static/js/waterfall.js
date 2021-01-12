@@ -151,7 +151,6 @@ function impactChanged(impact) {
 /***************************************************
 ON PAGE LOAD
 ****************************************************/
-console.log("Before disabling the state and impact");
 
 var prevStateBkgnd = d3.select("#state-select").style("background");
 var prevImpactBkgnd = d3.select("#impact-select").style("background");
