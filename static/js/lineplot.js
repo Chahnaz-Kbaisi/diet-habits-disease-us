@@ -180,10 +180,3 @@ var impact = "% Limited Access to Healthy Foods";
 
 // load county dropdown
 loadCountyDropDown(state);
-
-var county = d3.select("#county-select").property("value");
-var impact = d3.select("#impact-select").property("value");
-
-createStateLevelPlot(tableData, state, impact);
-createCountyLevelPlot(tableData, state, county, impact);
-});
