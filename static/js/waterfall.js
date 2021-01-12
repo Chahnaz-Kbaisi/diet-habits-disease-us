@@ -129,19 +129,6 @@ function countyChanged(county) {
     var state = d3.select("#state-select").property("value");
     var impact = d3.select("#impact-select").property("value");
 
-    // fetch data & create plots
-    d3.json(`/fetchWaterfallPlotData/${state}/${county}/${impact}`).then(data => {
-
-        createWaterfallPlot(data, state, county, impact);
-
-    });
-};
-
-// Impact Event Handler - Load State/County Level Plots
-function impactChanged(impact) {
-
-    var state = d3.select("#state-select").property("value");
-    var county = d3.select("#county-select").property("value");
     // disable the fields
     d3.select("#state-select").attr("disabled", "disabled").style("background", "gray");
     d3.select("#county-select").attr("disabled", "disabled").style("background", "gray");
@@ -151,6 +138,30 @@ function impactChanged(impact) {
     d3.json(`/fetchWaterfallPlotData/${state}/${county}/${impact}`).then(data => {
 
         createWaterfallPlot(data, state, county, impact);
+
+        // enable the fields
+        d3.select("#state-select").attr("disabled", null).style("background", null);
+        d3.select("#county-select").attr("disabled", null).style("background", null);
+        d3.select("#impact-select").attr("disabled", null).style("background", null);
+    });
+};
+
+// Impact Event Handler - Load State/County Level Plots
+function impactChanged(impact) {
+
+    var state = d3.select("#state-select").property("value");
+    var county = d3.select("#county-select").property("value");
+
+    // disable the fields
+    d3.select("#state-select").attr("disabled", "disabled").style("background", "gray");
+    d3.select("#county-select").attr("disabled", "disabled").style("background", "gray");
+    d3.select("#impact-select").attr("disabled", "disabled").style("background", "gray");
+
+    // fetch data & create plots
+    d3.json(`/fetchWaterfallPlotData/${state}/${county}/${impact}`).then(data => {
+
+        createWaterfallPlot(data, state, county, impact);
+
         // enable the fields
         d3.select("#state-select").attr("disabled", null).style("background", null);
         d3.select("#county-select").attr("disabled", null).style("background", null);
