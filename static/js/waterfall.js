@@ -100,6 +100,7 @@ function loadCountyDropDown(selectedState) {
 
             // enable the fields
             d3.select("#state-select").attr("disabled", null).style("background", null);
+            d3.select("#county-select").attr("disabled", null).style("background", null);
             d3.select("#impact-select").attr("disabled", null).style("background", null);
         });
     });
@@ -111,6 +112,11 @@ EVENT HANDLERS
 
 // State Event Handler - Load County dropdown and State/County Level Plots
 function stateChanged(selectedState) {
+
+    // disable the fields
+    d3.select("#state-select").attr("disabled", "disabled").style("background", "gray");
+    d3.select("#county-select").attr("disabled", "disabled").style("background", "gray");
+    d3.select("#impact-select").attr("disabled", "disabled").style("background", "gray");
 
     // Load County dropdown
     loadCountyDropDown(selectedState);
@@ -136,11 +142,19 @@ function impactChanged(impact) {
 
     var state = d3.select("#state-select").property("value");
     var county = d3.select("#county-select").property("value");
+    // disable the fields
+    d3.select("#state-select").attr("disabled", "disabled").style("background", "gray");
+    d3.select("#county-select").attr("disabled", "disabled").style("background", "gray");
+    d3.select("#impact-select").attr("disabled", "disabled").style("background", "gray");
 
     // fetch data & create plots
     d3.json(`/fetchWaterfallPlotData/${state}/${county}/${impact}`).then(data => {
 
         createWaterfallPlot(data, state, county, impact);
+        // enable the fields
+        d3.select("#state-select").attr("disabled", null).style("background", null);
+        d3.select("#county-select").attr("disabled", null).style("background", null);
+        d3.select("#impact-select").attr("disabled", null).style("background", null);
 
     });
 };
@@ -151,6 +165,7 @@ ON PAGE LOAD
 
 d3.select("#state-select").attr("disabled", "disabled").style("background", "gray");
 d3.select("#impact-select").attr("disabled", "disabled").style("background", "gray");
+d3.select("#county-select").attr("disabled", "disabled").style("background", "gray");
 
 var state = d3.select("#state-select").property("value");
 var county = "Autauga";
