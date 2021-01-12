@@ -57,10 +57,10 @@ function createCountyLevelPlot(data, state, county, impact) {
 // function creates State Level Bar Plot
 function createStateLevelPlot(data, state, impact) {
 
-    var yearArray = countyFilter.map(row => row["Year"]);
-    var impactArray = countyFilter.map(row => row[impact]);
-    var obesityArray = countyFilter.map(row => row["% Adults with Obesity"]);
-    var diabetesArray = countyFilter.map(row => row["% Adults with Diabetes"]);
+    var yearArray = data.map(row => row["Year"]);
+    var impactArray = data.map(row => row[impact]);
+    var obesityArray = data.map(row => row["% Adults with Obesity"]);
+    var diabetesArray = data.map(row => row["% Adults with Diabetes"]);
 
     if (impact == "Median Household Income") {
         impactArray = impactArray.map(impactVal => impactVal / 1000)
