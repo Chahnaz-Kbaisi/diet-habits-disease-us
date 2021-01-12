@@ -78,12 +78,8 @@ ON PAGE LOAD
 ****************************************************/
 d3.select("#impact-select").attr("disabled", "disabled").style("background", "gray");
 
-// fetch data, load county dropdown & create plots
-d3.json('/fetchdata').then(data => {
-    tableData = data;
-    d3.select("#impact-select").attr("disabled", null).style("background", null);
 
-    var impact = d3.select("#impact-select").property("value");
 
-    createStackedBarPlot(tableData, impact);
-});
+var impact = d3.select("#impact-select").property("value");
+
+createStackedBarPlot(tableData, impact);
