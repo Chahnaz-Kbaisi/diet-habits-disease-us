@@ -109,7 +109,7 @@ function loadCountyDropDown(selectedState) {
         });
 
         var county = d3.select("#county-select").property("value");
-        var impact = d3.select("#state-impact-select").property("value");
+        var impact = d3.select("#impact-select").property("value");
 
         // fetch data & create plots
         d3.json(`/fetchPlotStateCountyData/${selectedState}/${county}/${impact}`).then(data => {
