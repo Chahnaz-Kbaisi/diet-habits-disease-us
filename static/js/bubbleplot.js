@@ -277,9 +277,3 @@ var state = d3.select("#state-select").property("value");
 
 // load county dropdown
 loadCountyDropDown(state);
-
-var county = d3.select("#county-select").property("value");
-var impact = d3.select("#impact-select").property("value");
-
-createStateLevelBubblePlot(tableData, state, impact);
-createCountyLevelBubblePlot(tableData, state, county, impact);
