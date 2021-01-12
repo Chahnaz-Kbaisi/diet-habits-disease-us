@@ -284,6 +284,92 @@ def fetchWaterfallPlotData(state, county, impact):
     
     return jsonify(final_dict)
 
+# Route that fetches and returns the data for Linear Regression Plot
+@app.route("/fetchregressiondata/<disease>/<impact>/<year>")
+def fetchregressiondata(disease, impact, year):
+
+    # Fetch data from database
+    rows = mongo.db.countyleveldiethabits.find({})
+
+    # Variable to hold array of dictionaries
+    data = []
+
+    # Create a simple dictionary and append to list
+    for row in rows:
+        item = row
+        for key, value in item.items():
+            value = str(value) + ''
+            if value == 'nan':
+                item[key] = ""
+        item['_id'] = str(item['_id'])
+        data.append(item)
+    rows = ""
+    
+    impact = impact.replace(u'\xa0', u' ')
+    expenditureImpacts = ['Expenditures per capita, fast food',
+        'Expenditures per capita, restaurants'
+    ]
+    incomeImpacts = ['Household Income (Asian)',
+        'Household Income (Black)',
+        'Household Income (Hispanic)',
+        'Household Income (White)'
+    ]
+
+    # Create dataframe from the data	
+    df =  pd.DataFrame(data)
+    data = ""
+    impact = impact.replace(u'\xa0', u' ')
+
+    # Filter the data based on the user selected impact	
+    if impact in expenditureImpacts:	
+        impact = impact.replace(u'\xa0', u' ')	
+        df_2012 = df.loc[(df[impact].isnull() == False) &	
+                         (df["Year"] == int(year))]	
+        df_2012 = df.loc[(df[impact] != "")]
+        df_2012[impact] = df_2012[impact].astype(float)	
+        df_2012_grouped = df_2012.groupby("State")[impact].first()	
+        df_2012_grouped.reset_index()	
+        df_2012_disease = df.loc[(df['County'] == "") & (df["Year"] == int(year))]
+        df = ""
+        df_2012_disease = df_2012_disease[['State','Year',disease]]	
+        df_year = df_2012_disease.merge(df_2012_grouped, on="State")
+        final_dict = df_year.to_dict(orient='records')	
+    elif impact in incomeImpacts:
+        df_year = df.loc[(df["Year"] == int(year)) & (df[impact] != "")]
+        final_dict = df_year.to_dict(orient='records')
+    elif impact == "Direct farm sales per capita":
+        df_year = df.loc[(df["Year"] == int(year)) & (df[impact] != "") & (df["County"] != "")]
+        final_dict = df_year.to_dict(orient='records')
+    else:
+        df_year = df.loc[(df["County"] == "") & (df["Year"] == int(year))]
+        final_dict = df_year.to_dict(orient='records')
+    
+    impactArray = df_year[impact].tolist()
+    diseaseArray = df_year[disease].tolist()
+
+    # Determine the regression values
+    (slope, intercept, rvalue, pvalue, stderr) = linregress(impactArray, diseaseArray)
+    sortedImpactArray = impactArray
+    sortedImpactArray.sort()
+    regressValues = []
+    for impact in sortedImpactArray:
+        regressValue = impact * slope + intercept
+        regressValues.append(regressValue)
+
+    # Determine the line equation and r squared value
+    lineEq = "y = " + str(round(slope,2)) + "x + " + str(round(intercept,2))
+    rSquared = f"{round(rvalue ** 2,2)}"
+
+    # Return X axis values, Regression values, R^2 and Line equation
+    regressionData = {
+        "X":sortedImpactArray,
+        "Y":regressValues,
+        "R": rSquared,
+        "EQUATION": lineEq
+    }
+    final_dict.append(regressionData)
+    return jsonify(final_dict)
+
 # Creating routes that will render html templates
 @app.route('/data')
 def datapage():
