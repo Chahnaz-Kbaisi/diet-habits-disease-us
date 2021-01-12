@@ -96,7 +96,7 @@ function createCountyLevelBubblePlot(data, state, county, impact) {
     };
 
     // Plot the "bubble" plot
-    Plotly.newPlot('countyLevelPlot', dataStateLevelPlot, layoutStateLevelPlot);
+    Plotly.newPlot('countyLevelPlot', dataCountyLevelPlot, layoutCountyLevelPlot);
 };
 
 // Function creates State Level Bubble Plot
