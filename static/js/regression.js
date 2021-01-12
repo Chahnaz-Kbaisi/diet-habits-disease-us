@@ -110,10 +110,6 @@ function createRegressionPlot(disease, impact, year) {
             impactArray = impactArray.slice(0, impactArray.length - 1);
             hoverTextArray = stateArray;
         }
-        console.log(mongoData[mongoData.length - 1]);
-        console.log(mongoData[mongoData.length - 1]["EQUATION"]);
-        console.log(mongoData[mongoData.length - 1]["R"]);
-        console.log(impactArray, diseaseArray, stateArray)
         sortedImpactArray = mongoData[mongoData.length - 1]["X"];
         regressionArray = mongoData[mongoData.length - 1]["Y"];
         rSquared = mongoData[mongoData.length - 1]["R"];
