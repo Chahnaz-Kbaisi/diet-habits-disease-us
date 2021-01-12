@@ -48,7 +48,7 @@ function createWaterfallPlot(data, state, county, impact) {
 
     var diabetesTrace = {
         type: "waterfall",
-        x: [yearArray, yearArray],
+        x: [yearArray, qtrArray],
         text: "% Adults with Diabetes",
         measure: measureArray,
         y: diabetesArrayRelative,
