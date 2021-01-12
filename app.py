@@ -132,6 +132,80 @@ def fetchpagedata(pageNumber):
     
     return jsonify(data)
 
+# Route that fetches and returns all counties in a state
+@app.route("/fetchUniqueCounties/<state>")
+def fetchUniqueCounties(state):
+
+    # Fetch data from database
+    rows = mongo.db.countyleveldiethabits.find({'State':state})
+
+    # Variable to hold array of dictionaries
+    counties = []
+    # Create a simple dictionary and append to list
+    for row in rows:
+        for key, value in row.items():
+            if key == 'County':
+                value = str(value) + ''
+                if value != 'nan':
+                    counties.append(value)
+    counties = list(set(counties))
+    counties.sort()
+
+    return jsonify(counties)
+
+# Route that fetches and returns State and County level data required for creating lineplot  
+@app.route("/fetchPlotStateCountyData/<state>/<county>/<impact>")
+def fetchPlotStateCountyData(state, county, impact):
+
+    # Fetch data from database
+    rows = mongo.db.countyleveldiethabits.find({})
+
+    # Variable to hold array of dictionaries
+    data = []
+
+    # Create a simple dictionary and append to list
+    for row in rows:
+        item = row
+        for key, value in item.items():
+            value = str(value) + ''
+            if value == 'nan':
+                item[key] = ""
+        item['_id'] = str(item['_id'])
+        data.append(item)
+    rows = ""
+
+    # Create dataframe from the data	
+    df =  pd.DataFrame(data)
+    data = ""
+    impact = impact.replace(u'\xa0', u' ')
+    df = df.loc[df['Year'] != ""]
+    df['Year'] = df['Year'].astype(float).astype(int)
+
+    if impact in ["% Limited Access to Healthy Foods", "High School Graduation Rate"]:
+        state_df = df.loc[(df["Year"] >= 2013) & (df["State"] == state) & (df["County"] == "")]
+        county_df = df.loc[(df["Year"] >= 2013) & (df["State"] == state) & (df["County"] == county)]
+    elif impact in ["Food Environment Index", "% With Access to Exercise Opportunities"]:
+        state_df = df.loc[(df["Year"] >= 2014) & (df["State"] == state) & (df["County"] == "")]
+        county_df = df.loc[(df["Year"] >= 2014) & (df["State"] == state) & (df["County"] == county)]
+    elif impact == "Income Ratio":
+        state_df = df.loc[(df["Year"] >= 2015) & (df["State"] == state) & (df["County"] == "")]
+        county_df = df.loc[(df["Year"] >= 2015) & (df["State"] == state) & (df["County"] == county)]
+    else:
+        state_df = df.loc[(df["Year"] != 2010) & (df["State"] == state) & (df["County"] == "")]
+        county_df = df.loc[(df["Year"] != 2010) & (df["State"] == state) & (df["County"] == county)]
+
+    df = ""
+
+    final_state_dict = state_df.to_dict(orient='records')
+    final_county_dict = county_df.to_dict(orient='records')
+
+    final_dict = [{
+        "StatePlotData" : final_state_dict,
+        "CountyPlotData" : final_county_dict
+    }]
+    
+    return jsonify(final_dict)
+
 # Creating routes that will render html templates
 @app.route('/data')
 def datapage():
