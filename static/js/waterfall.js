@@ -155,7 +155,6 @@ ON PAGE LOAD
 d3.select("#state-select").attr("disabled", "disabled").style("background", "gray");
 d3.select("#impact-select").attr("disabled", "disabled").style("background", "gray");
 
-tableData = data;
 console.log("After fetching data", tableData);
 d3.select("#state-select").attr("disabled", null).style("background", null);
 d3.select("#impact-select").attr("disabled", null).style("background", null);
