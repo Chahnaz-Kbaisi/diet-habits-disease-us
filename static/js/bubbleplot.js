@@ -3,25 +3,11 @@
 // Change page title
 d3.select("#page-title").text("Interactive Visualizations");
 
-// Array variable to hold table data 
-var tableData = []
-
 // Followed the same procedure to set the filters as in the line plot
 // Function creates County Level Bubble Plot
 function createCountyLevelBubblePlot(data, state, county, impact) {
-    var yearFilter = data;
-    if (impact == "% Limited Access to Healthy Foods" || impact == "High School Graduation Rate") {
-        yearFilter = yearFilter.filter(row => row["Year"] >= "2013");
-    } else if (impact == "Food Environment Index" || impact == "% With Access to Exercise Opportunities") {
-        yearFilter = yearFilter.filter(row => row["Year"] >= "2014");
-    } else if (impact == "Income Ratio") {
-        yearFilter = yearFilter.filter(row => row["Year"] >= "2015");
-    } else {
-        yearFilter = yearFilter.filter(row => row["Year"] != "2010");
-    }
-
-    var stateFilter = yearFilter.filter(row => row["State"] === state);
-    var countyFilter = stateFilter.filter(row => row["County"] == county);
+    // sort by year
+    var countyFilter = data.sort((a, b) => b["Year"] - a["Year"]);
 
     var yearArray = countyFilter.map(row => row["Year"]);
     var impactArray = countyFilter.map(row => row[impact]);
@@ -79,10 +65,10 @@ function createCountyLevelBubblePlot(data, state, county, impact) {
     };
 
     // Create the data arrays for the plot
-    var dataStateLevelPlot = [impactTrace, obesityTrace, diabetesTrace];
+    var dataCountyLevelPlot = [impactTrace, obesityTrace, diabetesTrace];
 
     // Define the plot layout
-    var layoutStateLevelPlot = {
+    var layoutCountyLevelPlot = {
         title: `${impact} vs Disease Prevalence - ${county}, ${state}`,
 
         // Adding ticks on the axis
@@ -110,29 +96,19 @@ function createCountyLevelBubblePlot(data, state, county, impact) {
     };
 
     // Plot the "bubble" plot
-    Plotly.newPlot('countyLevelPlot', dataStateLevelPlot, layoutStateLevelPlot);
+    Plotly.newPlot('countyLevelPlot', dataCountyLevelPlot, layoutCountyLevelPlot);
 };
 
 // Function creates State Level Bubble Plot
 function createStateLevelBubblePlot(data, state, impact) {
-    var yearFilter = data;
-    if (impact == "% Limited Access to Healthy Foods" || impact == "High School Graduation Rate") {
-        yearFilter = yearFilter.filter(row => row["Year"] >= "2013");
-    } else if (impact == "Food Environment Index" || impact == "% With Access to Exercise Opportunities") {
-        yearFilter = yearFilter.filter(row => row["Year"] >= "2014");
-    } else if (impact == "Income Ratio") {
-        yearFilter = yearFilter.filter(row => row["Year"] >= "2015");
-    } else {
-        yearFilter = yearFilter.filter(row => row["Year"] != "2010");
-    }
 
-    var stateFilter = yearFilter.filter(row => row["State"] === state);
-    var countyFilter = stateFilter.filter(row => row["County"] === "");
+    // sort by year
+    var data = data.sort((a, b) => b["Year"] - a["Year"]);
 
-    var yearArray = countyFilter.map(row => row["Year"]);
-    var impactArray = countyFilter.map(row => row[impact]);
-    var obesityArray = countyFilter.map(row => row["% Adults with Obesity"]);
-    var diabetesArray = countyFilter.map(row => row["% Adults with Diabetes"]);
+    var yearArray = data.map(row => row["Year"]);
+    var impactArray = data.map(row => row[impact]);
+    var obesityArray = data.map(row => row["% Adults with Obesity"]);
+    var diabetesArray = data.map(row => row["% Adults with Diabetes"]);
 
     if (impact == "Median Household Income") {
         impactArray = impactArray.map(impactVal => impactVal / 1000)
@@ -221,21 +197,35 @@ function createStateLevelBubblePlot(data, state, impact) {
 
 // Function for loading County Dropdown options
 function loadCountyDropDown(selectedState) {
-    var stateFilteredData = tableData.filter(row => row.State === selectedState);
-    var countiesList = stateFilteredData.map(row => row.County);
-    var uniqueCounties = d3.set(countiesList).values();
 
-    // sort the counties in ascending
-    uniqueCounties.sort(d3.ascending)
+    // fetch unique counties for state
+    d3.json(`/fetchUniqueCounties/${selectedState}`).then(uniqueCounties => {
 
-    // Load the County dropdown
-    var countyDropDown = d3.select("#county-select");
-    countyDropDown.html("");
-    uniqueCounties.forEach(county => {
-        if (county != "") {
-            var cell = countyDropDown.append("option");
-            cell.property("value", county).text(county);
-        };
+        // Load the County dropdown
+        var countyDropDown = d3.select("#county-select");
+        countyDropDown.html("");
+        uniqueCounties.forEach(county => {
+            if (county != "") {
+                var cell = countyDropDown.append("option");
+                cell.property("value", county).text(county);
+            }
+        });
+
+        var county = d3.select("#county-select").property("value");
+        var impact = d3.select("#impact-select").property("value");
+
+        // fetch data & create plots
+        d3.json(`/fetchPlotStateCountyData/${selectedState}/${county}/${impact}`).then(data => {
+
+            var countyData = data[0]["CountyPlotData"];
+            var stateData = data[0]["StatePlotData"];
+
+            createStateLevelBubblePlot(stateData, selectedState, impact);
+            createCountyLevelBubblePlot(countyData, selectedState, county, impact);
+
+            d3.select("#state-select").attr("disabled", null).style("background", null);
+            d3.select("#impact-select").attr("disabled", null).style("background", null);
+        });
     });
 };
 
@@ -245,14 +235,9 @@ function loadCountyDropDown(selectedState) {
 // State level Event Handler - Loading County dropdown and State/County Level Plots
 function stateChanged(selectedState) {
 
-    // Load County dropdown
+    // Load County dropdown and create plots
     loadCountyDropDown(selectedState);
 
-    var county = d3.select("#county-select").property("value");
-    var impact = d3.select("#impact-select").property("value");
-
-    createStateLevelBubblePlot(tableData, selectedState, impact);
-    createCountyLevelBubblePlot(tableData, selectedState, county, impact);
 };
 
 // County Level Event Handler - Loading County level Plot
@@ -261,7 +246,11 @@ function countyChanged(county) {
     var state = d3.select("#state-select").property("value");
     var impact = d3.select("#impact-select").property("value");
 
-    createCountyLevelBubblePlot(tableData, state, county, impact);
+    // fetch data & create plots
+    d3.json(`/fetchPlotStateCountyData/${state}/${county}/${impact}`).then(data => {
+        var countyData = data[0]["CountyPlotData"];
+        createCountyLevelBubblePlot(countyData, state, county, impact);
+    });
 };
 
 // Impact Event Handler - Loading State/County Level Plots
@@ -270,31 +259,23 @@ function impactChanged(impact) {
     var state = d3.select("#state-select").property("value");
     var county = d3.select("#county-select").property("value");
 
-    createStateLevelBubblePlot(tableData, state, impact);
-    createCountyLevelBubblePlot(tableData, state, county, impact);
+    // fetch data & create plots
+    d3.json(`/fetchPlotStateCountyData/${state}/${county}/${impact}`).then(data => {
+        var countyData = data[0]["CountyPlotData"];
+        var stateData = data[0]["StatePlotData"];
+        createStateLevelBubblePlot(stateData, state, impact);
+        createCountyLevelBubblePlot(countyData, state, county, impact);
+    });
 };
 
 
-// Loading on the Page 
-var prevStateBkgnd = d3.select("#state-select").style("background");
-var prevImpactBkgnd = d3.select("#impact-select").style("background");
+// on Page Load 
 d3.select("#state-select").attr("disabled", "disabled").style("background", "gray");
 d3.select("#impact-select").attr("disabled", "disabled").style("background", "gray");
 
-// fetch data, load county dropdown & create plots
-d3.json('/fetchdata').then(data => {
-    tableData = data;
-    d3.select("#state-select").attr("disabled", null).style("background", null);
-    d3.select("#impact-select").attr("disabled", null).style("background", null);
+var state = d3.select("#state-select").property("value");
+var county = "Autauga";
+var impact = "% Limited Access to Healthy Foods";
 
-    var state = d3.select("#state-select").property("value");
-
-    // load county dropdown
-    loadCountyDropDown(state);
-
-    var county = d3.select("#county-select").property("value");
-    var impact = d3.select("#impact-select").property("value");
-
-    createStateLevelBubblePlot(tableData, state, impact);
-    createCountyLevelBubblePlot(tableData, state, county, impact);
-});
+// load county dropdown
+loadCountyDropDown(state);
