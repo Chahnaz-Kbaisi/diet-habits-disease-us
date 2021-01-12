@@ -6,6 +6,9 @@ d3.select("#page-title").text("Interactive Visualizations");
 // Followed the same procedure to set the filters as in the line plot
 // Function creates County Level Bubble Plot
 function createCountyLevelBubblePlot(data, state, county, impact) {
+    // sort by year
+    var countyFilter = data.sort((a, b) => b["Year"] - a["Year"]);
+
     var yearArray = countyFilter.map(row => row["Year"]);
     var impactArray = countyFilter.map(row => row[impact]);
     var obesityArray = countyFilter.map(row => row["% Adults with Obesity"]);
