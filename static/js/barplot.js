@@ -145,11 +145,6 @@ function stateChanged(selectedState) {
     // Load County dropdown
     loadCountyDropDown(selectedState);
 
-    var county = d3.select("#county-select").property("value");
-    var impact = d3.select("#impact-select").property("value");
-
-    createStateLevelPlot(tableData, selectedState, impact);
-    createCountyLevelPlot(tableData, selectedState, county, impact);
 };
 
 // County Event Handler - Load County Level Plot
