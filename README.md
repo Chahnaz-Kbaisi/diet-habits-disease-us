@@ -21,6 +21,7 @@
 * [Collaborators](#collaborators)
 * [Conclusion](#conclusion)
   * [Take away and future direction](#Take-away-and-future-direction)
+***
 
 # Project Description
 
@@ -40,3 +41,6 @@ Diet is one of the most important determinants of health, which is impacted by n
   ## Objectives
 The goal of this project was to examine the dietary habits of Americans, and assess whether access to food, choice of diet, socioeconomic status, and other factors contribute to the development of diabetes and obesity. Presented here is a state-by-state analysis of dietary trends using the food-environment index, access to healthy food, household income by race, education level, and exercise habits. Furthermore, the relationship between these factors and the prevalence of diabetes and obesity are depicted across the country and clearly show specific positive associations that are indicative of causality. Map-based data visualization is provided for more focused insight and can be used for subsequent analyses. 
 ****   
+
+# Approach 
+For this project, we used data from the datasets below, and performed an ETL pipeline using the languages listed.
