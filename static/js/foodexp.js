@@ -69,7 +69,7 @@ function impactChanged(impact) {
     // disable field
     d3.select("#impact-select").attr("disabled", "disabled").style("background", "gray");
 
-    createStackedBarPlot(tableData, impact);
+    createStackedBarPlot(impact);
 
 };
 
