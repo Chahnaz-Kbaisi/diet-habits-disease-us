@@ -10,7 +10,7 @@ USER DEFINED FUNCTIONS
 function createCountyLevelPlot(data, state, county, impact) {
 
     // sort by year
-    var countyFilter = countyFilter.sort((a, b) => b["Year"] - a["Year"]);
+    var countyFilter = data.sort((a, b) => b["Year"] - a["Year"]);
 
     var yearArray = countyFilter.map(row => row["Year"]);
     var impactArray = countyFilter.map(row => row[impact]);
