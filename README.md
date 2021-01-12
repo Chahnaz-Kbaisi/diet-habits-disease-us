@@ -116,4 +116,24 @@ Plot templates from [Plotly.js documentation](https://plotly.com/javascript/) we
 ***
 # Leaflet Map
 A [leaflet map](https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/js/leafletmap.js) was developed to show the distribution and occurrence rates of the factors being examined state by state across the country. 
-***     
+***
+
+# Data Analysis
+
+##### Linear regression analysis was performed to determine if there was an association between obesity and diabetes and the following factors: 
+    1. Percent Limited Access to Healthy Foods
+    2. Food Environment Index (FEI)
+    3. Percent Physically Inactive
+    4. Percent with access to exercise opportunities
+    5. High School graduation rate
+    6. Percent College education
+    7. Expenditure per capita by Fast-food Restaurants
+    8. Expenditure per capita by Restaurants
+    9. Direct farm sales
+    10. Percent unemployed
+    11. Income ratio
+    12. Median Household Income
+    13. Median Household Income (for Asian, Hispanic, black, white)
+
+## Linear Regression 
+[Linear regression](https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/js/regression.js) analyses were performed to determine if there was an association between several factors and the prevalence of obesity and diabetes.This analysis was performed to determine the relationship between several independent variables like access to healthy foods and the dependent variables obesity and diabetes.
