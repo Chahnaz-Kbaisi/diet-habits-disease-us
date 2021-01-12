@@ -110,11 +110,14 @@ function createRegressionPlot(disease, impact, year) {
             impactArray = impactArray.slice(0, impactArray.length - 1);
             hoverTextArray = stateArray;
         }
-
-        sortedImpactArray = data[0]["X"];
-        regressionArray = data[0]["Y"];
-        rSquared = data[0]["R"];
-        lineEquation = data[0]["EQUATION"];
+        console.log(mongoData[mongoData.length - 1]);
+        console.log(mongoData[mongoData.length - 1]["EQUATION"]);
+        console.log(mongoData[mongoData.length - 1]["R"]);
+        console.log(impactArray, diseaseArray, stateArray)
+        sortedImpactArray = mongoData[mongoData.length - 1]["X"];
+        regressionArray = mongoData[mongoData.length - 1]["Y"];
+        rSquared = mongoData[mongoData.length - 1]["R"];
+        lineEquation = mongoData[mongoData.length - 1]["EQUATION"];
 
         // remove the previous plot (if any)
         $("#regressionPlot").empty();
