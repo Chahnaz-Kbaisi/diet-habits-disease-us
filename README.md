@@ -35,4 +35,8 @@ Diet is one of the most important determinants of health, which is impacted by n
   * Access to healthy foods or the resources to consume a regular healthy diet vary greatly across the United States. 
   * Disparate social factors, like household income, may play a crucial role. 
   * Education level and employment play an important part in dietary choices 
-  * Comprehensive analysis of current data on diet, demographics and lifestyle in the United States is lacking, especially a close examination of specific factors that shed light on why certain Americans are predisposed to developing diabetes and/or obesity.   
+  * Comprehensive analysis of current data on diet, demographics and lifestyle in the United States is lacking, especially a close examination of specific factors that shed light on why certain Americans are predisposed to developing diabetes and/or obesity.  
+
+  ## Objectives
+The goal of this project was to examine the dietary habits of Americans, and assess whether access to food, choice of diet, socioeconomic status, and other factors contribute to the development of diabetes and obesity. Presented here is a state-by-state analysis of dietary trends using the food-environment index, access to healthy food, household income by race, education level, and exercise habits. Furthermore, the relationship between these factors and the prevalence of diabetes and obesity are depicted across the country and clearly show specific positive associations that are indicative of causality. Map-based data visualization is provided for more focused insight and can be used for subsequent analyses. 
+****   
