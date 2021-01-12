@@ -122,7 +122,7 @@ function loadCountyDropDown(selectedState) {
             createCountyLevelPlot(countyData, selectedState, county, impact);
 
             d3.select("#state-select").attr("disabled", null).style("background", null);
-            d3.select("#state-impact-select").attr("disabled", null).style("background", null);
+            d3.select("#impact-select").attr("disabled", null).style("background", null);
         });
     });
 }
