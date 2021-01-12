@@ -126,7 +126,12 @@ function countyChanged(county) {
     var state = d3.select("#state-select").property("value");
     var impact = d3.select("#impact-select").property("value");
 
-    createWaterfallPlot(tableData, state, county, impact);
+    // fetch data & create plots
+    d3.json(`/fetchWaterfallPlotData/${state}/${county}/${impact}`).then(data => {
+
+        createWaterfallPlot(data, state, county, impact);
+
+    });
 };
 
 // Impact Event Handler - Load State/County Level Plots
