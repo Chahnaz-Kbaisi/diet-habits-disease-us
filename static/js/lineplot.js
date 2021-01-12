@@ -95,14 +95,18 @@ function createStateLevelPlot(data, state, impact) {
 // function loads County Dropdown options
 function loadCountyDropDown(selectedState) {
 
-    // Load the County dropdown
-    var countyDropDown = d3.select("#county-select");
-    countyDropDown.html("");
-    uniqueCounties.forEach(county => {
-        if (county != "") {
-            var cell = countyDropDown.append("option");
-            cell.property("value", county).text(county);
-        }
+    // fetch unique counties for state
+    d3.json(`/fetchUniqueCounties/${selectedState}`).then(uniqueCounties => {
+
+        // Load the County dropdown
+        var countyDropDown = d3.select("#county-select");
+        countyDropDown.html("");
+        uniqueCounties.forEach(county => {
+            if (county != "") {
+                var cell = countyDropDown.append("option");
+                cell.property("value", county).text(county);
+            }
+        });
     });
 }
 
