@@ -8,10 +8,10 @@ USER DEFINED FUNCTIONS
 // function creates County Level Waterfall Plot
 function createWaterfallPlot(data, state, county, impact) {
 
-    yearArray = countyFilter.map(row => row["Year"]);
-    obesityArray = countyFilter.map(row => row["% Adults with Obesity"]);
-    diabetesArray = countyFilter.map(row => row["% Adults with Diabetes"]);
-    impactArray = countyFilter.map(row => row[impact]);
+    yearArray = data.map(row => row["Year"]);
+    obesityArray = data.map(row => row["% Adults with Obesity"]);
+    diabetesArray = data.map(row => row["% Adults with Diabetes"]);
+    impactArray = data.map(row => row[impact]);
     console.log(yearArray, obesityArray, diabetesArray, impactArray);
 
     var impactArrayRelative = []
