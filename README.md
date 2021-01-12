@@ -83,3 +83,21 @@ The following is a list of the required languages, modules and libraries that we
   * Bootstrap 
 * JSON
 ***
+
+# Dashboard
+To present our data we created an interactive dashboard that included various plots that are user-friendly and interactive for optimum visualization of the data.
+
+##### The plots below show the trends for the prevelance of obesity and diabetes and the following factors:
+    1. Percent Limited Access to Healthy Foods
+    2. Food Environment Index (FEI)
+    3. Percent Physically Inactive
+    4. Percent with access to exercise opportunities
+    5. High School graduation rate
+    6. Percent College education
+    7. Expenditure per capita by Fast-food Restaurants
+    8. Expenditure per capita by Restaurants
+    9. Direct farm sales
+    10. Percent unemployed
+    11. Income ratio
+    12. Median Household Income
+    13. Median Household Income (for Asian, Hispanic, black, white)
