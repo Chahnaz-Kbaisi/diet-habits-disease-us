@@ -163,7 +163,6 @@ A [leaflet map](https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/ma
   <img src="https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/images/Usha.png?size=50">
 </a>
 
-
 <a href="https://github.com/SusanCThomas">
   <img src="https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/images/Susan.png?size=50">
 </a>
