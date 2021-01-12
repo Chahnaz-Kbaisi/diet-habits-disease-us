@@ -7,16 +7,6 @@ USER DEFINED FUNCTIONS
 
 // function creates County Level Waterfall Plot
 function createWaterfallPlot(data, state, county, impact) {
-    var yearArray;
-
-    var impactFilter = tableData.filter(row => row[impact] != "");
-    console.log("impactFilter", impactFilter);
-    var stateFilter = impactFilter.filter(row => row["State"] == state);
-    console.log("stateFilter", stateFilter);
-    var countyFilter = stateFilter.filter(row => row["County"] == county);
-    console.log("countyFilter", countyFilter);
-    countyFilter.sort(function(a, b) { return d3.ascending(a["Year"], b["Year"]); });
-    // countyFilter = countyFilter.sort(d3.ascending);
 
     yearArray = countyFilter.map(row => row["Year"]);
     obesityArray = countyFilter.map(row => row["% Adults with Obesity"]);
