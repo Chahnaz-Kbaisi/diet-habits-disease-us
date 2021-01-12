@@ -183,6 +183,8 @@ d3.select("#state-select").attr("disabled", "disabled").style("background", "gra
 d3.select("#impact-select").attr("disabled", "disabled").style("background", "gray");
 
 var state = d3.select("#state-select").property("value");
+var county = "Autauga";
+var impact = "% Limited Access to Healthy Foods";
 
 // load county dropdown
 loadCountyDropDown(state);
