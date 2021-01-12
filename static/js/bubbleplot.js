@@ -102,6 +102,9 @@ function createCountyLevelBubblePlot(data, state, county, impact) {
 // Function creates State Level Bubble Plot
 function createStateLevelBubblePlot(data, state, impact) {
 
+    // sort by year
+    var data = data.sort((a, b) => b["Year"] - a["Year"]);
+
     var yearArray = countyFilter.map(row => row["Year"]);
     var impactArray = countyFilter.map(row => row[impact]);
     var obesityArray = countyFilter.map(row => row["% Adults with Obesity"]);
