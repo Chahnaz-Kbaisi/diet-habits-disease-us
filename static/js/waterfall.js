@@ -57,7 +57,7 @@ function createWaterfallPlot(data, state, county, impact) {
 
     var obesityTrace = {
         type: "waterfall",
-        x: [yearArray, yearArray],
+        x: [yearArray, qtrArray],
         text: "% Adults with Obesity",
         measure: measureArray,
         y: obesityArrayRelative,
