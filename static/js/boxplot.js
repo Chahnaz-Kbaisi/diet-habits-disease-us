@@ -91,3 +91,13 @@ function createBoxPlot() {
     };
     Plotly.newPlot('boxplotb', data, layout);
 }
+
+/***************************************************
+ON PAGE LOAD
+****************************************************/
+
+// change page title
+d3.select("#page-title").text("Interactive Visualizations");
+
+// Fetch data from remote DB and generate the plot
+fetchMongoData();
