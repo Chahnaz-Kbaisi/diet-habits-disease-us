@@ -87,7 +87,7 @@ The following is a list of the required languages, modules and libraries that we
   * Plotly.JS
   * Leaflet.js
     * Choropleth
-* JQuery 
+  * JQuery 
 * CSS
   * Bootstrap 
 * JSON
@@ -159,7 +159,7 @@ A [leaflet map](https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/ma
 </a>
 
 <a href="https://github.com/JayyMaurice2020">
-  <img src="https://github.com/Chahnaz-Kbaisi/Draft-Working/blob/master/Jamel.png?size=10">
+  <img src="https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/images/Jamel.png?size=50">
 </a>
 
 
