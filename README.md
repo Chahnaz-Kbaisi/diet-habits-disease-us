@@ -120,20 +120,8 @@ A [leaflet map](https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/ma
 
 # Data Analysis
 
-##### Linear regression analysis was performed to determine if there was an association between obesity and diabetes and the following factors: 
-    1. Percent Limited Access to Healthy Foods
-    2. Food Environment Index (FEI)
-    3. Percent Physically Inactive
-    4. Percent with access to exercise opportunities
-    5. High School graduation rate
-    6. Percent College education
-    7. Expenditure per capita by Fast-food Restaurants
-    8. Expenditure per capita by Restaurants
-    9. Direct farm sales
-    10. Percent unemployed
-    11. Income ratio
-    12. Median Household Income
-    13. Median Household Income (for Asian, Hispanic, black, white)
+##### Linear regression analysis was performed to determine if there was an association between obesity and diabetes and the factors listed above.
+   
 
 ## Linear Regression 
 [Linear regression](https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/js/regression.js) analyses were performed to determine if there was an association between several factors and the prevalence of obesity and diabetes.This analysis was performed to determine the relationship between several independent variables like access to healthy foods and the dependent variables obesity and diabetes.
