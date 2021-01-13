@@ -89,7 +89,7 @@ function createBoxPlot() {
         title: 'Box Plot for the Diseases and all Factors at US Level',
         xaxis: { automargin: true }
     };
-    Plotly.newPlot('boxplotb', data, layout);
+    Plotly.newPlot('boxplot', data, layout);
 }
 
 /***************************************************
