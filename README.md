@@ -1,6 +1,6 @@
 # Project title: American Lifestyle and Disease Prevalence
 
-#### Do you want to learn about the dietary trends in the United States over the last decade and the impact of what you eat and the social factors of life on the prevalence of obesity and diabetes? The American Dietary Trend and Disease Prevalence 2021 team are excited to share their interactive heroku app which will give you the answer: https://diet-habits-disease-us.herokuapp.com
+#### Do you want to learn about the dietary trends in the United States over the last decade and the impact of what you eat and the social factors of life on the prevalence of obesity and diabetes? The American Lifestyle and Disease Prevalence 2021 team are excited to share their interactive heroku app which will give you the answer: https://diet-habits-disease-us.herokuapp.com
 
 ![app](https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/images/Navbar.png)
 
@@ -191,4 +191,4 @@ The research presented here shows that certain factors (i.e., lifestyle, demogra
 - - -
 ### Copyright
 
-American Dietary Trend & Disease Prevalence © 2021. All Rights Reserved.
+American Lifestyle and Disease Prevalence © 2021. All Rights Reserved.
