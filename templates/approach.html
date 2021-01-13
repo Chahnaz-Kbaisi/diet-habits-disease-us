@@ -4,18 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>American Dietary Trends & Disease Prevalence</title>
+    <title>American Lifestyle & Disease Prevalence</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous" />
 
-    <script src="https://d3js.org/d3.v6.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='CSS/navbar.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='CSS/footer.css') }}">
-    <script src="{{ url_for('static', filename='js/navbar.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/footer.js') }}"></script>
 
     <!-- CSS for current page -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/approach.css') }}" />
@@ -30,18 +26,17 @@
         <!-- Page Content -->
         <div class="container-fluid mt-5">
             <!-- Main page row -->
-            <div class="row ml-1">
-                <div class="col-md-6">
-                    <section class='row mr-2'>
-                        <div class='col bg-white'>
-                            <h2>Data</h2>
-                            <hr>
-                            <p style="font-size:150%">The following table includes all of the data after ETL process during this project.
-                            </p>
-                            <h1 id="fetching"></h1>
-                            <div class='row bg-white'>
+            <div class="row">
+                <div class="col-md-5 columns">
+                    <h2 style="font-size:300%; font-weight: bold;">Data</h2>
+                    <hr>
+                    <p style="font-size:150%">The following table includes all of the data used for analysis/plotting during this project.</p>
+                    <h1 id="fetching"></h1>
+                    <div class="card bg-secondary">
+                        <div class="card-body">
+                            <div class='row bg-light'>
                                 <div class='col'>
-                                    <div class='table-responsive' style='height:400px; overflow-x:auto; overflow-y: auto;'>
+                                    <div class='table-responsive' style='width:100%;height:400px; overflow-x:auto; overflow-y: auto;'>
                                         <table class="table table-striped">
                                             <thead>
                                                 <tr>
@@ -54,10 +49,6 @@
                                                     <th class="table-head">Food Environment Index</th>
                                                     <th class="table-head">% Physically Inactive</th>
                                                     <th class="table-head">% With Access to Exercise Opportunities</th>
-                                                    <th class="table-head"># Primary Care Physicians</th>
-                                                    <th class="table-head">Primary Care Physicians Rate</th>
-                                                    <th class="table-head"># Mental Health Providers</th>
-                                                    <th class="table-head">Mental Health Provider Rate</th>
                                                     <th class="table-head">High School Graduation Rate</th>
                                                     <th class="table-head">% Some College</th>
                                                     <th class="table-head">% Unemployed</th>
@@ -70,7 +61,6 @@
                                                     <th class="table-head">Expenditures per capita, fast food</th>
                                                     <th class="table-head">Expenditures per capita, restaurants</th>
                                                     <th class="table-head">Direct farm sales per capita</th>
-                                                    <th class="table-head">Direct farm sales per capita (% change), 2007 - 12</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -79,7 +69,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row bg-white">
+                            <div class="row bg-light">
                                 <div class="col">
                                     <nav aria-label="Page navigation example">
                                         <ul class="pagination justify-content-center">
@@ -95,105 +85,132 @@
                                 </div>
                             </div>
                         </div>
-                    </section>
-                    <br></br>
-                    <div class="container mb-5">
-                        <div class="row">
-                            <div class="col-12">
-                                <h1>Languages & Libraries Used</h1>
-                                <ul style="list-style: circle; font-size: 20px">
-                                    <li>
-                                        Jupyter Notebook
-                                    </li>
-                                    <li>
-                                        Python
-                                        <ul style="list-style-type:disc; font-size: 18px">
-                                            <li>Pandas</li>
-                                            <li>Matplotlib Library</li>
-                                            <li>Flask API</li>
-                                        </ul>
-                                    </li>
-                                    <li>HTML</li>
-                                    <li>MongoDB</li>
-                                    <li>Javascript
-                                        <ul style="list-style-type:disc; font-size: 18px">
-                                            <li>D3.js</li>
-                                            <li>DOM Manipulation</li>
-                                            <li>Plotly.JS</li>
-                                            <li>Leaflet.js
-                                                <ul>
-                                                    <li>Choropleth</li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>CSS
-                                        <ul style="list-style-type:disc; font-size: 18px">
-                                            <li>Bootstrap</li>
-                                        </ul>
-                                    </li>
-                                    <li>JQuery</li>
-                                    <li>JSON</li>
-                                </ul>
+                    </div>
+                </div>
+                <div class="col-md-7 bg-alt columns">
+                    <div class="row pl-2">
+                        <div class="col bg-alt columns pb-0">
+                            <h2 style="font-size:300%; font-weight: bold;">Data Sources</h2>
+                            <hr>
+                            <ul style="font-size:135%; line-height: 1.6; list-style-type: circle;">
+                                <li>
+                                    <a class="nav-link blackonwhite" href="https://www.countyhealthrankings.org/app/alabama/2019/downloads" target="_blank">
+                                        County Health Rankings & Roadmaps
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="nav-link blackonwhite" href="https://www.ers.usda.gov/data-products/food-environment-atlas/data-access-and-documentation-downloads/" target="_blank">
+                                        Food Environment Atlas
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row pl-2">
+                        <div class="col-md-9 bg-alt columns">
+                            <div class="card bg-secondary text-white">
+                                <div class="card-body">
+                                    <h2 style="font-size:200%; font-weight: bold;">Data Preprocessing & ETL</h2>
+                                    <hr class="lighthr">
+                                    <h3 style="font-size:150%; font-weight: bold;">Data Investigation</h3>
+                                    <p style="font-size:140%; line-height: 1.6;">Investigated the datasets and realized that data had to be scraped from 560 different excel workbooks, which would be too cumbersome to download manually. So we decided to write a script to scrape the data from the
+                                        webpages.
+                                    </p>
+                                    <h3 style="font-size:150%; font-weight: bold;">Extract</h3>
+                                    <ul style="font-size:135%; line-height: 1.6; list-style-type: circle;">
+                                        <li>
+                                            Developed a <a href="https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/ETL/Web_Scrape_ETL.ipynb">script</a> to web scrape only the relevant data and categories in 559 Excel workbooks from the
+                                            County Health Rankings and Roadmaps website.
+                                        </li>
+                                        <li>
+                                            Script also extracted relevant data from two worksheets,' Restaurants' and 'Local' in Food Environment Atlas <a href="https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/data/FoodEnvironmentAtlas.xls">Workbook</a>.
+                                        </li>
+                                        <li>
+                                            Data for each factor was not available for all years, and there were differences in column names for these factors in different excel sheets. Excel sheets for Alaska and Lousiana for the year 2020 alone had County column titled as Borough and Parish resp.,
+                                            So, the extraction script had to handle these inconsistencies appropriately to fetch all data.
+                                        </li>
+                                    </ul>
+                                    <h3 style="font-size:150%; font-weight: bold;">Transform</h3>
+                                    <ul style="font-size:135%; line-height: 1.6; list-style-type: circle;">
+                                        <li>
+                                            Consolidated the data collected from both the data sources into one data frame.
+                                        </li>
+                                        <li>
+                                            Cleaned the data and renamed the columns
+                                        </li>
+                                    </ul>
+                                    <h3 style="font-size:150%; font-weight: bold;">Load</h3>
+                                    <ul style="font-size:135%; line-height: 1.6; list-style-type: circle;">
+                                        <li>
+                                            Loaded the web scraped data into an Excel <a href="https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/data/Web_Scraped_Data.xls">file</a> and remote MongoDB for further analysis.
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 bg-alt columns pl-0">
+                            <div class="card bg-secondary text-white">
+                                <div class="card-body">
+                                    <h2 style="font-size:180%; font-weight: bold;">Languages & Libraries Used</h2>
+                                    <hr class="lighthr">
+                                    <ul style="font-size:135%; line-height: 1.6; list-style-type: circle;">
+                                        <li>
+                                            Jupyter Notebook
+                                        </li>
+                                        <li>
+                                            Python
+                                            <ul style="line-height: 1.6; list-style-type:disc;">
+                                                <li>Pandas</li>
+                                                <li>Matplotlib Library</li>
+                                                <li>Flask API</li>
+                                            </ul>
+                                        </li>
+                                        <li>MongoDB</li>
+                                        <li>Javascript
+                                            <ul style="line-height: 1.6; list-style-type:disc;">
+                                                <li>D3.js</li>
+                                                <li>DOM Manipulation</li>
+                                                <li>Plotly.JS</li>
+                                                <li>JQuery</li>
+                                                <li>Leaflet.js
+                                                    <ul>
+                                                        <li>Choropleth</li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>HTML</li>
+                                        <li>CSS
+                                            <ul style="line-height: 1.6; list-style-type:disc;">
+                                                <li>Bootstrap</li>
+                                            </ul>
+                                        </li>
+                                        <li>JSON</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="container mb-5">
-                        <div class="row">
-                            <div class="col-12">
-                                <h1>Data Sources</h1>
-                                <ul style="list-style: square; font-size: 30px">
-                                    <li>
-                                        <a class="nav-link blackonwhite" href="https://www.countyhealthrankings.org/app/alabama/2019/downloads" target="_blank">
-                                            <h2>County Health Rankings & Roadmaps</h2>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="nav-link blackonwhite" href="https://www.ers.usda.gov/data-products/food-environment-atlas/data-access-and-documentation-downloads/" target="_blank">
-                                            <h2>Food Environment Atlas</h2>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12">
-                                <h1>Data Preprocessing & ETL</h1>
-                                <ul style="list-style: circle; font-size: 20px">
-                                    <li>Extracted data from the County Health & Roadmaps website</li>
-                                    <li>Investigated data and determined that it was too comprehensive (548 excel sheets) to use in its entirety</li>
-                                    <li>Developed a <a href="https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/ETL/Web_Scrape_ETL.ipynb">script</a> for web scraping only the relevant data and categories from the 548 excel sheets
-                                    </li>
-                                    <li>Condensed two worksheets (Restaurants and Local) from the <a href="https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/data/FoodEnvironmentAtlas.xls">Food
-                                            Environment Atlas</a></li>
-                                    <li>Consolidated both retrieved datasets into one data frame</li>
-                                    <li>Cleaned the data and renamed the columns</li>
-                                    <li>Loaded the web scraped data into one <a href="https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/data/Web_Scraped_Data.xls">excel
-                                            file</a> and remote MongoDB since a relational database was not sought</li>
-                                </ul>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!-- Footer -->
+                <div id="footer-placeholder"></div>
             </div>
         </div>
-
-        <!-- Footer -->
-        <div id="footer-placeholder"></div>
-
     </div>
+
+
     <!-- JS, Popper.js, CSS and jQuery -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+    <script src="{{ url_for('static', filename='js/navbar.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/footer.js') }}"></script>
 
     <!-- Script for current page -->
     <script src="{{ url_for('static', filename='js/approach.js') }}"></script>
