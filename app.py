@@ -370,6 +370,39 @@ def fetchregressiondata(disease, impact, year):
     final_dict.append(regressionData)
     return jsonify(final_dict)
 
+# Route that fetches and returns the data for Box Plot
+@app.route("/fetchBoxPlotData")
+def fetchBoxPlotData():
+
+    # Fetch data from database
+    rows = mongo.db.countyleveldiethabits.find({})
+
+    # Variable to hold array of dictionaries
+    data = []
+
+    # Create a simple dictionary and append to list
+    for row in rows:
+        item = row
+        for key, value in item.items():
+            value = str(value) + ''
+            if value == 'nan':
+                item[key] = ""
+        item['_id'] = str(item['_id'])
+        data.append(item)
+    rows = ""
+
+    # Create dataframe from the data	
+    df =  pd.DataFrame(data)
+    data = ""
+    df = df.loc[df['Year'] != ""]
+    df['Year'] = df['Year'].astype(float).astype(int)
+    state_level_df = df.loc[(df["County"] == "") & (df['Year'] != 2010)]
+    df = ""
+
+    final_state_dict = state_level_df.to_dict(orient='records')
+
+    return jsonify(final_state_dict)
+
 # Creating routes that will render html templates
 @app.route('/data')
 def datapage():
