@@ -10,11 +10,6 @@ body {
 }
 
 .flex-container {
-    height: 100%;
-    background: #f0e68c;
-}
-
-.flex-container {
     width: 100%;
     height: 100%;
     margin: 0px;
@@ -26,7 +21,7 @@ body {
     /* Standard syntax */
 }
 
-.flex-container .column {
+.columns {
     padding: 10px;
     background: #dbdfe5;
     -webkit-flex: 1;
@@ -37,6 +32,6 @@ body {
     /* Standard syntax */
 }
 
-.flex-container .column.bg-alt {
+.bg-alt {
     background: #b4bac0;
 }
