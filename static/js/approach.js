@@ -27,10 +27,6 @@ function loadTableData(dataArray) {
         row.append("td").text(data["Food Environment Index"]);
         row.append("td").text(data["% Physically Inactive"]);
         row.append("td").text(data["% With Access to Exercise Opportunities"]);
-        row.append("td").text(data["# Primary Care Physicians"]);
-        row.append("td").text(data["Primary Care Physicians Rate"]);
-        row.append("td").text(data["# Mental Health Providers"]);
-        row.append("td").text(data["Mental Health Provider Rate"]);
         row.append("td").text(data["High School Graduation Rate"]);
         row.append("td").text(data["% Some College"]);
         row.append("td").text(data["% Unemployed"]);
@@ -43,8 +39,6 @@ function loadTableData(dataArray) {
         row.append("td").text(data["Expenditures per capita, fast food"]);
         row.append("td").text(data["Expenditures per capita, restaurants"]);
         row.append("td").text(data["Direct farm sales per capita"]);
-        row.append("td").text(data["Direct farm sales per capita (% change), 2007 - 12"]);
-
     });
 };
 
