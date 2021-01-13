@@ -110,7 +110,7 @@ Plot templates from [Plotly.js documentation](https://plotly.com/javascript/) we
    [Bubble Plot](https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/js/bubbleplot.js) |
    [Box Plot](https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/js/boxplot.js) |   
    [Bar Plot 1](https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/js/barplot.js) | 
-   [Bar Plot 2](https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/js/foodexp.js) | 
+   [Stacked Bar Plot ](https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/js/foodexp.js) | 
    [Waterfall Plot](https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/js/waterfall.js) | 
 
 ***
