@@ -51,14 +51,23 @@ For this project, we used data from the datasets below, and performed an ETL pip
 
 ## ETL: 
 ### Extract, Transform, Load
-[Data Preprocessing & ETL](https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/tree/main/ETL)
-   * Extracted data from the County Health & Roadmaps website
-   * Investigated data and determined that it was too comprehensive (548 excel sheets) to use in its entirety
-   * Developed a [script](https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/ETL/Web_Scrape_ETL.ipynb) for web scraping only the relevant data and categories from the 548 excel sheets
-   * Condensed two worksheets (Restaurants and Local) from the [Food Environment Atlas](https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/data/FoodEnvironmentAtlas.xls)
-   * Consolidated both retrieved datasets into one data frame
-   * Cleaned the data and renamed the columns
-   * Loaded the web scraped data into one [excel file](https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/data/Web_Scraped_Data.xls) and remote MongoDB since a relational database was not sought
+
+#### Data Investigation
+
+Investigated the datasets and realized that data had to be scraped from 560 different excel workbooks, which would be too cumbersome to download manually. So we decided to write a script to scrape the data from the webpages.
+
+#### Extract
+  * Developed a [script](https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/ETL/Web_Scrape_ETL.ipynb) to web scrape only the relevant data and categories in 559 Excel workbooks from the County Health Rankings and Roadmaps website
+  * Script also extracted relevant data from two worksheets,' Restaurants' and 'Local' in Food Environment Atlas [Workbook](https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/data/FoodEnvironmentAtlas.xls).
+  * Data for each factor was not available for all years, and there were differences in column names for these factors in different excel sheets. Excel sheets for Alaska and Lousiana for the year 2020 alone had County column titled as Borough and Parish resp., So, the extraction script had to handle these inconsistencies appropriately to fetch all data.
+
+#### Transform
+  * Consolidated the data collected from both the data sources into one data frame.
+  * Cleaned the data and renamed the columns
+
+#### Load
+* Loaded the web scraped data into an Excel [file](https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/data/Web_Scraped_Data.xls) and remote MongoDB for further analysis.
+
 
 ***
 # Requirements
@@ -78,7 +87,7 @@ The following is a list of the required languages, modules and libraries that we
   * Plotly.JS
   * Leaflet.js
     * Choropleth
-* JQuery 
+  * JQuery 
 * CSS
   * Bootstrap 
 * JSON
@@ -127,36 +136,6 @@ A [leaflet map](https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/ma
 [Linear regression](https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/js/regression.js) analyses were performed to determine if there was an association between several factors and the prevalence of obesity and diabetes.This analysis was performed to determine the relationship between several independent variables like access to healthy foods and the dependent variables obesity and diabetes.
 
 ***
-# Collaborators 
-<a href="https://github.com/Prarthna-design">
-  <img src="https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/images/Prarthna.png?size=50">
-</a>
-
-
-<a href="https://github.com/cdalsania">
-  <img src="https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/images/Crystal.png?size=50">
-</a>
-
-<a href="https://github.com/JayyMaurice2020">
-  <img src="https://github.com/Chahnaz-Kbaisi/Draft-Working/blob/master/Jamel.png?size=10">
-</a>
-
-
-   <a href="https://github.com/Chahnaz-Kbaisi">
-  <img src="https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/images/Chahnaz.png?size=50">
-</a>
-
-
-<a href="https://github.com/ushaakumaar">
-  <img src="https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/images/Usha.png?size=50">
-</a>
-
-
-<a href="https://github.com/SusanCThomas">
-  <img src="https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/images/Susan.png?size=50">
-</a>
-
-***
 # Limitations
  * Data was not available for all years for all of the factors analyzed.
  * The Food Environment Atlas only had data for 2007 and 2012, and nothing more current than that.
@@ -167,6 +146,36 @@ A [leaflet map](https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/ma
     * Primary Care Physicians
     * Mental Health Providers
     * Mental Health Provider Rate
+
+***
+# Collaborators 
+<a href="https://github.com/Prarthna-design">
+  <img src="https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/images/Prarthna.png?size=40">
+</a>
+
+
+<a href="https://github.com/cdalsania">
+  <img src="https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/images/Crystal.png?size=40">
+</a>
+
+<a href="https://github.com/JayyMaurice2020">
+  <img src="https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/images/Jamel.png?size=40">
+</a>
+
+
+   <a href="https://github.com/Chahnaz-Kbaisi">
+  <img src="https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/images/Chahnaz.png?size=40">
+</a>
+
+
+<a href="https://github.com/ushaakumaar">
+  <img src="https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/images/Usha.png?size=40">
+</a>
+
+
+<a href="https://github.com/SusanCThomas">
+  <img src="https://github.com/Chahnaz-Kbaisi/diet-habits-disease-us/blob/main/static/images/Susan.png?size=40">
+</a>
 
 ***
 # Conclusion
