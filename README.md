@@ -21,6 +21,7 @@
 * [Collaborators](#collaborators)
 * [Conclusion](#conclusion)
   * [Take away and future direction](#Take-away-and-future-direction)
+* [Deployed App](#deployed-app)
 ***
 
 # Project Description
@@ -196,6 +197,14 @@ Dietary trends in the United States over the last decade provide insight into th
 The research presented here shows that certain factors (i.e., lifestyle, demographic, socioeconomic) play a major role in the prevalence of obesity and diabetes, both in terms of the choices Americans make in their personal lives and the social conditions of where they live. Among the lifestyle choices examined, lack of exercise had the strongest consistent association with disease rates over ten years, this may have been due to reduced availability of physical activity facilities. On the other hand, decreased local access to healthy food and household income were the most important contributors to disease prevalence in terms of demographic and socioeconomic factors, respectively. Thus, a combination of personal and social factors likely contribute to the number of people who develop these chronic conditions. These associations should be considered over several years and carefully weighed for significance given the cause of chronic conditions like obesity and diabetes is multifactorial. Future work should examine the role of specific nutrition choices (e.g., what Americans buy at grocery stores), heredity of disease (i.e., does someone in the family already have it), and availability of local nutrition education programs on disease rates.    
 
 
+****
+# Deployed App
+
+We are excited to share our research and analysis in our interactive Heroku app: [https://diet-habits-disease-us.herokuapp.com/](https://diet-habits-disease-us.herokuapp.com/)
+
+<a href="https://diet-habits-disease-us.herokuapp.com/">
+  <img src="static/images/LandingPage_Screenshot.png" alt="Landing Page Screenshot" style="border:5px solid #555;">
+</a>
 
 - - -
 ### Copyright
