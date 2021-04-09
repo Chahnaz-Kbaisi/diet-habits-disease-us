@@ -200,7 +200,7 @@ The research presented here shows that certain factors (i.e., lifestyle, demogra
 ****
 # Deployed App
 
-We are excited to share our research and analysis in our interactive Heroku app: [https://diet-habits-disease-us.herokuapp.com/](https://diet-habits-disease-us.herokuapp.com/)
+We are excited to share our research and analysis in an interactive Heroku app: [https://diet-habits-disease-us.herokuapp.com/](https://diet-habits-disease-us.herokuapp.com/)
 
 <a href="https://diet-habits-disease-us.herokuapp.com/">
   <img src="static/images/LandingPage_Screenshot.png" alt="Landing Page Screenshot" style="border:5px solid #555;">
